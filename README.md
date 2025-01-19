@@ -1,17 +1,46 @@
 # 金融模型導論 
 
 本課程介紹基礎金融知識，為數學系學生進入財務工程領域與金融科技應用做準備。
-<!--本課程介紹金融與保險學門的基礎知識，為數學系學生自學通過專業財金證照考試（如 ASA, CERA, FSA, FRM 等）與現代科技金融應用做準備。-->
 
 ## 參考書
 
-- Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - Kennedy, D., 2010. Stochastic Financial Models. Chapman & Hall/CRC, Boca Raton, FL.
 - Van der Wijst, N., 2013. Finance: A Quantitative Introduction. Cambridge University Press, Cambridge. 
+- Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - Gilli, M., Maringer, D., Schumann, D., 2019. Numerical Methods and Optimization in Finance. 2nd ed., Academic Press, London.
 - [Dixon, M. F., Halperin, I., Bilokon, P., 2020. Machine Learning in Finance: From Theory to Practice. Springer Nature.](https://link.springer.com/book/10.1007/978-3-030-41068-1)
+- Arguin, L.-P., 2022. A First Course in Stochastic Calculus. AMS, Providence, RI.
+- Reider, R., Michalka, A., 2025. Build a Robo-Advisor with Python (From Scratch). Manning Publications, Shelter Island, NY.
+
+## 評分標準
+
+學期考（100%）：考題從事先公佈 / 講解之練習題中選取。
+
+## 授課時程
+
+| 上課時間            | 課程進度                        |
+|---------------------|---------------------------------|
+| 02/18               |                                 |
+| 02/25, 02/27        |                                 |
+| 03/04               |                                 |
+| 03/11, 03/13        |                                 | 
+| 03/18               |                                 |
+| 03/25, 03/27        |                                 |
+| 04/08, 04/10        |                                 |
+| 04/15               |                                 |
+| 04/22, 04/24        |                                 |
+| 04/29               |                                 |
+| 05/06, 05/08        |                                 |
+| 05/13 學期考        |                                 |
+
+## 授課教師
+
+杜昌燁 cwtu320313 @ googlemail.com
 
 <!---
+
+本課程介紹金融與保險學門的基礎知識，為數學系學生自學通過專業財金證照考試（如 ASA, CERA, FSA, FRM 等）與現代科技金融應用做準備。
+
 - Illuminating, refreshing, useful content; Not too mathematical and theoretical
 - With solved examples, problems and detailed solutions
 - With lecture slides
@@ -29,7 +58,6 @@
 - Hull, J. C., 2022. Options, Futures and other Derivatives. 11th ed., Pearson, Boston.
 - Privault, N., 2022. Stochastic Finance: An Introduction with Market Examples. 2nd ed., Chapman & Hall/CRC, Boca Raton, FL.
 - Dickson, C. M. D., Hardy, M. R., Waters, H. R., 2020. Actuarial Mathematics for Life Contingent Risks. 3rd ed., Cambridge University Press, Cambridge.
-- Arguin, L.-P., 2022. A First Course in Stochastic Calculus. AMS, Providence, RI.
 - 徐高，2018。金融經濟學二十五講，中國人民大學出版社。
 - [Lengwiler, Y., 2004. Microfoundations of Financial Economics: An Introduction to General Equilibrium Asset Pricing. Princeton University Press, Princeton, N.J.](https://microfoundations.org/wp-content/uploads/2020/12/Lengwiler-Microfoundations.pdf)
 - [Saari, D. G., 2019. Mathematics of Finance: An Intuitive Introduction. Springer Nature, Cham, Switzerland.](https://link.springer.com/book/10.1007/978-3-030-25443-8)
@@ -45,7 +73,7 @@
 - Natenberg, S., 2014. Option Volatility and Pricing: Advanced Trading Strategies and Techniques. 2nd ed., McGraw-Hill, New York.
 - McMillan, L. G., 2012. Options as a Strategic Investment. 5th ed., McGraw-Hill, New York.
 - McNeil, A. J., Frey, R., Embrechts, P., 2015. Quantitative Risk Management: Concepts, Techniques and Tools. Revised edition, Princeton University Press, Princeton, NJ.
-- Hyndman, R. J., Athanasopoulos, G., 2021. Forecasting: Principles and Practice. 3rd ed., OTexts, Melbourne, Australia. 
+- [Hyndman, R. J., Athanasopoulos, G., 2021. Forecasting: Principles and Practice. 3rd ed., OTexts, Melbourne, Australia.](https://otexts.com/fpp3/) 
 
 03/07: Chakrabarty S. P., Kanaujiya A. Mathematical Portfolio Theory and Analysis Chap. 5
 03/09: St. Petersburg Paradox Revisited: Using expected utility theory, \sum_{k = 1}^\infty\frac{k}{2^k} = 2 proof; Allais Paradox; Prospect theory
@@ -120,15 +148,6 @@ Millossovich P.
 ## Papers
 - Bacinello, A. R., Millossovich, P., Olivieri, A., Pitacco, E., 2011. Variable Annuities: A Unifying Valuation Approach. Insurance: Mathematics and Economics (49), 285 -- 297.  
 
--->
-
-## 評分標準
-
-學期考（100%）：考題從事先公佈 / 講解之練習題中選取。
-
-## 授課時程
-
-<!--
 1. Risk in Perspective
 1. Basic Concepts in Risk Management
 1. Empirical Properties of Financial Data
@@ -142,24 +161,6 @@ Millossovich P.
 1. Portfolio Credit Risk Management
 1. Multivariate Time Series
 1. Introduction to Counterparty Risk
--->
-
-| 上課時間            | 課程進度                        |
-|---------------------|---------------------------------|
-| 02/18               |                                 |
-| 02/25, 02/27        |                                 |
-| 03/04               |                                 |
-| 03/11, 03/13        |                                 | 
-| 03/18               |                                 |
-| 03/25, 03/27        |                                 |
-| 04/08, 04/10        |                                 |
-| 04/15               |                                 |
-| 04/22, 04/24        |                                 |
-| 04/29               |                                 |
-| 05/06, 05/08        |                                 |
-| 05/13 學期考        |                                 |
-
-<!--
 
 | 上課時間            | 課程進度                        |
 |---------------------|---------------------------------|
@@ -178,7 +179,3 @@ Millossovich P.
 | 05/16 學期考        |                                 |
 
 -->
-
-## 授課教師
-
-杜昌燁 cwtu320313 @ googlemail.com
