@@ -5,11 +5,9 @@
 ## 參考書
 
 - Kennedy, D., 2010. Stochastic Financial Models. Chapman & Hall/CRC, Boca Raton, FL.
-- Van der Wijst, N., 2013. Finance: A Quantitative Introduction. Cambridge University Press, Cambridge. 
 - Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - Gilli, M., Maringer, D., Schumann, D., 2019. Numerical Methods and Optimization in Finance. 2nd ed., Academic Press, London.
 - [Dixon, M. F., Halperin, I., Bilokon, P., 2020. Machine Learning in Finance: From Theory to Practice. Springer Nature.](https://link.springer.com/book/10.1007/978-3-030-41068-1)
-- Arguin, L.-P., 2022. A First Course in Stochastic Calculus. AMS, Providence, RI.
 - Reider, R., Michalka, A., 2025. Build a Robo-Advisor with Python (From Scratch). Manning Publications, Shelter Island, NY.
 
 ## 評分標準
@@ -52,6 +50,7 @@
 - lecture slides
 - open source
 
+- Arguin, L.-P., 2022. A First Course in Stochastic Calculus. AMS, Providence, RI.
 - Björk, T., 2020. Arbitrage Theory in Continuous Time. 4th ed., Oxford University Press, Oxford.
 - Körner, T. W., 2008. Naive Decision Making: Mathematics Applied to the Social World. Cambridge University Press, Cambridge.
 - Gura, E. Y., Maschler, M., 2008. Insights into Game Theory: An Alternative Mathematical Experience. Cambridge University Press, Cambridge.
@@ -63,17 +62,18 @@
 - [Saari, D. G., 2019. Mathematics of Finance: An Intuitive Introduction. Springer Nature, Cham, Switzerland.](https://link.springer.com/book/10.1007/978-3-030-25443-8)
 - [Chakrabarty, S. P., Kanaujiya, A., 2023. Mathematical Portfolio Theory and Analysis. Springer Nature, Cham, Switzerland.](https://link.springer.com/book/10.1007/978-981-19-8544-7)
 - [Chan, H., Guo, Z.-Y., Lee, T., Li, X., 2024. Financial Mathematics, Derivatives and Structured Products. 2nd ed., Springer Nature, Singapore.](https://link.springer.com/book/10.1007/978-981-99-9534-9)
+- [Hyndman, R. J., Athanasopoulos, G., 2021. Forecasting: Principles and Practice. 3rd ed., OTexts, Melbourne, Australia.](https://otexts.com/fpp3/) 
+- Van der Wijst, N., 2013. Finance: A Quantitative Introduction. Cambridge University Press, Cambridge. 
 - Wu, L.-X., 2025. Interest Rate Modeling: Theory and Practice. 3rd ed., Chapman & Hall/CRC, Boca Raton, FL.
-- Roncalli, T., 2020. Handbook of Financial Risk Management. Chapman & Hall/CRC, Boca Raton, FL.
 - Roncalli, T., 2014. Introduction to Risk Parity and Budgeting. Chapman & Hall/CRC, Boca Raton, FL.
+- Roncalli, T., 2020. Handbook of Financial Risk Management. Chapman & Hall/CRC, Boca Raton, FL.
 - Chan, W.-S., Tse, Y.-K., 2022. Financial Mathematics for Actuaries. 3rd ed., World Scientific, Singapore.
 - Brown, R. L., Lennox, W. S., 2015. Introduction to Ratemaking and Loss Reserving for Property and Casualty Insurance. 4th ed., ACTEX Publications, Winsted, Connecticut.
-- Lyuu, Y.-D., 2004. Financial Engineering and Computation: Principles, Mathematics, Algorithms. Cambridge University Press, Cambridge.
 - Higham, D., 2004. An Introduction to Financial Option Valuation: Mathematics, Stochastics and Computation. Cambridge University Press, Cambridge.
+- Lyuu, Y.-D., 2004. Financial Engineering and Computation: Principles, Mathematics, Algorithms. Cambridge University Press, Cambridge.
 - Natenberg, S., 2014. Option Volatility and Pricing: Advanced Trading Strategies and Techniques. 2nd ed., McGraw-Hill, New York.
 - McMillan, L. G., 2012. Options as a Strategic Investment. 5th ed., McGraw-Hill, New York.
 - McNeil, A. J., Frey, R., Embrechts, P., 2015. Quantitative Risk Management: Concepts, Techniques and Tools. Revised edition, Princeton University Press, Princeton, NJ.
-- [Hyndman, R. J., Athanasopoulos, G., 2021. Forecasting: Principles and Practice. 3rd ed., OTexts, Melbourne, Australia.](https://otexts.com/fpp3/) 
 
 03/07: Chakrabarty S. P., Kanaujiya A. Mathematical Portfolio Theory and Analysis Chap. 5
 03/09: St. Petersburg Paradox Revisited: Using expected utility theory, \sum_{k = 1}^\infty\frac{k}{2^k} = 2 proof; Allais Paradox; Prospect theory
