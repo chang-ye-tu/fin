@@ -8,6 +8,7 @@
 - Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - Gilli, M., Maringer, D., Schumann, D., 2019. Numerical Methods and Optimization in Finance. 2nd ed., Academic Press, London.
 - [Dixon, M. F., Halperin, I., Bilokon, P., 2020. Machine Learning in Finance: From Theory to Practice. Springer Nature.](https://link.springer.com/book/10.1007/978-3-030-41068-1)
+- [Palomar, D. P., 2025. Portfolio Optimization: Theory and Application. Cambridge University Press, Cambridge.](https://portfoliooptimizationbook.com/)
 - Reider, R., Michalka, A., 2025. Build a Robo-Advisor with Python (From Scratch). Manning Publications, Shelter Island, NY.
 
 ## 評分標準

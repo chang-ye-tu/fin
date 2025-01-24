@@ -1,0 +1,105 @@
+\documentclass[14pt]{extarticle} 
+\usepackage{amsmath,amsfonts,amssymb,amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
+%\usepackage[paperwidth=126mm, paperheight=96mm, top=5mm, bottom=5mm, right=5mm, left=5mm]{geometry}
+\usepackage[margin=1cm]{geometry}
+\pagenumbering{gobble}
+
+%\usepackage{unicode-math}
+\usepackage[BoldFont,SlantFont]{xeCJK}  
+\xeCJKsetemboldenfactor{2}
+\setCJKmainfont{cwTeX Q Yuan Medium}
+%\setCJKmainfont{cwTeX Q Kai Medium}
+%\setCJKmainfont{cwTeX Q Ming Medium}
+%\setCJKmainfont[AutoFakeSlant=.1,AutoFakeBold=1]{cwTeX Q Kai Medium} 
+%\setCJKfamilyfont{kaiv}[Vertical=RotatedGlyphs]{cwTeX Q Medium}
+%\setmainfont{texgyrepagella-regular.otf}
+%\setmathfont{texgyrepagella-math.otf}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ie}{\,\Longrightarrow\,}
+\newcommand{\ifff}{\,\Longleftrightarrow\,}
+\newcommand{\mi}{\mathrm{i}}
+\DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\codom}{codom}
+\DeclareMathOperator*{\ran}{ran}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+% figure --> 圖
+\renewcommand{\appendixname}{附錄}
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\refname}{參考文獻}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!60!black},
+    urlcolor={blue!60!black}
+    %urlcolor={blue!80!black}
+}
+
+\theoremstyle{definition}
+\newtheorem*{dfn}{定義}
+\newtheorem*{prp}{性質}
+\newtheorem*{thm}{定理}
+\newtheorem*{ex}{範例}
+\newtheorem*{sol}{解}
+\newtheorem*{prf}{證明}
+
+%\setenumerate{label=(\roman*),itemsep=1pt,topsep=3pt}
+\newcommand{\myline}{\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}}
+%\newcommand{\myline}{\textcolor[RGB]{220,220,220}{\rule{\linewidth}{1pt}}}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,angles,quotes}
+
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\begin{document}
+\title{\texorpdfstring{\vspace{-1em} 關於連續複利}{關於連續複利}} 
+\author{\vspace{-5em}}
+\date{\vspace{-5em}}
+\maketitle
+\vspace{1cm}
+%\newpage
+\noindent
+若起始投資金額為 $A$，投資 $n$ 年，年利率 $R$。若每年複利 $1$ 次，則投資期滿之金額為
+\begin{align*}
+  A\,(1 + R)^n
+\end{align*}
+若每年複利 $m$ 次，則投資期滿之金額為
+\begin{align*}
+  A\,\Big(1 + \frac{R}{m}\,\Big)^{m\cdot n}
+\end{align*}
+若採連續複利，亦即 $m\to\infty$，則投資期滿之金額為
+\begin{align}\label{eq}
+  \lim_{m\to\infty}A\,\Big(1 + \frac{R}{m}\,\Big)^{m\cdot n} = A\lim_{m\to\infty}\Big(1 + \frac{R}{m}\,\Big)^{m\cdot n}
+\end{align}
+由數學定義
+\begin{align*}
+  e = \lim_{M\to\infty}\Big(1 + \frac{1}{M}\Big)^M
+\end{align*}
+\eqref{eq} 可表示為
+\begin{align*}
+  A\lim_{m\to\infty}\Big(1 + \frac{R}{m}\,\Big)^{m\cdot n} 
+  &= A\lim_{m\to\infty}\Big(1 + \frac{R}{m}\,\Big)^{\frac{m}{R}\cdot R\cdot n} \\
+  &= A\lim_{\frac{m}{R}\to\infty}\Big(1 + \frac{R}{m}\,\Big)^{\frac{m}{R}\cdot R\cdot n} \\
+  &= A\left(\lim_{\frac{m}{R}\to\infty}\left(1 + \frac{R}{m}\,\right)^{\frac{m}{R}}\right)^{R\cdot n}\quad(A\,x^{R\cdot n}\;\text{為 $x$ 之連續函數})\\
+  &= A\left(\lim_{M\to\infty}\left(1 + \frac{1}{M}\,\right)^M\right)^{R\cdot n}\quad(\text{變數變換：} M\longleftarrow\frac{m}{R})\\
+  &= A\,e^{R\cdot n} 
+\end{align*}
+若 $R_c$ 為連續複利情形下之利率，$R_m$ 為相對應每年複利 $m$ 次之利率，則
+\begin{align*}
+  e^{R_c} = \Big(1 + \frac{R_m}{m}\Big)^m
+\end{align*}
+上式分別兩邊取 $\ln$、兩邊開 $m$ 次方，整理可得
+\begin{align*}
+  R_c &= m\,\ln\Big(1 + \frac{R_m}{m}\Big) \\
+  R_m &= m\,\big(e^{\frac{R_c}{m}} - 1\big)
+\end{align*}
+
+%\bibliographystyle{elsarticle-harv}
+%\bibliography{e}
+
+\end{document}
