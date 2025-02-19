@@ -19,8 +19,8 @@
 
 | 上課時間            | 課程進度                        |
 |---------------------|---------------------------------|
-| 02/18               |                                 |
-| 02/25, 02/27        |                                 |
+| 02/18               |  <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note01.pdf">Surprises & Paradoxes I</a> |
+| 02/25, 02/27        |  <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note02.pdf">Surprises & Paradoxes II</a>&nbsp;                      |
 | 03/04               |                                 |
 | 03/11, 03/13        |                                 | 
 | 03/18               |                                 |
