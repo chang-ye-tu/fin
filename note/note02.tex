@@ -12,6 +12,10 @@
 \usepackage{listings}
 \usepackage{xcolor}
 
+\usepackage[cache=false]{minted}
+\renewcommand{\theFancyVerbLine}{\sffamily\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
+\definecolor{bg}{rgb}{.95,.95,.95}
+
 % Font settings
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -62,7 +66,7 @@
   \parbox{\linewidth}{\vspace*{-8pt}
   %\hfill\href{https://github.com/chang-ye-tu/fin}{https://github.com/chang-ye-tu/fin}
     \hfill
-   ~~ \insertframenumber / \inserttotalframenumber~~~~~~~~~}}
+   \insertframenumber~/ \inserttotalframenumber}}
 \setbeamertemplate{navigation symbols}{}%[only frame symbol]
 
 \definecolor{foo}{rgb}{.2,.2,.7}
@@ -155,14 +159,152 @@ many times will circle A revolve in total?
 \end{center}
 
 \vspace{.5cm}
+\end{frame}
 
+\begin{frame}{Animation of Coin Rotation Paradox}
+  \input{coin.tex}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{Animation of Coin Rotation Paradox: Python Code}
+  \inputminted[linenos=true,breaklines,breakanywhere,bgcolor=bg]{python}{fig/note02/coin_rotation_paradox.py}
 \end{frame}
 
 \section{Braess Paradox}
 
-\begin{frame}
-
+\begin{frame}{A Typical Case}
+  \begin{figure}
+    \includegraphics[scale=.8,page=1]{fig/note02/braess.pdf}
+  \end{figure}
+  \onslide<+->
+  \begin{itemize}[<+->]
+    \item A highway network, with each edge labeled by its travel time (in minutes) when there are $x$ cars using it
+    \item Suppose there are 4000 cars need to get from A to B 
+    \item They divide evenly over the two routes at equilibrium; the travel time is $45 + 2000 / 100 = 65$ mins
+  \end{itemize}
 \end{frame}
+
+\begin{frame}{A Typical Case: Cont'd}
+  \begin{figure}
+    \includegraphics[scale=.8,page=2]{fig/note02/braess.pdf}
+  \end{figure}
+  \onslide<+->
+  \begin{itemize}[<+->]
+    \item Now a very fast edge is added from C to D to the previous highway network
+    \item At equilibrium, every user uses the route through C and D 
+    \item As a result, the travel time is $4000 / 10 + 0 + 4000 / 100 = 80$ mins!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Braess' Example}
+  \begin{center}
+    \begin{tikzpicture}[
+        node distance=2cm and 3cm,
+        main node/.style={circle, draw, fill=white, inner sep=2pt},
+        every edge/.style={draw, -Stealth, thick},
+        every label/.style={font=\small},
+        scale=1.2
+      ]
+      % Nodes
+      \node[main node] (P1) at (0,0) {$1$};
+      \node[main node] (P2) at (3,2) {$2$};
+      \node[main node] (P3) at (3,-2) {$3$};
+      \node[main node] (P4) at (6,0) {$4$};
+
+      % Edges with labels
+      \draw (P1) edge node[above, sloped] {$50+b$} (P2);
+      \draw (P2) edge node[above, sloped] {$10b$} (P4);
+      \draw (P1) edge node[below, sloped] {$10b$} (P3);
+      \draw (P3) edge node[below, sloped] {$50+b$} (P4);
+      \draw (P3) edge node[right] {$10+b$} (P2);
+    \end{tikzpicture}
+  \end{center}
+  \onslide<+->
+  \begin{itemize}[<+->]
+    \item Assume a flow of 6 units (e.g., 6000 vehicles) must travel from $1$ to $4$
+    \item Three paths exist: $B_1 = 124$, $B_2 = 1324$, $B_3 = 134$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Braess' Example: Cont'd}
+  \begin{itemize}[<+->]
+    \item Case 1: All Paths Open. Split the flow equally (2 units each):
+    \onslide<+->
+    \begin{gather*}
+      b_{12} = 2, \; b_{24} = 4, \; b_{34} = 2, \;b_{13} = 4, \; b_{32} = 2\\
+      d_{12} = 52, \; d_{24} = 40, \; d_{34} = 52, \; d_{13} = 40, \; d_{32} = 12 \\
+      L(B_1) = L(B_2) = L(B_3) = 92
+    \end{gather*}
+    \onslide<+->
+    All paths are critical (maximal length). This distribution is stable: Switching paths increases load and travel time beyond 92.
+
+    \item Case 2: Ban Edge $k_{32}$. Split flow equally between $B_1$ and $B_3$ (3 units each):
+    \onslide<+->
+    \begin{gather*}
+      b_{12} = b_{24} = b_{13} = b_{34} = 3\\
+      d_{12} = 53, \; d_{24} = 30, \; d_{13} = 30, \; d_{34} = 53\\
+      L(B_1) = L(B_3) = 83
+    \end{gather*}
+    \onslide<+->
+    Despite losing a connection, all paths are shorter!
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Braess' Example: Selfish Deviation}
+
+  \begin{center}
+    \begin{tikzpicture}[
+        node distance=2cm and 3cm,
+        main node/.style={circle, draw, fill=white, inner sep=2pt},
+        every edge/.style={draw, -Stealth, thick},
+        every label/.style={font=\small},
+        scale=0.75
+      ]
+      % Nodes
+      \node[main node] (P1) at (0,0) {$1$};
+      \node[main node] (P2) at (3,2) {$2$};
+      \node[main node] (P3) at (3,-2) {$3$};
+      \node[main node] (P4) at (6,0) {$4$};
+
+      % Edges with labels
+      \draw (P1) edge node[above, sloped] {$50+b$} (P2);
+      \draw (P2) edge node[above, sloped] {$10b$} (P4);
+      \draw (P1) edge node[below, sloped] {$10b$} (P3);
+      \draw (P3) edge node[below, sloped] {$50+b$} (P4);
+      \draw (P3) edge node[right] {$10+b$} (P2);
+    \end{tikzpicture}
+  \end{center}
+  \onslide<+->
+  \begin{itemize}[<+->]
+    \item $B_1 = 124$, $B_2 = 1324$, $B_3 = 134$
+    \item A single vehicle ignoring the ban on $k_{32}$ (where $d_{32} = 10$) takes $B_2$ with $L(B_2) = 70$, gaining an advantage.
+    \item If the ban is lifted, many use $B_2$, reverting to the original state. 
+    \item Consider an intermediate step: 5 units on $B_1$ and $B_3$, 1 on $B_2$, then $L(B_1) = L(B_3) = 87.5$, $L(B_2) = 82.5$.
+    \item $B_2$ users clog $k_{13}$ and $k_{24}$ (factor $10$ in load-time relation), worsening times for $B_1$ and $B_3$ beyond $83$; Yet $B_2$ remains shortest, attracting more traffic and degrading the system for all.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Real-Life Examples}
+  \begin{itemize}[<+->]
+    \item \href{https://www.youtube.com/watch?v=Cg73j3QYRJc}{The mechanical analogy: the spring paradox}
+    \item \href{https://engines.egr.uh.edu/episode/2814}{Experimental road closure in NY (2009 ---)}
+      \begin{center}
+        \includegraphics[scale=.3]{fig/note02/nybefore.png}\hspace{3mm}
+        \includegraphics[scale=.3]{fig/note02/nyafter.png}
+      \end{center}
+      %\begin{itemize}
+      %  \item Two sections of Broadway where it obliquely crosses major north/south boulevards at Times and Herald Squares 
+      %  \item The experiment was successful and the road closures were made permanent
+      %  \item Times and Herald Squares are now home to pedestrian plazas
+      %\end{itemize}
+    \item \href{https://en.wikipedia.org/wiki/Cheonggyecheon}{Cheonggyecheon restoration project (2003 ---)}
+      \begin{itemize}
+        \item Replaced a six lane highway with a five mile long park, traffic flow improved
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\end{document}
 
 \section{Voting Paradox}
 

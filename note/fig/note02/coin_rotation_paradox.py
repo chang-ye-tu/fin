@@ -2,14 +2,11 @@ import math
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Wedge
 from matplotlib.transforms import Affine2D
-from matplotlib.animation import FuncAnimation
+import os; os.chdir(os.path.dirname(__file__))
 
 # Set the radii
 R = 1.5  # Radius of the outer (stationary) coin
 r = 0.5  # Radius of the inner (rolling) coin
-
-# Calculate the number of frames for one complete revolution
-frames = int(80 * (R + r) / r)  # Ensures smooth animation and full revolution
 
 def create_logo(ax, x, y, radius, angle):
     # Create a simple smiley face logo
@@ -32,13 +29,10 @@ def create_logo(ax, x, y, radius, angle):
     ax.add_artist(right_eye)
     ax.add_artist(mouth)
 
-def update(frame):
-    # Calculate the current angle
-    angle = frame * 2 * math.pi / frames
-
-    # Clear the plot
-    ax.clear()
-
+def create_frame(angle):
+    # Create figure and axis
+    fig, ax = plt.subplots(figsize=(8, 8))
+    
     # Set limits and aspect ratio
     ax.set_xlim(-(R + r + 1), R + r + 1)
     ax.set_ylim(-(R + r + 1), R + r + 1)
@@ -67,25 +61,26 @@ def update(frame):
     # Add logo to the rotating coin
     create_logo(ax, x, y, r, (R + r) / r * angle)
 
-    ## Draw line connecting centers
-    #ax.plot([0, x], [0, y], "k--")
-
     # Draw point on the edge of the moving coin
     ax.plot(point_x, point_y, "ro")
 
     # Draw cardioid path
-    theta = [i * 2 * math.pi / frames for i in range(frame + 1)]
+    theta = [i * 2 * math.pi / 100 for i in range(int(100 * angle / (2 * math.pi)) + 1)]
     cardioid_x = [(R + r) * math.cos(t) + r * math.cos((R + r) / r * t) for t in theta]
     cardioid_y = [(R + r) * math.sin(t) + r * math.sin((R + r) / r * t) for t in theta]
     ax.plot(cardioid_x, cardioid_y, "g-")
 
     # Add title
-    ax.set_title(f"Rotation: {frame/frames*360:.1f}°")
+    ax.set_title(f"Rotation: {angle/(2*math.pi)*360:.1f}°")
+    
+    return fig
 
-# Create figure and axis
-fig, ax = plt.subplots(figsize=(8, 8))
-
-# Create animation
-anim = FuncAnimation(fig, update, frames=frames, interval=50, repeat=True)
-
-plt.show()
+# Generate 512 frames
+num_frames = 512; tex = []
+for i in range(num_frames):
+    angle = i * 2 * math.pi / num_frames
+    fig = create_frame(angle)
+    fig.savefig(f'coin_rotation_{i}.pdf', bbox_inches='tight', pad_inches=0.1, dpi=300)
+    plt.close(fig)
+    tex.append(f'\\only<{i + 1}>{{\\includegraphics[width=.6\\textwidth]{{fig/note02/coin_rotation_{i}.pdf}}\\noindent}}')
+open('../../coin.tex', 'w').write(f"\\hspace*{{\\dimexpr(\\textwidth - .6\\textwidth)/2\\relax}}\n\\begin{{overlayarea}}{{\\textwidth}}{{0.7\\textheight}}\n{'\n'.join(tex)}\n\\end{{overlayarea}}") 
