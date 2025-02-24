@@ -2,6 +2,7 @@ import math
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Wedge
 from matplotlib.transforms import Affine2D
+from matplotlib.backends.backend_pdf import PdfPages
 import os; os.chdir(os.path.dirname(__file__))
 
 # Set the radii
@@ -75,12 +76,19 @@ def create_frame(angle):
     
     return fig
 
-# Generate 512 frames
-num_frames = 512; tex = []
-for i in range(num_frames):
-    angle = i * 2 * math.pi / num_frames
-    fig = create_frame(angle)
-    fig.savefig(f'coin_rotation_{i}.pdf', bbox_inches='tight', pad_inches=0.1, dpi=300)
-    plt.close(fig)
-    tex.append(f'\\only<{i + 1}>{{\\includegraphics[width=.6\\textwidth]{{fig/note02/coin_rotation_{i}.pdf}}\\noindent}}')
-open('../../coin.tex', 'w').write(f"\\hspace*{{\\dimexpr(\\textwidth - .6\\textwidth)/2\\relax}}\n\\begin{{overlayarea}}{{\\textwidth}}{{0.7\\textheight}}\n{'\n'.join(tex)}\n\\end{{overlayarea}}") 
+# Generate 512 frames and save them into a single PDF
+num_frames = 512
+pdf_filename = 'coin_rotation_paradox.pdf'
+tex = []
+
+with PdfPages(pdf_filename) as pdf:
+    for i in range(num_frames + 1):
+        angle = i * 2 * math.pi / num_frames
+        fig = create_frame(angle)
+        pdf.savefig(fig, bbox_inches='tight', pad_inches=0.1, dpi=300)
+        plt.close(fig)
+        # Generate LaTeX commands referencing pages (1-based indexing)
+        tex.append(f'\\only<{i + 1}>{{\\includegraphics[width=.6\\textwidth, page={i + 1}]{{fig/note02/coin_rotation_paradox.pdf}}\\noindent}}')
+
+# Write the LaTeX overlayarea content to a .tex file
+open('../../coin.tex', 'w').write(f"\\hspace*{{\\dimexpr(\\textwidth - .6\\textwidth)/2\\relax}}\n\\begin{{overlayarea}}{{\\textwidth}}{{0.7\\textheight}}\n{'\n'.join(tex)}\n\\end{{overlayarea}}")

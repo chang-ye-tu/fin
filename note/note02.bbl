@@ -1,0 +1,36 @@
+\begin{thebibliography}{}
+
+\bibitem[Braess et~al., 2005]{braess05}
+Braess, D., Nagurney, A., and Wakolbinger, T. (2005).
+\newblock On a paradox of traffic planning.
+\newblock {\em Transportation Science}, 39(4):446--450.
+\newblock
+  \href{https://homepage.rub.de/Dietrich.Braess/Paradox-BNW.pdf}{Paper}.
+
+\bibitem[Easley and Kleinberg, 2010]{easley10}
+Easley, D. and Kleinberg, J. (2010).
+\newblock {\em Networks, Crowds, and Markets: Reasoning about a Highly
+  Connected World}.
+\newblock Cambridge University Press, Cambridge.
+\newblock
+  \href{https://www.cs.cornell.edu/home/kleinber/networks-book/}{Preprint}.
+
+\bibitem[Roughgarden, 2005]{roughgarden05}
+Roughgarden, T. (2005).
+\newblock {\em Selfish Routing and the Price of Anarchy}.
+\newblock The MIT Press, Cambridge, MA.
+\newblock Extension of the
+  \href{http://timroughgarden.org/papers/thesis.pdf}{PhD thesis}.
+
+\bibitem[Roughgarden and Tardos, 2002]{roughgarden02}
+Roughgarden, T. and Tardos, E. (2002).
+\newblock How bad is selfish routing?
+\newblock {\em Journal of the {ACM}}, 49(2):236--259.
+\newblock \href{https://timroughgarden.org/papers/routing.pdf}{Preprint}.
+
+\bibitem[Steinberg and Zangwill, 1983]{steinberg83}
+Steinberg, R. and Zangwill, W.~I. (1983).
+\newblock The prevalence of {B}raess' paradox.
+\newblock {\em Transportation Science}, 17(3):301--318.
+
+\end{thebibliography}

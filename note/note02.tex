@@ -82,6 +82,11 @@
   \end{frame}
 }
 
+% https://tex.stackexchange.com/questions/30423/bibliography-in-beamer
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
 \DeclareMathOperator\prb{\mathsf{P}}
 \DeclareMathOperator\expc{\mathsf{E}}
 \DeclareMathOperator\var{var}
@@ -276,7 +281,7 @@ many times will circle A revolve in total?
   \end{center}
   \onslide<+->
   \begin{itemize}[<+->]
-    \item $B_1 = 124$, $B_2 = 1324$, $B_3 = 134$
+    \item Recall that $B_1 = 124$, $B_2 = 1324$, $B_3 = 134$
     \item A single vehicle ignoring the ban on $k_{32}$ (where $d_{32} = 10$) takes $B_2$ with $L(B_2) = 70$, gaining an advantage.
     \item If the ban is lifted, many use $B_2$, reverting to the original state. 
     \item Consider an intermediate step: 5 units on $B_1$ and $B_3$, 1 on $B_2$, then $L(B_1) = L(B_3) = 87.5$, $L(B_2) = 82.5$.
@@ -287,7 +292,7 @@ many times will circle A revolve in total?
 \begin{frame}{Real-Life Examples}
   \begin{itemize}[<+->]
     \item \href{https://www.youtube.com/watch?v=Cg73j3QYRJc}{The mechanical analogy: the spring paradox}
-    \item \href{https://engines.egr.uh.edu/episode/2814}{Experimental road closure in NY (2009 ---)}
+    \item \href{https://engines.egr.uh.edu/episode/2814}{Road closure in NY: Times and Herald Squares pedestrian plaza (2009 ---)}
       \begin{center}
         \includegraphics[scale=.3]{fig/note02/nybefore.png}\hspace{3mm}
         \includegraphics[scale=.3]{fig/note02/nyafter.png}
@@ -302,6 +307,16 @@ many times will circle A revolve in total?
         \item Replaced a six lane highway with a five mile long park, traffic flow improved
       \end{itemize}
   \end{itemize}
+\end{frame}
+
+
+\section{References}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \nocite{*}
+  \bibliographystyle{apalike}
+  \bibliography{note02}
 \end{frame}
 
 \end{document}
