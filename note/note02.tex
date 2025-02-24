@@ -290,6 +290,7 @@ many times will circle A revolve in total?
 \end{frame}
 
 \begin{frame}{Real-Life Examples}
+  \onslide<+->
   \begin{itemize}[<+->]
     \item \href{https://www.youtube.com/watch?v=Cg73j3QYRJc}{The mechanical analogy: the spring paradox}
     \item \href{https://engines.egr.uh.edu/episode/2814}{Road closure in NY: Times and Herald Squares pedestrian plaza (2009 ---)}
@@ -309,10 +310,64 @@ many times will circle A revolve in total?
   \end{itemize}
 \end{frame}
 
+\section{The Social Cost of Traffic at Equilibrium}
 
-\section{References}
+\begin{frame}{Terms}
+A traffic network is a directed graph with:
+\onslide<+->
+\begin{itemize}[<+->]
+    \item \textbf{Nodes}: Start and destination points for drivers.
+    \item \textbf{Edges}: Roads with travel-time functions \( T_e(x) = a_e x + b_e \), where \( x \) is the number of drivers.
+    \item \textbf{Traffic Pattern}: Path choices for all drivers.
+    \item \textbf{Social Cost}: \( \text{Social-Cost}(Z) = \sum_{\text{drivers}} (\text{travel time}) \), summed over all drivers in pattern \( Z \).
+    \item \textbf{Social Optimum}: Pattern minimizing social cost.
+    \item \textbf{Nash Equilibrium}: No driver can reduce their travel time by switching paths, given others' choices.
+\end{itemize}
+\end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,page=4]{fig/note02/braess.pdf}
+        \caption{The social optimum.}
+        \label{fig:social_optimum}
+    \end{subfigure}
+    \hfill % Adds horizontal space between subfigures
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,page=5]{fig/note02/braess.pdf}
+        \caption{The Nash equilibrium.}
+        \label{fig:nash_equilibrium}
+    \end{subfigure}
+    \caption{A version of Braess's Paradox: In the socially optimal traffic pattern (on the left), the social cost is 28, while in the unique Nash equilibrium (on the right), the social cost is 32.}
+    \label{fig:braess_paradox}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Best-Response Dynamics}
+  \onslide<+->
+  To find an equilibrium:
+  \begin{enumerate}[<+->]
+    \item Start with any traffic pattern.
+    \item If not an equilibrium, some driver can switch to a path with less travel time.
+    \item Update the pattern and repeat until no driver wants to switch.
+  \end{enumerate}
+  \onslide<+->
+  Does this \emph{best-response dynamics} process always converge?
+  \vspace{3mm}
+  \begin{itemize}[<+->]
+    \item Define \emph{potential energy} for an edge \( e \) with \( x \) drivers:
+      \[\text{Energy}(e) = T_e(1) + T_e(2) + \cdots + T_e(x)\]
+    \item Total potential energy of a pattern \( Z \) is
+      \[\text{Energy}(Z) = \sum_{e} \text{Energy}(e)\]
+    \item If no drivers use \( e \), \( \text{Energy}(e) = 0 \)
+    \item Social cost can increase or decrease with best-response steps (e.g., from 28 to 32 in the Braess example), but potential energy strictly decreases, serving as a progress measure.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
   \frametitle{References}
   \nocite{*}
   \bibliographystyle{apalike}
