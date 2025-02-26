@@ -4,12 +4,9 @@
 
 ## 參考書
 
+- [Easley, D. and Kleinberg, J., 2010. Networks, Crowds, and Markets: Reasoning About a Highly Connected World. Cambridge University Press, Cambridge.](https://www.cs.cornell.edu/home/kleinber/networks-book/)
 - Kennedy, D., 2010. Stochastic Financial Models. Chapman & Hall/CRC, Boca Raton, FL.
-- Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
-- Gilli, M., Maringer, D., Schumann, D., 2019. Numerical Methods and Optimization in Finance. 2nd ed., Academic Press, London.
-- [Dixon, M. F., Halperin, I., Bilokon, P., 2020. Machine Learning in Finance: From Theory to Practice. Springer Nature.]( https://link.springer.com/book/10.1007/978-3-030-41068-1 )
-- [Palomar, D. P., 2025. Portfolio Optimization: Theory and Application. Cambridge University Press, Cambridge.](https://portfoliooptimizationbook.com/)
-- Reider, R., Michalka, A., 2025. Build a Robo-Advisor with Python (From Scratch). Manning Publications, Shelter Island, NY.
+- Reider, R., Michalka, A., 2025. Build a Robo-Advisor with Python (From Scratch). Manning Publications, Shelter Island, NY. [GitHub](https://github.com/robreider/robo-advisor-with-python)
 
 ## 評分標準
 
@@ -20,7 +17,7 @@
 | 上課時間            | 課程進度                        |
 |---------------------|---------------------------------|
 | 02/18               |  <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note01.pdf">Surprises & Paradoxes I</a> |
-| 02/25, 02/27        |  <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note02.pdf">Surprises & Paradoxes II</a>,&nbsp; &nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note03.pdf">Surprises & Paradoxes III</a> |
+| 02/25, 02/27        |  <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note02.pdf">Surprises & Paradoxes II</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note03.pdf">Surprises & Paradoxes III</a> |
 | 03/04               |                                 |
 | 03/11, 03/13        |                                 | 
 | 03/18               |                                 |
@@ -51,14 +48,18 @@
 - lecture slides
 - open source
 
+- Gilli, M., Maringer, D., Schumann, D., 2019. Numerical Methods and Optimization in Finance. 2nd ed., Academic Press, London.
+- [Dixon, M. F., Halperin, I., Bilokon, P., 2020. Machine Learning in Finance: From Theory to Practice. Springer Nature.]( https://link.springer.com/book/10.1007/978-3-030-41068-1 )
+- [Palomar, D. P., 2025. Portfolio Optimization: Theory and Application. Cambridge University Press, Cambridge.](https://portfoliooptimizationbook.com/)
 - Arguin, L.-P., 2022. A First Course in Stochastic Calculus. AMS, Providence, RI.
 - Björk, T., 2020. Arbitrage Theory in Continuous Time. 4th ed., Oxford University Press, Oxford.
 - Körner, T. W., 2008. Naive Decision Making: Mathematics Applied to the Social World. Cambridge University Press, Cambridge.
 - Gura, E. Y., Maschler, M., 2008. Insights into Game Theory: An Alternative Mathematical Experience. Cambridge University Press, Cambridge.
-- Hull, J. C., 2022. Options, Futures and other Derivatives. 11th ed., Pearson, Boston.
+- Hull, J. C., 2022. Options, Futures and Other Derivatives. 11th ed., Pearson, Boston.
 - Privault, N., 2022. Stochastic Finance: An Introduction with Market Examples. 2nd ed., Chapman & Hall/CRC, Boca Raton, FL.
 - Dickson, C. M. D., Hardy, M. R., Waters, H. R., 2020. Actuarial Mathematics for Life Contingent Risks. 3rd ed., Cambridge University Press, Cambridge.
 - 徐高，2018。金融經濟學二十五講，中國人民大學出版社。
+- Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - [Lengwiler, Y., 2004. Microfoundations of Financial Economics: An Introduction to General Equilibrium Asset Pricing. Princeton University Press, Princeton, N.J.](https://microfoundations.org/wp-content/uploads/2020/12/Lengwiler-Microfoundations.pdf)
 - [Saari, D. G., 2019. Mathematics of Finance: An Intuitive Introduction. Springer Nature, Cham, Switzerland.](https://link.springer.com/book/10.1007/978-3-030-25443-8)
 - [Chakrabarty, S. P., Kanaujiya, A., 2023. Mathematical Portfolio Theory and Analysis. Springer Nature, Cham, Switzerland.](https://link.springer.com/book/10.1007/978-981-19-8544-7)
