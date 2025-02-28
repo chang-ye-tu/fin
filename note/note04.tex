@@ -102,29 +102,174 @@
 \titlepage
 \end{frame}
 
-\subsection*{Outline}
-\begin{frame}
-  \tableofcontents
+%\subsection*{Outline}
+%\begin{frame}
+%  \tableofcontents
+%\end{frame}
+
+\begin{frame}{St. Petersburg Paradox}
+  \begin{itemize}[<+->]
+    \item Proposed by Nicolas Bernoulli in 1713, analyzed by Daniel Bernoulli in 1738
+    \item The game:
+      \begin{itemize}
+        \item Flip a fair coin until it shows heads
+        \item If heads appears on the first flip, win \$2
+        \item If heads appears on the second flip, win \$4
+        \item If heads appears on the third flip, win \$8
+        \item In general, if heads appears on the $n$-th flip, win \$$2^n$
+      \end{itemize}
+    \item The expected value calculation:
+      \begin{align*}
+        \expc{X} = \sum_{n=1}^{\infty} 2^n \cdot \prb(\text{heads on flip } n) = \sum_{n=1}^{\infty} 2^n \cdot \frac{1}{2^n} = \sum_{n=1}^{\infty} 1 = \infty
+      \end{align*}
+    \item The paradox: The game has infinite expected value, but most people would only pay a small amount to play
+    \item If people maximize expected value, they should be willing to pay any finite amount to play
+  \end{itemize}
 \end{frame}
 
-\section{St. Petersberg Paradox}
+\begin{frame}{Early Solutions to the Paradox}
+  \begin{itemize}[<+->]
+    \item Practical resolution: No casino has infinite resources
+      \begin{itemize}
+        \item With a capped maximum payout of $M$, $\expc{X} = \log_2(M) + \frac{M}{2^{\lfloor \log_2 M \rfloor}}$
+        \item For $M = 2^{20} \approx$ \$1 million, $\expc{X} \approx$ \$21
+      \end{itemize}
+    \item Daniel Bernoulli's insight (1738): People value money differently
+      \begin{itemize}
+        \item ``The value of an item must not be based on its price, but rather on the utility it yields''
+        \item Proposed logarithmic utility function: $U(w) = \log(w)$
+        \item Diminishing marginal utility: Each extra dollar adds less utility
+      \end{itemize}
+    \item Gabriel Cramer (1728) suggested: $U(w) = \sqrt{w}$ 
+    \item With logarithmic utility, expected utility is finite:
+      \begin{align*}
+        \expc{U(X)} = \sum_{n=1}^{\infty} \log(2^n) \cdot \frac{1}{2^n} = \sum_{n=1}^{\infty} \frac{n \log(2)}{2^n} = 2\log(2) < \infty
+      \end{align*}
+    \item This amounts to $\expc{U(X)} \approx$ \$1.39, explaining why people would only pay a small amount
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{The Expected Utility Hypothesis}
+  \begin{block}{Mathematical Formulation}
+    The agent prefers the r.v. $X$ to r.v. $Y$ if and only if $\expc U(X) > \expc U(Y)$, where $U:\RR\mapsto\RR$ is the agent's utility function.
+  \end{block}
+  \vspace{3mm}
+  \onslide<+-> 
+  \begin{itemize}[<+->]
+    \item Expected utility theory attempts to explain how people make decisions under uncertainty
+    \item It seeks to address paradoxes like St. Petersburg by incorporating risk preferences
+    \item Key insight: people care about the utility of outcomes, not just monetary values
+    \item Decision-making is based on:
+      \begin{enumerate}
+        \item Probabilities of different outcomes
+        \item Subjective valuation (utility) of those outcomes
+      \end{enumerate}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{The Expected Utility Hypothesis}
-  \begin{definition}
-    The agent prefers the r.v. $X$ to r.v. $Y$ iff
-    \begin{align*}
-      \expc U(X) > \expc U(Y)
-    \end{align*}
-    where $\expc$ is the expectation operator, $U:\RR\mapsto\RR$ is the agent's utility function.
-  \end{definition}
+\begin{frame}{Properties of Utility Functions}
+  \begin{itemize}[<+->]
+    \item Three common assumptions about utility functions:
+      \begin{itemize}
+        \item \textbf{More is better}: $U'(w) > 0$ (monotonically increasing)
+        \item \textbf{Risk aversion}: $U''(w) < 0$ (concave function)
+        \item \textbf{Decreasing absolute risk aversion}: $-\frac{U''(w)}{U'(w)}$ decreases as $w$ increases
+      \end{itemize}
+    \item Commonly used utility functions:
+      \begin{itemize}
+        \item Logarithmic: $U(w) = \log(w)$
+        \item Power utility: $U(w) = \frac{w^{1-\gamma} - 1}{1-\gamma}$ for $\gamma > 0, \gamma \neq 1$
+        \item Exponential utility: $U(w) = -e^{-\gamma w}$ for $\gamma > 0$
+        \item Quadratic utility: $U(w) = w - \frac{\gamma}{2}w^2$ for $w < \frac{1}{\gamma}$
+      \end{itemize}
+    \item The parameter $\gamma$ reflects the degree of risk aversion
+    \item For power utility, $\gamma = 1$ corresponds to logarithmic utility (by L'Hôpital's rule)
+  \end{itemize}
 \end{frame}
 
-\section{Allais Paradox}
+\begin{frame}{Risk Aversion and Risk Premium I}
+  \begin{itemize}[<+->]
+    \item Risk Aversion
+      \begin{itemize}
+        \item The \textbf{risk aversion} is the preference for a certain amount over a gamble with the same expected value
+        \item Example: Preferring \$50 with certainty over a 50\% chance of \$100 (and 50\% chance of \$0)
+        \item Mathematically represented by a concave utility function: $U''(w) < 0$
+      \end{itemize}
+    \item Risk Premium 
+      \begin{itemize}
+        \item Let $\widetilde{X}$ be a random variable with $\expc{\widetilde{X}} = 0$ (a fair gamble)
+        \item A risk-averse person would pay to avoid this gamble
+        \item The \textbf{risk premium} $\pi$ is the maximum amount they would pay:
+          \begin{align}\label{eq:risk_premium}
+            U(w - \pi) = \expc{U(w + \widetilde{X})}
+          \end{align}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 
-\begin{frame}
+\begin{frame}{Risk Aversion and Risk Premium II}
+  \begin{itemize}[<+->]
+    \item For small risks, we can use Taylor expansion 
+      \begin{align*}
+        U(w + \widetilde{X}) &\approx U(w) + U'(w)\widetilde{X} + \frac{1}{2}U''(w)\widetilde{X}^2
+      \end{align*}
+    \item By $\expc{\widetilde{X}} = 0$ and $\var{\widetilde{X}} = \expc{\widetilde{X}^2} - (\expc{\widetilde{X}})^2 = \expc{\widetilde{X}^2}$, 
+      \begin{align*}
+        \expc{U(w + \widetilde{X})} &\approx U(w) + U'(w)\expc{\widetilde{X}} + \frac{1}{2}U''(w)\expc{\widetilde{X}^2} = U(w) + \frac{1}{2}U''(w)\var{\widetilde{X}}
+      \end{align*}
+    \item Similarly, for small premium, one can use Taylor expansion 
+      \begin{align*}
+        U(w - \pi) \approx U(w) - \pi U'(w)
+      \end{align*}
+    \item Substitute into the risk premium formula \eqref{eq:risk_premium} $U(w - \pi) = \expc{U(w + \widetilde{X})}$,
+      \begin{align*}
+        U(w) - \pi U'(w) = U(w) + \frac{1}{2}U''(w)\var{\widetilde{X}} \ie \pi = \frac{1}{2}\left(-\frac{U''(w)}{U'(w)}\right)\var{\widetilde{X}}
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Risk Aversion and Risk Premium - III}
+    \begin{itemize}[<+->]
+      \item The term $-\frac{U''(w)}{U'(w)}$ is the coefficient of absolute risk aversion (ARA)
+        \begin{itemize}
+          \item Measures risk aversion in absolute dollar terms
+          \item Logarithmic utility: ARA = $\frac{1}{w}$ (decreasing with wealth)
+          \item Power utility: ARA = $\frac{\gamma}{w}$ (decreasing with wealth)
+          \item Exponential utility: ARA = $\gamma$ (constant regardless of wealth)
+        \end{itemize}
+      \item The term $-\frac{U''(w)}{U'(w)} \cdot w$ is the coefficient of relative risk aversion (RRA)
+        \begin{itemize}
+          \item Measures risk aversion relative to wealth level
+          \item Logarithmic utility: RRA = 1 (constant)
+          \item Power utility: RRA = $\gamma$ (constant)
+          \item Exponential utility: RRA = $\gamma w$ (increasing with wealth)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Axiomatic Foundation of Expected Utility}
+  \begin{itemize}[<+->]
+    \item John von Neumann and Oskar Morgenstern (1947) provided axioms for expected utility
+    \item Four key axioms:
+      \begin{itemize}
+        \item \textbf{Completeness}: For any lotteries $L_1$ and $L_2$, either $L_1 \succeq L_2$ or $L_2 \succeq L_1$ or both
+        \item \textbf{Transitivity}: If $L_1 \succeq L_2$ and $L_2 \succeq L_3$, then $L_1 \succeq L_3$
+        \item \textbf{Continuity}: If $L_1 \succeq L_2 \succeq L_3$, then there exists a probability $p \in [0, 1]$ such that $L_2 \sim p L_1 + (1-p) L_3$
+        \item \textbf{Independence}: For any lotteries $L_1$, $L_2$, $L_3$ and any probability $p \in (0, 1]$, $L_1 \succeq L_2$ if and only if $p L_1 + (1-p) L_3 \succeq p L_2 + (1-p) L_3$
+      \end{itemize}
+    \item These axioms lead to the expected utility representation:
+      \begin{align*}
+        L_1 \succeq L_2 \iff \expc_{L_1}[U(x)] \geq \expc_{L_2}[U(x)]
+      \end{align*}
+    \item The independence axiom is particularly important and controversial
+      \begin{itemize}
+        \item It states that preferences between lotteries should not be affected by mixing them with a third lottery
+        \item This axiom is violated in several famous paradoxes
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Allais Paradox}
   \begin{itemize}[<+->]\setlength\itemsep{0em}
     \item Game A
       \begin{align*}
@@ -151,9 +296,7 @@
   \end{itemize}
 \end{frame}
 
-\section{Ellsberg Paradox}
-
-\begin{frame}
+\begin{frame}{Ellsberg Paradox}
   \begin{itemize}[<+->]
     \item Given an urn with $30$ balls of colors red, yellow, and black
     \item There are $10$ red balls; total $20$ yellow / black balls, but the number of each type unknown
@@ -162,7 +305,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Ellsberg Paradox (Cont'd)}
   \begin{itemize}[<+->]\setlength\itemsep{0em}
     \item Game A  
       \begin{align*}
