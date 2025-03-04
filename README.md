@@ -35,6 +35,13 @@
 
 <!---
 
+Financial Markets and Instruments
+Introduction to Dynamic Programming + Reinforcement Learning
+Introduction to Convex Programming + CVXPY
+Mean-Variance Portfolio Optimization
+Black-Litterman Model
+Risk Parity & Risk Budgeting
+
 本課程介紹金融與保險學門的基礎知識，為數學系學生自學通過專業財金證照考試（如 ASA, CERA, FSA, FRM 等）與現代科技金融應用做準備。
 
 - Illuminating, refreshing, useful content; Not too mathematical and theoretical

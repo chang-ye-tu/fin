@@ -1,0 +1,118 @@
+\documentclass[10pt]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Base packages
+%\usepackage{helvet}
+\usepackage{amsmath,amssymb,amsthm,mathtools,subcaption}
+\usepackage{tikz,pgfplots,tabularx,booktabs}
+\usetikzlibrary{arrows.meta, positioning, quotes}
+
+\usepackage{xcolor}
+
+%\usepackage[cache=false]{minted}
+%\renewcommand{\theFancyVerbLine}{\sffamily\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
+%\definecolor{bg}{rgb}{.95,.95,.95}
+
+% Font settings
+\renewcommand{\familydefault}{\sfdefault}
+
+% TikZ libraries
+\usetikzlibrary{calc,positioning,backgrounds,decorations.pathreplacing}
+\pgfplotsset{compat=1.14}
+
+% Colors
+\definecolor{deepblue}{RGB}{42,39,155}
+\definecolor{lightpink}{RGB}{255,240,240}
+\definecolor{lightgreen}{RGB}{240,255,240}
+\definecolor{lightyellow}{RGB}{255,255,240}
+\definecolor{codegray}{RGB}{245,245,245}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+% Beamer settings
+\setbeamercolor{title}{fg=white,bg=deepblue}
+\setbeamercolor{frametitle}{fg=white,bg=deepblue}
+\setbeamercolor{section in head/foot}{fg=white,bg=deepblue}
+
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt}
+  %\hfill\href{https://github.com/chang-ye-tu/fin}{https://github.com/chang-ye-tu/fin}
+    \hfill
+   \insertframenumber~/ \inserttotalframenumber}}
+\setbeamertemplate{navigation symbols}{}%[only frame symbol]
+
+\definecolor{foo}{rgb}{.2,.2,.7}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{section page}
+    \usebeamerfont{title}%
+    {\color{foo} \insertsectionhead}\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+% https://tex.stackexchange.com/questions/30423/bibliography-in-beamer
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
+\DeclareMathOperator\prb{\mathsf{P}}
+\DeclareMathOperator\expc{\mathsf{E}}
+\DeclareMathOperator\var{var}
+\DeclareMathOperator\cov{cov}
+\DeclareMathOperator\cor{corr}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator\corr{corr}
+\DeclareMathOperator\rk{rank}
+\DeclareMathOperator\sgn{sgn}
+\DeclareMathOperator{\tr}{tr}
+
+% Blackboard bold
+\renewcommand{\AA}{\mathbb A}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\DD}{\mathbb D}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\KK}{\mathbb K}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\UU}{\mathbb U}
+\newcommand{\ZZ}{\mathbb Z}
+
+\newcommand{\ie}{\;\Longrightarrow\;}
+\newcommand{\ifff}{\;\Longleftrightarrow\;}
+\newcommand{\ds}{\displaystyle}
+
+\title{Introduction to Financial Models\\Lecture 16:}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\subsection*{Outline}
+%\begin{frame}
+%  \tableofcontents
+%\end{frame}
+
+%\begin{frame}[allowframebreaks]
+%  \frametitle{References}
+%  \nocite{*}
+%  \bibliographystyle{apalike}
+%  \bibliography{note04}
+%\end{frame}
+
+\end{document}
+
