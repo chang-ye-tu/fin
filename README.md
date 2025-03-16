@@ -5,6 +5,7 @@
 ## 參考書
 
 - [Easley, D. and Kleinberg, J., 2010. Networks, Crowds, and Markets: Reasoning About a Highly Connected World. Cambridge University Press, Cambridge.](https://www.cs.cornell.edu/home/kleinber/networks-book/)
+- Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - Kennedy, D., 2010. Stochastic Financial Models. Chapman & Hall/CRC, Boca Raton, FL.
 - Reider, R., Michalka, A., 2025. Build a Robo-Advisor with Python (From Scratch). Manning Publications, Shelter Island, NY. [GitHub](https://github.com/robreider/robo-advisor-with-python)
 
@@ -18,17 +19,17 @@
 | 上課時間            | 課程進度                        |
 |---------------------|---------------------------------|
 | 02/18               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note01.pdf">Surprises & Paradoxes I</a> |
-| 02/25, 02/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note02.pdf">Surprises & Paradoxes II</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note03.pdf">Voting Theory</a> |
+| 02/25, 02/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note02.pdf">Surprises & Paradoxes II</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note03.pdf">Introduction to Voting Theory</a> |
 | 03/04               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note04.pdf">Surprises & Paradoxes III</a> |
-| 03/11, 03/13        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note05.pdf">Financial Markets & Instruments</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note06.pdf">Basic Problems in Quantitative Finance</a> | 
-| 03/18               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Review of Prerequsite Mathematics</a> |
-| 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Portfolio Optimization I</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note09.pdf">Portfolio Optimization II</a> |
-| 04/08, 04/10        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note10.pdf">Portfolio Optimization III</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note11.pdf">Options & Derivatives I</a> |
-| 04/15               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note12.pdf">Options & Derivatives II</a> |
-| 04/22, 04/24        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note13.pdf">Options & Derivatives III</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note14.pdf">Machine Learning in Finance I</a> |
-| 04/29               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note15.pdf">Recapitulation</a> |
-| 05/06, 05/08        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note16.pdf">Machine Learning in Finance II</a> ,&nbsp;<a href="https://github.com/chang-ye-tu/fin/blob/master/note/note17.pdf">Machine Learning in Finance III</a> |
-| 05/13 學期考        |                                 |
+| 03/11, 03/13        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note05.pdf">Financial Markets & Instruments</a> | 
+| 03/18               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note06.pdf">Review of Prerequisite Mathematics</a> |
+| 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Optimization</a>|
+| 04/08, 04/10        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a> |
+| 04/15               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note09.pdf">Kelly Criterion</a> |
+| 04/22, 04/24        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note10.pdf">Machine Learning in Finance</a> |
+| 04/29               | |
+| 05/06, 05/08        | |
+| 05/13 學期考        | |
 
 ## 授課教師
 
@@ -67,7 +68,6 @@ Risk Parity & Risk Budgeting
 - Privault, N., 2022. Stochastic Finance: An Introduction with Market Examples. 2nd ed., Chapman & Hall/CRC, Boca Raton, FL.
 - Dickson, C. M. D., Hardy, M. R., Waters, H. R., 2020. Actuarial Mathematics for Life Contingent Risks. 3rd ed., Cambridge University Press, Cambridge.
 - 徐高，2018。金融經濟學二十五講，中國人民大學出版社。
-- Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - [Lengwiler, Y., 2004. Microfoundations of Financial Economics: An Introduction to General Equilibrium Asset Pricing. Princeton University Press, Princeton, N.J.](https://microfoundations.org/wp-content/uploads/2020/12/Lengwiler-Microfoundations.pdf)
 - [Saari, D. G., 2019. Mathematics of Finance: An Intuitive Introduction. Springer Nature, Cham, Switzerland.](https://link.springer.com/book/10.1007/978-3-030-25443-8)
 - [Chakrabarty, S. P., Kanaujiya, A., 2023. Mathematical Portfolio Theory and Analysis. Springer Nature, Cham, Switzerland.](https://link.springer.com/book/10.1007/978-981-19-8544-7)

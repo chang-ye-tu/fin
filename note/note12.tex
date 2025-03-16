@@ -92,7 +92,7 @@
 \newcommand{\ifff}{\;\Longleftrightarrow\;}
 \newcommand{\ds}{\displaystyle}
 
-\title{Introduction to Financial Models\\Lecture 12: Options \& Derivatives II}
+\title{Basic Problems in Quantitative Finance}
 \author{}
 \date{}
 
@@ -106,12 +106,489 @@
 %\begin{frame}
 %  \tableofcontents
 %\end{frame}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Basic Problems in Quantitative Finance}
+  \begin{itemize}[<+->]
+    \item Three core problems in quantitative finance:
+      \begin{itemize}
+        \item \textbf{Portfolio optimization}: Allocating wealth among risky financial assets with uncertain returns to achieve an optimal risk-reward tradeoff while satisfying various constraints (budget, exposure limits, etc.)
+        \item \textbf{Risk measurement and management}: Quantifying exposure to different risk factors, developing appropriate metrics, and implementing strategies to mitigate or control risk levels within financial and non-financial firms
+        \item \textbf{Asset pricing}: Determining fair values of financial instruments, especially derivatives, to detect arbitrage opportunities and support trading decisions based on theoretical models rather than simply market consensus
+      \end{itemize}
+    \item These problems are interconnected: pricing models inform portfolio decisions, risk measures help in both optimization and pricing, while optimal portfolios determine market equilibrium prices
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Portfolio Optimization}
+  \begin{itemize}[<+->]
+    \item Optimization model requires three essential components:
+      \begin{itemize}
+        \item Decision variables $\mathbf{x} \in \mathbb{R}^n$ (e.g., portfolio weights, number of shares, or monetary amounts)
+        \item Constraints defining feasible set $S \subseteq \mathbb{R}^n$ (budget restrictions, exposure limits, regulatory requirements)
+        \item Objective function $f(\cdot)$ to minimize or maximize (balancing return and risk)
+      \end{itemize}
+    \item Key dimensions affecting portfolio problem formulation:
+      \begin{itemize}
+        \item Role of time: Static (single decision point) vs. dynamic (sequence of decisions adjusting to market conditions)
+        \item Hierarchical level: Strategic (asset class allocation) vs. tactical (security selection) vs. operational (trade execution)
+        \item Asset-only vs. asset-liability management (e.g., pension fund matching future obligations)
+        \item Market model complexity: Transaction costs, liquidity constraints, price impact of trades
+        \item Uncertainty representation: Probabilistic, scenario-based, robust, or ambiguity-aware approaches
+        \item Risk-reward tradeoff approach: Utility functions, risk measures (VaR, CVaR), multi-objective formulations
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Static Portfolio Optimization: Mean-Variance Efficiency}
+  \begin{itemize}[<+->]
+    \item Portfolio weights: $w_i, i = 1, \ldots, n$, represent fraction of wealth allocated to each asset, collected in vector $\mathbf{w} \in \mathbb{R}^n$
+    \item Basic constraints in the Markowitz framework:
+      \begin{align*}
+        \sum_{i=1}^{n} w_i \equiv \mathbf{1}^T\mathbf{w} &= 1 \quad \text{(full investment constraint)}\\
+        w_i &\geqslant 0, \quad i = 1, \ldots, n \quad \text{(no short-selling constraint)}
+      \end{align*}
+    \item Additional practical constraints often added:
+      \begin{align*}
+        0.05 \leqslant \sum_{i \in I} w_i \leqslant 0.25 \quad \text{(sector/geographic exposure limits)}
+      \end{align*}
+    \item Portfolio return is random: $R_p = \sum_{i=1}^{n} w_iR_i = \mathbf{w}^T\mathbf{R}$
+      \begin{itemize}
+        \item Expected return: $\mu_p = \expc{R_p} = \sum_{i=1}^{n} w_i\mu_i = \mathbf{w}^T\boldsymbol{\mu}$ where $\mu_i = \expc{R_i}$
+        \item Variance: $\sigma_p^2 = \var{R_p} = \sum_{i=1}^{n}\sum_{j=1}^{n} w_i\sigma_{ij}w_j = \mathbf{w}^T\boldsymbol{\Sigma}\mathbf{w}$
+        \item Covariance: $\sigma_{ij} = \cov(R_i, R_j)$ is crucial for diversification benefits
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Mean-Variance Approaches}
+  \begin{itemize}[<+->]
+    \item Maximizing expected return alone leads to trivial, undiversified solution:
+      \begin{align*}
+        \max \quad & \boldsymbol{\mu}^T\mathbf{w}\\
+        \text{s.t.} \quad & \mathbf{1}^T\mathbf{w} = 1\\
+        & \mathbf{w} \geqslant \mathbf{0}
+      \end{align*}
+      This would allocate 100\% to the asset with highest expected return
+    \item Three approaches to balance risk-reward tradeoff:
+      \begin{enumerate}
+        \item Linear combination (risk-adjusted return): 
+        \begin{align*}
+            \max \boldsymbol{\mu}^T\mathbf{w} - \lambda \cdot \mathbf{w}^T\mathbf{\Sigma}\mathbf{w}
+        \end{align*}
+        where $\lambda > 0$ represents risk aversion coefficient
+        
+        \item Risk-constrained (maximize return under risk budget): 
+        \begin{align*}
+            \max \boldsymbol{\mu}^T\mathbf{w} \quad \text{s.t.} \quad \mathbf{w}^T\mathbf{\Sigma}\mathbf{w} \leqslant \beta
+        \end{align*}
+        
+        \item Return-constrained (minimize risk with return target): 
+        \begin{align*}
+            \min \mathbf{w}^T\mathbf{\Sigma}\mathbf{w} \quad \text{s.t.} \quad \boldsymbol{\mu}^T\mathbf{w} \geqslant \mu_{min}
+        \end{align*}
+      \end{enumerate}
+    \item The last approach generates the efficient frontier by varying $\mu_{min}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Dynamic Decision-Making}
+  \begin{itemize}[<+->]
+    \item Elements of a dynamic portfolio model:
+      \begin{itemize}
+        \item Control/decision variables $\mathbf{x}_t$, $t = 0, \ldots, T-1$ (portfolio weights or trading decisions)
+        \item State variables $\mathbf{S}_t$, $t = 0, \ldots, T$ (wealth level, holdings, market conditions)
+        \item Exogenous risk factors $\boldsymbol{\xi}_t(\omega)$, $t = 1, \ldots, T$ (market returns, interest rates)
+        \item Cost/reward functions $f_t$ and terminal function $F_T$ (transaction costs, utility of wealth)
+      \end{itemize}
+    \item Timing convention: Observe state $\mathbf{S}_t$ → Make decision $\mathbf{x}_t$ → Random factors $\boldsymbol{\xi}_{t+1}$ realized → New state $\mathbf{S}_{t+1}$
+    \item Generic stochastic optimization problem:
+      \begin{align*}
+        \min \quad & E\left[\sum_{t=0}^{T-1} f_t(\mathbf{S}_t, \mathbf{x}_t) + F_T(\mathbf{S}_T)\right]\\
+        \text{s.t.} \quad & \mathbf{x}_t \in A_t(\mathbf{S}_t) \quad \text{(feasible actions)}\\
+        & \mathbf{S}_{t+1} = \Phi_t(\mathbf{S}_t, \mathbf{x}_t, \boldsymbol{\xi}_{t+1}(\omega)) \quad \text{(state transitions)}
+      \end{align*}
+    \item Consumption-saving problems may include utility functions with discount factors: $\max E\left[\sum_{t=0}^{T} \beta^t u(C_t)\right]$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Risk Measurement and Management}
+  \begin{itemize}[<+->]
+    \item Risk measurement challenges and approaches:
+      \begin{itemize}
+        \item Defining a suitable risk measure:
+          \begin{itemize}
+            \item Symmetric (standard deviation) vs. asymmetric (VaR, CVaR)
+            \item Coherence properties (subadditivity, monotonicity, etc.)
+            \item Axiomatic foundations vs. practical interpretability
+          \end{itemize}
+        \item Creating a risk model:
+          \begin{itemize}
+            \item Factor models to reduce estimation burden
+            \item Time-varying volatility and correlations
+            \item Fat-tailed and skewed distributions
+          \end{itemize}
+        \item Managing risk through:
+          \begin{itemize}
+            \item Hedging (perfect, minimum-variance, immunization)
+            \item Diversification across assets, sectors, regions
+            \item Insurance and derivatives for tail risk protection
+          \end{itemize}
+      \end{itemize}
+    \item Risk models can be classified as:
+      \begin{itemize}
+        \item Linear: $R_i = \alpha_i + \sum_{k=1}^{m} \beta_{ik}F_k + \epsilon_i$ (factor models)
+        \item Nonlinear: Option pricing, interest rate models, default models
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Linear Risk Factor Models}
+  \begin{itemize}[<+->]
+    \item Simple linear factor model for asset returns:
+      \vspace{-2mm}
+      \begin{align*}
+        R_i = \alpha_i + \sum_{k=1}^{m} \beta_{ik}F_k + \epsilon_i, \quad i = 1, \ldots, n
+      \end{align*}
+      \vspace{-4mm}
+      \begin{itemize}
+        \item $\alpha_i$ is the asset-specific intercept
+        \item $\beta_{ik}$ is the sensitivity of asset $i$ to factor $k$
+        \item $F_k$ is the common risk factor (market, size, value, momentum, etc.)
+        \item $\epsilon_i$ is the idiosyncratic (asset-specific) risk
+      \end{itemize}
+      
+    \item Induced covariance structure:
+      \begin{align*}
+        \sigma_{ij} &= \sum_{k=1}^{m} \beta_{ik}\beta_{jk}\sigma_k^2, \quad i \neq j \quad \text{(cross-asset covariance)}\\
+        \sigma_i^2 &= \sum_{k=1}^{m} \beta_{ik}^2\sigma_k^2 + \sigma_{\epsilon_i}^2 \quad \text{(asset variance)}
+      \end{align*}
+      \vspace{-3mm}
+    \item Benefits of factor models:
+      \begin{itemize}
+        \item Reduces parameter estimation burden: $m \times n + m + n$ vs. $\frac{n(n+1)}{2}$
+        \item Provides insights into risk structure and factor exposures
+        \item Separates common (systematic) and specific (diversifiable) risk
+        \item Allows for targeted risk factor hedging and exposure management
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Nonlinear Risk Factor Models}
+  \begin{itemize}[<+->]
+    \item Nonlinear models needed for:
+      \begin{itemize}
+        \item Derivatives pricing (options, swaps, structured products)
+        \item Bond pricing and interest rate risk (duration, convexity)
+        \item Credit risk (default probabilities, recovery rates)
+        \item Volatility risk (option vega exposure)
+      \end{itemize}
+    \item Zero-coupon bond example illustrates nonlinear interest rate risk:
+      \begin{align*}
+        P_z(0; R_{0,T}, T) = \tfrac{F}{(1 + R_{0,T})^T} \quad \text{(price as function of yield)}
+      \end{align*}
+      where $F$ is face value, $R_{0,T}$ is yield-to-maturity, and $T$ is time to maturity
+      
+    \item Interest rate risk increases nonlinearly with maturity:
+      \begin{itemize}
+        \item 3-year zero: -2.83\% loss on 1\% rate increase (from 4\% to 5\%)
+        \item 10-year zero: -9.13\% loss on 1\% rate increase
+        \item 30-year zero: -24.96\% loss on 1\% rate increase
+      \end{itemize}
+    
+    \item For nonlinear exposures, first and second-order sensitivities are used:
+      \begin{itemize}
+        \item Duration and convexity for bonds
+        \item Delta, gamma, vega, etc. for options
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Value-at-Risk (VaR)}
+  \begin{itemize}[<+->]
+    \item Standard deviation limitations as a risk measure:
+      \begin{itemize}
+        \item Symmetric risk measure (equally penalizes upside and downside)
+        \item Assumes normal distributions (underestimates tail risk)
+        \item Not expressed in monetary terms (harder for management to interpret)
+        \item Doesn't account for skewness and fat tails in financial returns
+      \end{itemize}
+    \item Value-at-Risk (VaR) definition:
+      \begin{align*}
+        \prb\{L_H \leqslant \text{VaR}_{1-\alpha,H}\} = 1 - \alpha
+      \end{align*}
+      where $L_H$ is loss over horizon $H$, $\alpha$ is significance level (e.g., 5\% or 1\%)
+      
+    \item Loss definitions:
+      \begin{itemize}
+        \item Absolute loss: $L_H^a = W_0 - W_H = -W_0R_H$ (relative to initial wealth)
+        \item Relative loss: $L_H^r = \expc{W_H} - W_H = W_0(\mu - R_H)$ (relative to expected wealth)
+        \item For short horizons, drift is negligible and both definitions converge
+      \end{itemize}
+    
+    \item VaR estimation approaches:
+      \begin{itemize}
+        \item Parametric (analytical): Based on distributional assumptions
+        \item Historical simulation: Based on empirical distribution
+        \item Monte Carlo: Based on simulated scenarios
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Risk Management - Hedging}
+  \begin{itemize}[<+->]
+    \item Perfect hedging (complete risk elimination):
+      \begin{itemize}
+        \item Forward contract example with $N$ units of asset:
+          \begin{align*}
+            N \cdot S_T + N \cdot (F_0 - S_T) = N \cdot F_0
+          \end{align*}
+        \item Completely eliminates risk but also eliminates all upside potential
+        \item Often impractical due to maturity mismatches, basis risk, liquidity issues
+      \end{itemize}
+      
+    \item Minimum variance hedging (cross-hedging):
+      \begin{align*}
+        h^* = \tfrac{\text{Cov}(S_{T_1}, F_{T_1})}{\var(F_{T_1})} = \rho \cdot \tfrac{\sigma_S}{\sigma_F}
+      \end{align*}
+      where $h^*$ is optimal hedge ratio, $\rho$ is correlation, $\sigma_S$ and $\sigma_F$ are volatilities
+      
+    \item First-order immunization (sensitivity-based):
+      \begin{align*}
+        \tfrac{\partial V}{\partial R_i} + \sum_{j=1}^m \phi_j \tfrac{\partial H_j}{\partial R_i} = 0, \quad i = 1, \ldots, m
+      \end{align*}
+      where $V$ is portfolio value, $H_j$ is hedging instrument value, $\phi_j$ is position size
+      
+    \item Challenges in hedging implementation:
+      \begin{itemize}
+        \item Standardized contract sizes causing over/under hedging
+        \item Time-varying correlations and volatilities
+        \item Marking-to-market impact on futures hedges
+        \item Transaction costs and liquidity constraints
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Financial vs. Nonfinancial Risk Factors}
+  \begin{itemize}[<+->]
+    \item Financial risk factors (directly related to market variables):
+      \begin{itemize}
+        \item Market risk (equity prices): Systematic and idiosyncratic components
+        \item Interest rate risk: Level, slope, and curvature of yield curve
+        \item Currency risk: Exchange rate fluctuations affecting international operations
+        \item Inflation risk: Eroding purchasing power and real returns
+        \item Volatility risk: Impacting derivative pricing and hedging effectiveness
+        \item Credit/counterparty risk: Default probability and recovery rates
+      \end{itemize}
+      
+    \item Nonfinancial risk factors (often harder to quantify):
+      \begin{itemize}
+        \item Model risk: Wrong model specification or parameter estimation
+        \item Regulatory and political risk: Changes in laws and regulations
+        \item Volume risk: Uncertain business demand affecting hedging needs
+        \item Operational risk: System failures, human errors, process breakdowns
+        \item Liquidity risk: Unable to execute trades at fair prices
+        \item Execution uncertainty: Delays between decision and implementation
+      \end{itemize}
+      
+    \item Complex risk exposures often involve interaction between multiple risk factors
+    \item Need for integrated risk management across different risk categories
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{No-Arbitrage Principle in Asset Pricing}
+  \begin{itemize}[<+->]
+    \item Arbitrage opportunity: Trading strategy that:
+      \begin{itemize}
+        \item Requires no initial investment ($V(0) = 0$)
+        \item Guarantees non-negative payoff in all states ($V(T,\omega) \geqslant 0, \forall \omega$)
+        \item Has positive expected payoff ($\expc{V(T,\omega)} > 0$)
+      \end{itemize}
+      
+    \item No-arbitrage principle: In well-functioning markets, arbitrage opportunities cannot persist
+    
+    \item Uses of asset pricing models based on no-arbitrage:
+      \begin{itemize}
+        \item Calibrate models to observed prices to infer unobservable parameters (e.g., implied volatility)
+        \item Detect relative price discrepancies for trading strategies
+        \item Price OTC derivatives consistently with exchange-traded instruments
+        \item Model risk factor sensitivities for hedging and risk management
+        \item Decompose complex securities into simpler building blocks
+      \end{itemize}
+      
+    \item Advantages over equilibrium models:
+      \begin{itemize}
+        \item Does not require assumptions about investor preferences
+        \item Simpler mathematical structure
+        \item Direct practical applications in trading and hedging
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Types of Arbitrage}
+  \begin{itemize}[<+->]
+    \item Instantaneous arbitrage (spatial arbitrage):
+      \begin{itemize}
+        \item Trading at a single time instant across different markets
+        \item Example: Stock priced at €50 on one exchange and \$68 on another when exchange rate is \$1.34/€
+        \item Triangular currency arbitrage: Exploiting inconsistencies among three exchange rates
+        \item Typically eliminated very quickly through high-frequency trading
+      \end{itemize}
+      
+    \item Static arbitrage (intertemporal):
+      \begin{itemize}
+        \item Trading at two time instants ($t=0$ and $t=T$)
+        \item Example: Put-call parity violations
+          \begin{align*}
+            C_0 - P_0 = S_0 - K \cdot e^{-rT}
+          \end{align*}
+        \item Cash-and-carry arbitrage: Exploiting misalignments between spot and forward prices
+        \item Law of one price: Identical cash flows must have identical prices
+      \end{itemize}
+      
+    \item Dynamic arbitrage:
+      \begin{itemize}
+        \item Trading at multiple time instants, adjusting positions as uncertainty unfolds
+        \item Example: Delta-hedging strategies in option replication
+        \item More complex to implement due to transaction costs, model risk, execution uncertainty
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Option Pricing in Binomial Model}
+  \begin{itemize}[<+->]
+    \item Single-step binomial model:
+      \begin{itemize}
+        \item Current price $S_0$ at $t=0$
+        \item Future prices at $t=T$: $uS_0$ (up state) or $dS_0$ (down state) with $d < u$
+        \item Probability of up state $p_u$ and down state $p_d = 1-p_u$
+        \item Risk-free rate $r$ (continuous compounding) with $B(T) = e^{rT}$
+      \end{itemize}
+      
+    \item Option payoffs at maturity:
+      \begin{itemize}
+        \item Call: $f_u = \max\{0, uS_0-K\}$ and $f_d = \max\{0, dS_0-K\}$
+        \item Put: $f_u = \max\{0, K-uS_0\}$ and $f_d = \max\{0, K-dS_0\}$
+      \end{itemize}
+      
+    \item Replicating portfolio with $\Delta$ shares and $\Psi$ cash:
+      \begin{align*}
+        \Delta S_0u + \Psi e^{rT} &= f_u\\
+        \Delta S_0d + \Psi e^{rT} &= f_d
+      \end{align*}
+      
+    \item Solution for replicating portfolio:
+      \begin{align*}
+        \Delta &= \tfrac{f_u - f_d}{S_0(u - d)}\\
+        \Psi &= e^{-rT} \cdot \tfrac{uf_d - df_u}{u - d}
+      \end{align*}
+      
+    \item Option price (by no-arbitrage):
+      \begin{align*}
+        f_0 &= \Delta S_0 + \Psi\\
+        &= e^{-rT} \left\{ \tfrac{e^{rT} - d}{u - d}f_u + \tfrac{u - e^{rT}}{u - d}f_d \right\}
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Risk-Neutral Pricing}
+  \begin{itemize}[<+->]
+    \item Risk-neutral probabilities (different from real-world probabilities):
+      \begin{align*}
+        \pi_u = \tfrac{e^{rT} - d}{u - d}, \quad \pi_d = \tfrac{u - e^{rT}}{u - d}
+      \end{align*}
+      
+    \item For no-arbitrage, must have $d < e^{rT} < u$ (risk-neutral probabilities are positive)
+    
+    \item Option price as discounted expected value under risk-neutral measure $\mathbb{Q}$:
+      \begin{align*}
+        f_0 = e^{-rT} \cdot \expc_{\mathbb{Q}}{f_T} = e^{-rT} \cdot (\pi_u f_u + \pi_d f_d)
+      \end{align*}
+      
+    \item Risk-neutral valuation property:
+      \begin{align*}
+        \expc_{\mathbb{Q}}{S_T} = S_0e^{rT}
+      \end{align*}
+      The expected return of any asset under $\mathbb{Q}$ is the risk-free rate
+      
+    \item Martingale property (discounted price process):
+      \begin{align*}
+        \tfrac{S_0}{B_0} = \expc_{\mathbb{Q}}\left\{\tfrac{S_T}{B_T}\right\}
+      \end{align*}
+      
+    \item Real-world vs. risk-neutral probabilities:
+      \begin{itemize}
+        \item Real-world: Used for forecasting
+        \item Risk-neutral: Used for pricing (incorporates risk premia)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{No-Arbitrage Limitations}
+  \begin{itemize}[<+->]
+    \item Real-life market frictions and imperfections:
+      \begin{itemize}
+        \item Transaction costs, taxes, and bid-ask spreads create "no-arbitrage bands"
+        \item Liquidity issues and margin calls affect dynamic strategies
+        \item Short-selling restrictions limit arbitrage implementation
+        \item Inventory costs for physical commodities
+        \item Securities lending fees and dividends/coupons
+      \end{itemize}
+      
+    \item Market participant limitations:
+      \begin{itemize}
+        \item Bounded rationality and behavioral biases
+        \item Asymmetric information distribution
+        \item Noise trader risk (irrational price movements)
+        \item Different views on fundamental value
+        \item Capital constraints limiting arbitrage capacity
+      \end{itemize}
+      
+    \item Implementation challenges:
+      \begin{itemize}
+        \item Execution uncertainty (price impact, timing, slippage)
+        \item Model risk (wrong specification, parameter estimation errors)
+        \item "Limits to arbitrage" and persistence of mispricings
+        \item Risk of convergence timing (LTCM example - technically correct but timing wrong)
+        \item Correlated positions and crowded trades
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Mathematics of Arbitrage}
+  \begin{itemize}[<+->]
+    \item Dominant trading strategy exists if $V(0) = 0$, $V(T,\omega) > 0$, $\forall\,\omega\in\Omega$, or equivalently (with risk-free asset) $V(0) < 0$, $V(T,\omega)\geqslant 0$, $\forall\,\omega\in\Omega$
+      
+    \item Arbitrage opportunity exists if (weaker condition) $V(0) = 0$, $V(T,\omega)\geqslant 0$, $\forall\,\omega\in\Omega$, $\expc{V(T,\omega)} > 0$
+      
+    \item No arbitrage $\ifff$ Existence of strictly positive pricing kernel/state price density
+    
+    \item In terms of discounted gains:
+      \begin{align*}
+        \expc_{\mathbb{Q}}\{G^*(\omega)\} = \sum_{j=1}^m G^*(\omega_j)q(\omega_j) = 0
+      \end{align*}
+      
+    \item Fundamental Theorem of Asset Pricing:
+      \begin{itemize}
+        \item No arbitrage $\ifff$ Existence of equivalent martingale measure
+        \item Market completeness $\ifff$ Uniqueness of equivalent martingale measure
+        \item Incomplete markets have multiple martingale measures \\$\ie$ Range of arbitrage-free prices
+      \end{itemize}
+      
+    \item Price of any attainable contingent claim:
+      \begin{align*}
+        V(0) = \expc_{\mathbb{Q}}\left\{\tfrac{V(T,\omega)}{B(T,\omega)}\right\}
+      \end{align*}
+  \end{itemize}
+\end{frame}
 
 %\begin{frame}[allowframebreaks]
 %  \frametitle{References}
 %  \nocite{*}
 %  \bibliographystyle{apalike}
-%  \bibliography{note12}
+%  \bibliography{note06}
 %\end{frame}
 
 \end{document}
