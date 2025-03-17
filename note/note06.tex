@@ -248,37 +248,45 @@
 \titlepage
 \end{frame}
 
+\section{Introduction to Elementary Optimization}
 \begin{frame}
-\begin{dfn}[The Jacobian]
-  Let $V$ be open in $\mathbb{R}^n$, $\vx\in V$, and $g_i:V\to\mathbb{R}$, $i = 1,\,2,\,\ldots,\,m$ be $C^1$ on $V$. The Jacobian of $\vg(\vx): \mathbb{R}^n\to\mathbb{R}^m$ is defined as
-  \begin{align*}
-    \jac\vg(\vx) = %\frac{\partial(g_1,\,g_2,\,\ldots,\,g_m)}{\partial (x_1,\,x_2,\,\ldots,\,x_{\!n})}(\vx) = 
-    \begin{pmatrix}
-      \frac{\partial g_1}{\partial x_1} & \frac{\partial g_1}{\partial x_2} & \cdots & \frac{\partial g_1}{\partial x_{\!n}} \\
-      \frac{\partial g_2}{\partial x_1} & \frac{\partial g_2}{\partial x_2} & \cdots & \frac{\partial g_2}{\partial x_{\!n}} \\
-      \vdots & \vdots & \ddots &\vdots \\
-      \frac{\partial g_m}{\partial x_1} & \frac{\partial g_m}{\partial x_2} & \cdots & \frac{\partial g_m}{\partial x_{\!n}}
-    \end{pmatrix}(\vx)
-  \end{align*}
-\end{dfn}
-\begin{thm}%[\citet{rudin} 9.15; \citet{apostol_adv} Theorem 12.7; \citet{wade} 11.28]
-  Suppose that $\vf$ and $\vg$ are vector functions. If $\vg$ is differentiable at $\va$ and $\vf$ is differentiable at $\vg(\va)$, then $\vf\circ\vg$ is differentiable at $\va$ and
-  \begin{align*}
-    \jac(\vf\circ\vg)(\va) = \jac\vf(\vg(\va))\,\jac\vg(\va)
-  \end{align*}
-  More explicitly, if $f$ is a differentiable function of $x_1,\,x_2,\,\ldots,\,x_n$, and each $x_j$ is a differentiable function of $t_1,\,t_2,\,\ldots,\,t_m$, $n$, $m\geqslant 1$; then $f$ is a differentiable function of $t_1,\,t_2,\,\ldots,\,t_m$ with
-  \begin{align*}
-    \pdiff{f}{t_i} = \pdiff{f}{x_1}\,\pdiff{x_1}{t_i} + \pdiff{f}{x_2}\,\pdiff{x_2}{t_i} + \cdots + \pdiff{f}{x_n}\,\pdiff{x_n}{t_i}
-  \end{align*}
-\end{thm}
+  \begin{dfn}[The Jacobian]
+    Let $V$ be open in $\mathbb{R}^n$, $\vx\in V$, and $g_i:V\to\mathbb{R}$, $i = 1,\,2,\,\ldots,\,m$ be $C^1$ on $V$. The Jacobian of $\vg(\vx): \mathbb{R}^n\to\mathbb{R}^m$ is defined as
+    \vspace{-3mm}
+    \begin{align*}
+      \jac\vg(\vx) = %\frac{\partial(g_1,\,g_2,\,\ldots,\,g_m)}{\partial (x_1,\,x_2,\,\ldots,\,x_{\!n})}(\vx) = 
+      \begin{pmatrix}
+        \frac{\partial g_1}{\partial x_1} & \frac{\partial g_1}{\partial x_2} & \cdots & \frac{\partial g_1}{\partial x_{\!n}} \\
+        \frac{\partial g_2}{\partial x_1} & \frac{\partial g_2}{\partial x_2} & \cdots & \frac{\partial g_2}{\partial x_{\!n}} \\
+        \vdots & \vdots & \ddots &\vdots \\
+        \frac{\partial g_m}{\partial x_1} & \frac{\partial g_m}{\partial x_2} & \cdots & \frac{\partial g_m}{\partial x_{\!n}}
+      \end{pmatrix}(\vx)
+    \end{align*}
+  \end{dfn}
+  \begin{thm}[The Chain Rule]%[\citet{rudin} 9.15; \citet{apostol_adv} Theorem 12.7; \citet{wade} 11.28]
+    Suppose that $\vf$ and $\vg$ are vector functions. If $\vg$ is differentiable at $\va$ and $\vf$ is differentiable at $\vg(\va)$, then $\vf\circ\vg$ is differentiable at $\va$ and
+    \vspace{-2mm}
+    \begin{align*}
+      \jac(\vf\circ\vg)(\va) = \jac\vf(\vg(\va))\,\jac\vg(\va)
+    \end{align*}
+
+    \vspace{-2mm}
+    More explicitly, if $f$ is a differentiable function of $x_1,\,x_2,\,\ldots,\,x_n$, and each $x_j$ is a differentiable function of $t_1,\,t_2,\,\ldots,\,t_m$, $n$, $m\geqslant 1$; then $f$ is a differentiable function of $t_1,\,t_2,\,\ldots,\,t_m$ with
+    \vspace{-2mm}
+    \begin{align*}
+      \pdiff{f}{t_i} = \pdiff{f}{x_1}\,\pdiff{x_1}{t_i} + \pdiff{f}{x_2}\,\pdiff{x_2}{t_i} + \cdots + \pdiff{f}{x_n}\,\pdiff{x_n}{t_i}
+    \end{align*}
+  \end{thm}
 \end{frame}
 
 \begin{frame}
-\begin{ex}
-  Let $w = f(x z, y z)$, where $f$ is a differentiable function. Prove that $\ds x\frac{\partial w}{\partial x} + y\frac{\partial w}{\partial y} = z\frac{\partial w}{\partial z}$.
-\end{ex}
+  \begin{ex}
+    Let $w = f(x z, y z)$, where $f$ is a differentiable function. Prove that $\ds x\frac{\partial w}{\partial x} + y\frac{\partial w}{\partial y} = z\frac{\partial w}{\partial z}$.
+  \end{ex}
+\end{frame}
 
-\begin{sol}
+\begin{frame}[allowframebreaks]
+  \frametitle{Solution}
   Write $u(x,y,z)=xz$ and $v(x,y,z)=yz$ so that $w(x,y,z) = f\big(u(x,y,z), v(x,y,z)\big)$. By the chain rule,
   \begin{align*}
     &\pdiff{w}{x}(x,y,z) = \pdiff{}{x}\big[f \big(u(x,y,z), v(x,y,z)\big)\big] \\
@@ -299,95 +307,100 @@
   \begin{align*}
     \pdiff{w}{x} + y\pdiff{w}{y} &= xz\pdiff{f}{u}(xz, yz) + yz\pdiff{f}{v}(xz, yz) \\&= z\left[x\pdiff{f}{u}(xz, yz) + y\pdiff{f}{v}(xz, yz)\right] = z\pdiff{w}{z}
   \end{align*}
-\end{sol}
 \end{frame}
 
 \begin{frame}{Unconstrained Optimization Problems}
+  \begin{thm}%[\citet{rudin} 4.16; \citet{apostol_adv} Theorem 4.27; \citet{wade} 9.57]
+    Given $\ds S\subseteq\mathbb{R}^n$ and continuous $f: S\to\mathbb{R}$; if $S$ is compact, then  
+    \begin{align*}
+      M = \sup\left\{f(\vx): \vx\in S\right\}\quad\text{ and }\quad m = \inf\left\{f(\vx): \vx\in S\right\}
+    \end{align*}
+    are finite real numbers. Moreover, there exists points $\vx_\text{M}$, $\vx_\text{m}\in S$ such that $M = f(\vx_\text{M})$ and $m = f(\vx_\text{m})$.
+  \end{thm}
 
-\begin{thm}%[\citet{rudin} 4.16; \citet{apostol_adv} Theorem 4.27; \citet{wade} 9.57]
-  Given $\ds S\subseteq\mathbb{R}^n$ and continuous $f: S\to\mathbb{R}$; if $S$ is compact, then  
-  \begin{align*}
-    M = \sup\left\{f(\vx): \vx\in S\right\}\quad\text{ and }\quad m = \inf\left\{f(\vx): \vx\in S\right\}
-  \end{align*}
-  are finite real numbers. Moreover, there exists points $\vx_\text{M}$, $\vx_\text{m}\in S$ such that $M = f(\vx_\text{M})$ and $m = f(\vx_\text{m})$.
-\end{thm}
-
-\begin{dfn}
-  Given $\ds S\subseteq\mathbb{R}^n$, $\ds f:S\to\mathbb{R}$ and $\ds B(\vx, h)\equiv\{\vy\in\mathbb{R}^n\;|\;|\vy - \vx| < h\}$, $f$ achieves 
-  \begin{itemize}
-    \item global maximum $\ds f(\vx_\text{M})$ at $\ds\vx_\text{M}\in S$: $\ds f(\vx_\text{M})\geqslant f(\vx),\;\forall\,\vx\in S$. 
-    \item global minimum $\ds f(\vx_\text{m})$ at $\ds \vx_\text{m}\in S$: $\ds f(\vx_\text{m})\leqslant f(\vx),\;\forall\,\vx\in S$. 
-    \item local maximum $\ds f(\vx_0)$ at $\ds\vx_0\in S$: $\ds\exists\,h_0 > 0$ s.t. $\ds f(\vx_0)\geqslant f(\vx),\;\forall\,\vx\in B(\vx_0, h_0)\,\cap\,S$. 
-    \item local minimum $\ds f(\vx_1)$ at $\ds\vx_1\in S$: $\ds\exists\,h_1 > 0$ s.t. $\ds f(\vx_1)\leqslant f(\vx),\;\forall\,\vx\in B(\vx_1, h_1)\,\cap\,S$. 
-  \end{itemize}
-\end{dfn}
-\end{frame}
-
-\begin{frame}
-\begin{thm}[necessary conditions for extremum]
-  Given $\ds S\subseteq\mathbb{R}^n$ and differentiable $\ds f:S\to\mathbb{R}$, if $f$ achieves extremum at an interior $\vc\in S$, then $\ds\nabla f(\vc) = \vZero$. 
-\end{thm}
-
-\begin{prf}
-  If $\ds\vc = (c_1,\,c_2,\,\ldots,\,c_n)$, let 
-  \begin{align*}
-    g_j(t)\equiv f(c_1,\,c_2,\,\ldots,\,c_{j - 1},\,t,\,c_{j + 1},\,\ldots,\,c_n), \quad j = 1,\,2,\,\ldots,\,n 
-  \end{align*}
-  For $f$ achieves extremum at $\vc$, $f(\vc) = g_j(c_j)$, $g_j$ achieves extremum at $c_j\ie g_j'(t)\,\big|_{t = c_j} = 0 \ie D_j f(\vc) = 0\;\forall\,j$, so $\ds\nabla f(\vc) = \vZero$.  
-\end{prf}
-
-\begin{thm}
-  Given $\ds S\subseteq\mathbb{R}^n$, if $f:S\to\mathbb{R}$ achieves extremum at $\vc\in S$, then $\vc$ can possibly be a
+  \begin{dfn}
+    Given $\ds S\subseteq\mathbb{R}^n$, $\ds f:S\to\mathbb{R}$ and $\ds B(\vx, h)\equiv\{\vy\in\mathbb{R}^n\;|\;|\vy - \vx| < h\}$, $f$ achieves 
     \begin{itemize}
-      \item critical point: $\ds \nabla f(\vc) = \vZero$. 
-      \item singular point: $f$ is non-differentiable at $\vc$.  
-      \item boundary point of $S$. 
+      \item global maximum $\ds f(\vx_\text{M})$ at $\ds\vx_\text{M}\in S$: $\ds f(\vx_\text{M})\geqslant f(\vx),\;\forall\,\vx\in S$. 
+      \item global minimum $\ds f(\vx_\text{m})$ at $\ds \vx_\text{m}\in S$: $\ds f(\vx_\text{m})\leqslant f(\vx),\;\forall\,\vx\in S$. 
+      \item local maximum $\ds f(\vx_0)$ at $\ds\vx_0\in S$: $\ds\exists\,h_0 > 0$ s.t. $\ds f(\vx_0)\geqslant f(\vx)$, $\ds\forall\,\vx\in B(\vx_0, h_0)\,\cap\,S$. 
+      \item local minimum $\ds f(\vx_1)$ at $\ds\vx_1\in S$: $\ds\exists\,h_1 > 0$ s.t. $\ds f(\vx_1)\leqslant f(\vx)$, $\ds\forall\,\vx\in B(\vx_1, h_1)\,\cap\,S$. 
     \end{itemize}
-\end{thm}
+  \end{dfn}
 \end{frame}
 
 \begin{frame}
-\begin{dfn}[Hessian Matrix]
-  Given $\ds S\subseteq\mathbb{R}^n$, an interior point $\vc$ of $S$, and a differentiable function $\ds f:S\to\mathbb{R}$, 
-  \begin{align*}
-    \vH(f, \vc) = \begin{pmatrix}f_{11} & f_{12} & \cdots & f_{1n} \\ f_{21} & f_{22} & \cdots & f_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ f_{n1} & f_{n2} & \cdots & f_{nn}\end{pmatrix}, \quad f_{ij} = \frac{\partial^2 f}{\partial x_j\partial x_i}(\vc), \quad i,\,j = 1,\,2,\,\ldots,\,n.
-  \end{align*}
-\end{dfn}
+  \begin{thm}[necessary conditions for extremum]
+    Given $\ds S\subseteq\mathbb{R}^n$ and differentiable $\ds f:S\to\mathbb{R}$, if $f$ achieves extremum at an interior $\vc\in S$, then $\ds\nabla f(\vc) = \vZero$. 
+  \end{thm}
 
-\begin{dfn}[Matrix Positive/Negative Definiteness] 
-  Given an $n\times n$ real symmetric matrix $\vA$. For any $\ds\vv\in\mathbb{R}^n\ne\vZero$, $\vA$ is
-  \begin{multicols}{2}
+  \begin{prf}
+    If $\ds\vc = (c_1,\,c_2,\,\ldots,\,c_n)$, let 
+    \begin{align*}
+      g_j(t)\equiv f(c_1,\,c_2,\,\ldots,\,c_{j - 1},\,t,\,c_{j + 1},\,\ldots,\,c_n), \quad j = 1,\,2,\,\ldots,\,n 
+    \end{align*}
+    For $f$ achieves extremum at $\vc$, $f(\vc) = g_j(c_j)$, $g_j$ achieves extremum at $c_j\ie g_j'(t)\,\big|_{t = c_j} = 0 \ie D_j f(\vc) = 0\;\forall\,j$, so $\ds\nabla f(\vc) = \vZero$.  
+  \end{prf}
+
+  \begin{thm}
+    Given $\ds S\subseteq\mathbb{R}^n$, if $f:S\to\mathbb{R}$ achieves extremum at $\vc\in S$, then $\vc$ can possibly be a
+      \begin{itemize}
+        \item critical point: $\ds \nabla f(\vc) = \vZero$. 
+        \item singular point: $f$ is non-differentiable at $\vc$.  
+        \item boundary point of $S$. 
+      \end{itemize}
+  \end{thm}
+\end{frame}
+
+\begin{frame}
+  \begin{dfn}[Hessian Matrix]
+    Given $\ds S\subseteq\mathbb{R}^n$, an interior point $\vc$ of $S$, and a differentiable function $\ds f:S\to\mathbb{R}$, \vspace{-3mm}
+    \begin{align*}
+      \vH(f, \vc) = \begin{pmatrix}f_{11} & f_{12} & \cdots & f_{1n} \\ f_{21} & f_{22} & \cdots & f_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ f_{n1} & f_{n2} & \cdots & f_{nn}\end{pmatrix}, \quad f_{ij} = \frac{\partial^2 f}{\partial x_j\partial x_i}(\vc), \quad i,\,j = 1,\,2,\,\ldots,\,n.
+    \end{align*}
+  \end{dfn}
+
+  \begin{dfn}[Matrix Positive/Negative Definiteness] 
+    Given an $n\times n$ real symmetric matrix $\vA$. For any $\ds\vv\in\mathbb{R}^n\ne\vZero$, $\vA$ is \vspace{-3mm}
+    \begin{multicols}{2}
+      \begin{itemize}
+        \item positive-definite: $\ds\vv\vA\vv^\top > 0$ 
+        \item negative-definite: $\ds\vv\vA\vv^\top < 0$
+        \item positive-semidefinite: $\ds\vv\vA\vv^\top\geqslant 0$
+        \item negative-semidefinite: $\ds\vv\vA\vv^\top\leqslant 0$
+      \end{itemize}
+    \end{multicols}
+  \end{dfn}
+  \begin{thm}
+    Given a real symmetric matrix $\vA$.  
     \begin{itemize}
-      \item positive-definite: $\ds\vv\vA\vv^\top > 0$ 
-      \item negative-definite: $\ds\vv\vA\vv^\top < 0$
-      \item positive-semidefinite: $\ds\vv\vA\vv^\top\geqslant 0$
-      \item negative-semidefinite: $\ds\vv\vA\vv^\top\leqslant 0$
+      \item $\vA$ is positive-definite $\ifff$ all eigenvalues of $\vA$ are positive.  
+      \item $\vA$ is positive-semidefinite $\ifff$ all eigenvalues of $\vA$ are nonnegative.
     \end{itemize}
-  \end{multicols}
-\end{dfn}
+  \end{thm}
+
 \end{frame}
 
 \begin{frame}
-\begin{dfn}[Minor] 
-  Given an $n\times n$ matrix $\vA = \begin{pmatrix}a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn} \end{pmatrix}$ and minor $\vA\begin{pmatrix}i_1,\,i_2,\,\cdots,\,i_k\\j_1,\,j_2,\,\cdots,\,j_k\end{pmatrix} = \begin{vmatrix}a_{i_1 j_1} & a_{i_1 j_2} & \cdots & a_{i_1 j_k} \\ a_{i_2 j_1} & a_{i_2 j_2} & \cdots & a_{i_2 j_k} \\ \vdots & \vdots & \ddots & \vdots \\ a_{i_k j_1} & a_{i_k j_2} & \cdots & a_{i_k j_k} \end{vmatrix}$, $1\leqslant k\leqslant n$, $1\leqslant i_1 < i_2 < \cdots < i_k \leqslant n$, $1\leqslant j_1 < j_2 < \cdots < j_k \leqslant n$. 
-  \begin{itemize}
-    \item $\ds\Delta_k\equiv\vA\begin{pmatrix}i_1,\,i_2,\,\cdots,\,i_k\\i_1,\,i_2,\,\cdots,\,i_k\end{pmatrix}$ is the $k$-th order principal minor of $A$. 
-    \item $\ds M_k\equiv\vA\begin{pmatrix}1,\,2,\,\cdots,\,k\\1,\,2,\,\cdots,\,k\end{pmatrix}$ is the $k$-th order leading principal minor of $A$. 
-  \end{itemize}
-\end{dfn}
+  \begin{dfn}[Minor] 
+    Given an $n\times n$ matrix $\vA = \begin{pmatrix}a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn} \end{pmatrix}$ and minor $\vA\begin{pmatrix}i_1,\,i_2,\,\cdots,\,i_k\\j_1,\,j_2,\,\cdots,\,j_k\end{pmatrix} = \begin{vmatrix}a_{i_1 j_1} & a_{i_1 j_2} & \cdots & a_{i_1 j_k} \\ a_{i_2 j_1} & a_{i_2 j_2} & \cdots & a_{i_2 j_k} \\ \vdots & \vdots & \ddots & \vdots \\ a_{i_k j_1} & a_{i_k j_2} & \cdots & a_{i_k j_k} \end{vmatrix}$, $1\leqslant k\leqslant n$, $1\leqslant i_1 < i_2 < \cdots < i_k \leqslant n$, $1\leqslant j_1 < j_2 < \cdots < j_k \leqslant n$. 
+    \begin{itemize}
+      \item $\ds\Delta_k\equiv\vA\begin{pmatrix}i_1,\,i_2,\,\cdots,\,i_k\\i_1,\,i_2,\,\cdots,\,i_k\end{pmatrix}$ is the $k$-th order principal minor of $A$. 
+      \item $\ds M_k\equiv\vA\begin{pmatrix}1,\,2,\,\cdots,\,k\\1,\,2,\,\cdots,\,k\end{pmatrix}$ is the $k$-th order leading principal minor of $A$. 
+    \end{itemize}
+  \end{dfn}
+\end{frame}
 
-\begin{thm}[Criteria for Matrix Positive/Negative Definiteness] 
-  Given an $n\times n$ real symmetric matrix $\vA$, then $\forall\,k\leqslant n$, $\vA$ is
-  \vspace{-3mm}
-  \begin{multicols}{2}
+\begin{frame}
+  \begin{thm}[Criteria for Matrix Positive/Negative Definiteness] 
+    Given an $n\times n$ real symmetric matrix $\vA$, then $\forall\,k\leqslant n$, $\vA$ is
     \begin{itemize}
       \item positive-definite $\ifff M_k > 0$
       \item negative-definite $\ifff (-1)^k M_k> 0$
       \item positive-semidefinite $\ifff \Delta_k \geqslant 0$
       \item negative-semidefinite $\ifff (-1)^k \Delta_k \geqslant 0$
     \end{itemize}
-  \end{multicols}
-\end{thm}
+  \end{thm}
 \end{frame}
 
 %\begin{frame}
@@ -464,350 +477,318 @@
 %\end{frame}
 
 \begin{frame}
-\begin{ex}
-  Find the maximum and minimum values of $\ds f(x, y, z) = (x + z)\,e^y$ on $x^2 + y^2 + z^2 = 6$. 
-\end{ex}
-  
-\begin{sol}
-  Let $\ds\mathcal{L} = (x + z)\,e^y + \lambda\,(x^2 + y^2 + z^2 - 6)$, then \vspace{-3mm}
-  \begin{align}
-    \pdiff{\mathcal{L}}{x} &= e^y + 2\lambda x = 0\label{eq:13}\\
-    \pdiff{\mathcal{L}}{y} &= (x + z)\,e^y + 2\lambda y = 0\label{eq:14} \\
-    \pdiff{\mathcal{L}}{z} &= e^y + 2\lambda z = 0\label{eq:15} \\
-    x^2 &+ y^2 + z^2 - 6 = 0 \label{eq:16}
-  \end{align}
+  \begin{ex}
+    Find the maximum and minimum values of $\ds f(x, y, z) = (x + z)\,e^y$ on $x^2 + y^2 + z^2 = 6$. 
+  \end{ex}
+    
+  \begin{sol}
+    Let $\ds\mathcal{L} = (x + z)\,e^y + \lambda\,(x^2 + y^2 + z^2 - 6)$, then \vspace{-3mm}
+    \begin{align}
+      \pdiff{\mathcal{L}}{x} &= e^y + 2\lambda x = 0\label{eq:13}\\
+      \pdiff{\mathcal{L}}{y} &= (x + z)\,e^y + 2\lambda y = 0\label{eq:14} \\
+      \pdiff{\mathcal{L}}{z} &= e^y + 2\lambda z = 0\label{eq:15} \\
+      x^2 &+ y^2 + z^2 - 6 = 0 \label{eq:16}
+    \end{align}
 
-  \vspace{-3mm}
-  From \eqref{eq:13}, \eqref{eq:15} $2\,\lambda(x - z) = 0$, so $\lambda = 0\orr x = z$. If $\lambda = 0$, then from \eqref{eq:13} $\ds e^y = 0$ which is impossible, so $x = z$. From \eqref{eq:13} $e^y = -2\lambda x$, substituting into \eqref{eq:14} $2x\,(-2\lambda x) + 2\lambda y = 0\ie y = 2x^2$, substituting into \eqref{eq:16} gives $x^2 + 4x^4 + x^2 = 6\ie (4x^2 + 6)(x^2 - 1) = 0 \ie x = \pm 1$. Therefore, the extremum points are $(x, y, z) = (1, 2, 1),\;(-1, 2, -1)$; $(x + z)\,e^y$ has a maximum value of $2e^2$ (at $(x, y, z) = (1, 2, 1)$), and a minimum value of $-2e^2$ (at $(x, y, z) = (-1, 2, -1)$). 
-\end{sol}
+    \vspace{-3mm}
+    From \eqref{eq:13}, \eqref{eq:15} $2\,\lambda(x - z) = 0$, so $\lambda = 0\orr x = z$. If $\lambda = 0$, then from \eqref{eq:13} $\ds e^y = 0$ which is impossible, so $x = z$. From \eqref{eq:13} $e^y = -2\lambda x$, substituting into \eqref{eq:14} $2x\,(-2\lambda x) + 2\lambda y = 0\ie y = 2x^2$, substituting into \eqref{eq:16} gives $x^2 + 4x^4 + x^2 = 6\ie (4x^2 + 6)(x^2 - 1) = 0 \ie x = \pm 1$. Therefore, the extremum points are $(x, y, z) = (1, 2, 1),\;(-1, 2, -1)$; $(x + z)\,e^y$ has a maximum value of $2e^2$ (at $(x, y, z) = (1, 2, 1)$), and a minimum value of $-2e^2$ (at $(x, y, z) = (-1, 2, -1)$). 
+  \end{sol}
 \end{frame}
 
 \begin{frame}
-\begin{ex}
-  If $L$ is the curve of intersection of $\scalemath{0.95}{z^2 = x^2 + y^2}$ and $\scalemath{0.95}{x - 2z = 3}$, find the point on $L$ that is closest to the origin and the shortest distance. 
-\end{ex}
+  \begin{ex}
+    If $L$ is the curve of intersection of $\scalemath{0.95}{z^2 = x^2 + y^2}$ and $\scalemath{0.95}{x - 2z = 3}$, find the point on $L$ that is closest to the origin and the shortest distance. 
+  \end{ex}
 
-\begin{sol}
-  The objective is $\scalemath{0.95}{x^2 + y^2 + z^2}$ with constraints $\scalemath{0.95}{x^2 + y^2 - z^2 = 0}$ and $\scalemath{0.95}{x - 2z - 3 = 0}$. Let $\ds\scalemath{0.95}{\mathcal{L} = x^2 + y^2 + z^2 + \lambda_1\,(x^2 + y^2 - z^2) + \lambda_2\,(x - 2z - 3)}$, then \vspace{-3mm}
-  \begin{align}
-    \scalemath{0.95}{\pdiff{\mathcal{L}}{x}} &\scalemath{0.95}{= 2 x + 2\lambda_1 x + \lambda_2 = 0 \ie 2\,(1 + \lambda_1) x + \lambda_2 = 0}\label{eq:8}\\
-    \scalemath{0.95}{\pdiff{\mathcal{L}}{y}} &\scalemath{0.95}{= 2 y + 2\lambda_1 y = 0 \ie (1 + \lambda_1)y = 0}\label{eq:9} \\
-    \scalemath{0.95}{\pdiff{\mathcal{L}}{z}} &\scalemath{0.95}{= 2 z - 2\lambda_1 z - 2\lambda_2 = 0 \ie (1 - \lambda_1)z - \lambda_2 = 0}\label{eq:10}\\
-    \scalemath{0.95}{x^2} &\scalemath{0.95}{+ y^2 - z^2 = 0}\label{eq:11} \\
-    \scalemath{0.95}{x} &\scalemath{0.95}{- 2z - 3 = 0}\label{eq:12}
-  \end{align}
-  
-  \vspace{-3mm}
-  From \eqref{eq:9} $(1 + \lambda_1) y = 0$, so $y = 0\orr\lambda_1 = -1$. If $y = 0$, from \eqref{eq:11} $x^2 = z^2 \ie x = \pm z$. If $x = z$, from \eqref{eq:12} $x = z = -3$. If $x = -z$, from \eqref{eq:12} $x = 1$, $z = -1$; if $\lambda_1 = -1$, from \eqref{eq:8} $\lambda_2 = 0$, from \eqref{eq:10} $z = 0$, substituting into \eqref{eq:11} gives $x = y = 0$, which contradicts \eqref{eq:12}. Therefore, the extremum points are $(x, y, z) = (-3, 0, -3),\,(1, 0, -1)$; optimizer: $(1, 0, -1)$.
-\end{sol}
+  \begin{sol}
+    The objective is $\scalemath{0.95}{x^2 + y^2 + z^2}$ with constraints $\scalemath{0.95}{x^2 + y^2 - z^2 = 0}$ and $\scalemath{0.95}{x - 2z - 3 = 0}$. Let $\ds\scalemath{0.95}{\mathcal{L} = x^2 + y^2 + z^2 + \lambda_1\,(x^2 + y^2 - z^2) + \lambda_2\,(x - 2z - 3)}$, then \vspace{-3mm}
+    \begin{align}
+      \scalemath{0.95}{\pdiff{\mathcal{L}}{x}} &\scalemath{0.95}{= 2 x + 2\lambda_1 x + \lambda_2 = 0 \ie 2\,(1 + \lambda_1) x + \lambda_2 = 0}\label{eq:8}\\
+      \scalemath{0.95}{\pdiff{\mathcal{L}}{y}} &\scalemath{0.95}{= 2 y + 2\lambda_1 y = 0 \ie (1 + \lambda_1)y = 0}\label{eq:9} \\
+      \scalemath{0.95}{\pdiff{\mathcal{L}}{z}} &\scalemath{0.95}{= 2 z - 2\lambda_1 z - 2\lambda_2 = 0 \ie (1 - \lambda_1)z - \lambda_2 = 0}\label{eq:10}\\
+      \scalemath{0.95}{x^2} &\scalemath{0.95}{+ y^2 - z^2 = 0}\label{eq:11} \\
+      \scalemath{0.95}{x} &\scalemath{0.95}{- 2z - 3 = 0}\label{eq:12}
+    \end{align}
+    
+    \vspace{-3mm}
+    From \eqref{eq:9} $(1 + \lambda_1) y = 0$, so $y = 0\orr\lambda_1 = -1$. If $y = 0$, from \eqref{eq:11} $x^2 = z^2 \ie x = \pm z$. If $x = z$, from \eqref{eq:12} $x = z = -3$. If $x = -z$, from \eqref{eq:12} $x = 1$, $z = -1$; if $\lambda_1 = -1$, from \eqref{eq:8} $\lambda_2 = 0$, from \eqref{eq:10} $z = 0$, substituting into \eqref{eq:11} gives $x = y = 0$, which contradicts \eqref{eq:12}. Therefore, the extremum points are $(x, y, z) = (-3, 0, -3),\,(1, 0, -1)$; optimizer: $(1, 0, -1)$.
+  \end{sol}
 \end{frame}
 
+\section{Introduction to Convex Programming}
+
 \begin{frame}{Affine Set}
-\begin{itemize}
-  \item {\bf line} through $x_1$, $x_2$: all points of the form $\ds x = \theta x_1 + (1 - \theta) x_2$, $\theta\in\mathbb{R}$
-  \item {\bf affine set} contains the line through any two distinct points in the set
-  \item e.g. solution set of linear equations $\ds\{x\,|\,Ax = b\}$; every affine set can be expressed as solution set of system of linear equations
-\end{itemize}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.75,page=1]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf line} through $x_1$, $x_2$: all points of the form $\ds x = \theta x_1 + (1 - \theta) x_2$, $\theta\in\mathbb{R}$
+    \item {\bf affine set} contains the line through any two distinct points in the set
+    \item e.g. solution set of linear equations $\ds\{x\,|\,Ax = b\}$; every affine set can be expressed as solution set of system of linear equations
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.75,page=1]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Convex Set}
-\begin{itemize}
-  \item {\bf line segment} through $x_1$, $x_2$: all points of the form \\$\ds x = \theta x_1 + (1 - \theta) x_2$, $0\leqslant\theta\leqslant 1$
-  \item {\bf convex set} contains the line segment between any two distinct points in the set: \\$\ds x_1,\,x_2\in S\ie \forall\,0\leqslant\theta\leqslant 1,\;\theta x_1 + (1 - \theta) x_2\in S$
-\end{itemize}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=1,page=2]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf line segment} through $x_1$, $x_2$: all points of the form \\$\ds x = \theta x_1 + (1 - \theta) x_2$, $0\leqslant\theta\leqslant 1$
+    \item {\bf convex set} contains the line segment between any two distinct points in the set: \\$\ds x_1,\,x_2\in S\ie \forall\,0\leqslant\theta\leqslant 1,\;\theta x_1 + (1 - \theta) x_2\in S$
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=1,page=2]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Convex Combination, Convex Hull}
-
-\begin{itemize}
-  \item {\bf convex combination} of $x_1$, $x_2$, $\ldots$, $x_k$: any point $x$ of the form $x = \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_k x_k$ with $\theta_1 + \theta_2 + \cdots + \theta_k = 1$, $\theta_i\geqslant 0$
-  \item {\bf convex hull} $\conv S$: sets of all convex combinations of points in $S$
-\end{itemize}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=1,page=3]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf convex combination} of $x_1$, $x_2$, $\ldots$, $x_k$: any point $x$ of the form $x = \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_k x_k$ with $\theta_1 + \theta_2 + \cdots + \theta_k = 1$, $\theta_i\geqslant 0$
+    \item {\bf convex hull} $\conv S$: sets of all convex combinations of points in $S$
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=1,page=3]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Convex Cone}
-\begin{itemize}
-  \item {\bf conic (nonnegative) combination} of $x_1$ and $x_2$: any point $x$ of the form $x = \theta_1 x_1 + \theta_2 x_2$ with $\theta_i\geqslant 0$
-  \item {\bf convex cone} set that contains all conic combinations of points in the set
-\end{itemize}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.9,page=4]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf conic (nonnegative) combination} of $x_1$ and $x_2$: any point $x$ of the form $x = \theta_1 x_1 + \theta_2 x_2$ with $\theta_i\geqslant 0$
+    \item {\bf convex cone} set that contains all conic combinations of points in the set
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.9,page=4]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Hyperplane, Halfspace}
-\begin{itemize}
-  \item {\bf hyperplane}: set of the form $\ds\{x\,|\,a^\top x = b\}$ with $a\ne 0$
-  \item {\bf halfspace}: set of the form $\ds\{x\,|\,a^\top x\leqslant b\}$ with $a\ne 0$
-  \item $a$: normal vector \\ hyperplanes are affine and convex, halfspaces are convex 
-\end{itemize}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.9,page=6]{fig/note06/02.pdf}
-  \includegraphics[scale=0.7,page=7]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf hyperplane}: set of the form $\ds\{x\,|\,a^\top x = b\}$ with $a\ne 0$
+    \item {\bf halfspace}: set of the form $\ds\{x\,|\,a^\top x\leqslant b\}$ with $a\ne 0$
+    \item $a$: normal vector \\ hyperplanes are affine and convex, halfspaces are convex 
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.9,page=6]{fig/note06/02.pdf}
+    \includegraphics[scale=0.7,page=7]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Euclidean Ball, Ellipsoid}
-\begin{itemize}
-  \item {\bf (Euclidean) ball} with center $x_c$ and radius $r$: \\ $\ds B(x_c, r) = \{x\,|\,\|x - x_c\|_2\leqslant r\} = \{x_c + r\,u\,|\,\|u\|_2 \leqslant 1\}$
-  \item {\bf ellipsoid}: set of the form $\ds\{x\,|\,(x - x_c)^\top P^{-1}(x - x_c)\leqslant 1\}$ with $P\in\mathsf{S}_{++}^n$ ($P$ symmetric positive definite), or $\ds\{x_c + A\,u\,|\,\|u\|_2 \leqslant 1\}$ with nonsingular $A$
-\end{itemize}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.9,page=9]{fig/note06/02.pdf}
-  \caption{$y = \sin x$, $y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf (Euclidean) ball} with center $x_c$ and radius $r$: \\ $\ds B(x_c, r) = \{x\,|\,\|x - x_c\|_2\leqslant r\} = \{x_c + r\,u\,|\,\|u\|_2 \leqslant 1\}$
+    \item {\bf ellipsoid}: set of the form $\ds\{x\,|\,(x - x_c)^\top P^{-1}(x - x_c)\leqslant 1\}$ with $P\in\mathsf{S}_{++}^n$ ($P$ symmetric positive definite), or $\ds\{x_c + A\,u\,|\,\|u\|_2 \leqslant 1\}$ with nonsingular $A$
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.9,page=9]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$, $y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Norm Ball, Norm Cone}
-\begin{itemize}
-  \item {\bf norm}: a function $\|\cdot\|$ that satisfies 
-    \begin{itemize}
-      \item $\|x\|\geqslant 0$; $\|x\| = 0\ifff x = 0$
-      \item $\|tx\| = |t|\|x\|$, $\forall\,t\in\mathbb{R}$
-      \item $\|x + y\|\leqslant\|x\| + \|y\|$
-    \end{itemize}
-  \item {\bf norm ball} with center $x_c$ and radius $r$: $\ds\{x\,|\,\|x - x_c\|\leqslant r\}$
-  \item {\bf norm cone}: $\ds\{(x, t)\,|\,\|x\|\leqslant t\}$
-  \item norm balls and norm cones are convex
-  \item notation for different norms: $\|\cdot\|_2$, $\|\cdot\|_{\text{symb}}$
-\end{itemize}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.9,page=9]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf norm}: a function $\|\cdot\|$ that satisfies 
+      \begin{itemize}
+        \item $\|x\|\geqslant 0$; $\|x\| = 0\ifff x = 0$
+        \item $\|tx\| = |t|\|x\|$, $\forall\,t\in\mathbb{R}$
+        \item $\|x + y\|\leqslant\|x\| + \|y\|$
+      \end{itemize}
+    \item {\bf norm ball} with center $x_c$ and radius $r$: $\ds\{x\,|\,\|x - x_c\|\leqslant r\}$
+    \item {\bf norm cone}: $\ds\{(x, t)\,|\,\|x\|\leqslant t\}$
+    \item norm balls and norm cones are convex
+    \item notation for different norms: $\|\cdot\|_2$, $\|\cdot\|_{\text{symb}}$
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.55,page=10]{fig/note06/02.pdf}
+    \caption{Boundary of second-order cone in $\mathbb{R}^3$, $\{(x_1, x_2, t)\,|\,(x_1^2 + x_2^2)^{\frac{1}{2}}\leqslant t\}$. }
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Polyhedra}
-\begin{itemize}
-  \item {\bf polyhedron}: solution set of finitely many linear equalities and inequalities $\ds\{x\,|\,A\,x\preccurlyeq b,\, C\,x = d\}$, where $\ds A\in\mathbb{R}^{m\times n}$, $\ds C\in\mathbb{R}^{p\times n}$, $\preccurlyeq$ is componentwise inequality
-  \item intersection of finite number of halfspaces and hyperplanes
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.8,page=11]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf polyhedron}: solution set of finitely many linear equalities and inequalities $\ds\{x\,|\,A\,x\preccurlyeq b,\, C\,x = d\}$, where $\ds A\in\mathbb{R}^{m\times n}$, $\ds C\in\mathbb{R}^{p\times n}$, $\preccurlyeq$ is componentwise inequality
+    \item intersection of finite number of halfspaces and hyperplanes
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.8,page=11]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Positive Semidefinite Cone}
-\begin{itemize}
-  \item $\mathsf{S}^n$: set of symmetric $n\times n$ matrices
-  \item $\ds\mathsf{S}^n_+ = \{X\in\mathsf{S}^n\,|\,X\succcurlyeq 0\}$: set of positive semidefinite (symmetric) $n\times n$ matrices; $\ds X\in\mathsf{S}^n_+ \ifff z^\top X z\geqslant 0\;\forall\,z$; a convex cone, the {\bf positive semidefinite cone}; Below: $\ds\begin{pmatrix}x & y \\ y & z\end{pmatrix}\in\mathsf{S}^2_+$
-  \item $\ds\mathsf{S}^n_{++} = \{X\in\mathsf{S}^n\,|\,X\succ 0\}$: set of positive definite (symmetric) $n\times n$ matrices
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.5,page=12]{fig/note06/02.pdf}
-  \caption{$y = \sin x$, $y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item $\mathsf{S}^n$: set of symmetric $n\times n$ matrices
+    \item $\ds\mathsf{S}^n_+ = \{X\in\mathsf{S}^n\,|\,X\succcurlyeq 0\}$: set of positive semidefinite (symmetric) $n\times n$ matrices; $\ds X\in\mathsf{S}^n_+ \ifff z^\top X z\geqslant 0\;\forall\,z$; a convex cone, the {\bf positive semidefinite cone}; Below: $\ds\begin{pmatrix}x & y \\ y & z\end{pmatrix}\in\mathsf{S}^2_+$
+    \item $\ds\mathsf{S}^n_{++} = \{X\in\mathsf{S}^n\,|\,X\succ 0\}$: set of positive definite (symmetric) $n\times n$ matrices
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.6,page=12]{fig/note06/02.pdf}
+    \caption{$x\geqslant 0$, $z\geqslant 0$, $xz\geqslant y^2$.}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Showing a Set is Convex}
-
-\begin{itemize}
-  \item apply definition: $x_1$, $x_2\in S\ie \theta x_1 + (1 - \theta)x_2\in S$, $\forall\,0\leqslant\theta\leqslant 1$ \\ recommended only for simple sets
-  \item use convex functions (later)
-  \item show that the set is obtained from other simple convex sets (e.g. hyperplanes, halfspaces, norm balls) by operations that preserve convexity:
-    \begin{itemize}
-      \item intersection
-      \item affine mapping
-      \item perspective mapping
-      \item linear-fractional mapping
-    \end{itemize}
-  \item mostly using last two
-\end{itemize}
-
+  \begin{itemize}
+    \item apply definition: $x_1$, $x_2\in S\ie \theta x_1 + (1 - \theta)x_2\in S$, $\forall\,0\leqslant\theta\leqslant 1$ \\ recommended only for simple sets
+    \item use convex functions (later)
+    \item show that the set is obtained from other simple convex sets (e.g. hyperplanes, halfspaces, norm balls) by operations that preserve convexity:
+      \begin{itemize}
+        \item intersection
+        \item affine mapping
+        \item perspective mapping
+        \item linear-fractional mapping
+      \end{itemize}
+    \item mostly using last two
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Intersection}
-\begin{itemize}
-  \item intersection of (any number of) convex sets is convex
-  \item e.g. $\ds S = \Big\{x\in\mathbb{R}^m\;\Big|\;|p(t)|\leqslant 1\;\forall\,|t|\leqslant\frac{\pi}{3}\Big\}$, $\ds\;p(t) = \sum_{k = 1}^m x_k\cos kt$\\is convex by $\ds S = \bigcap_{|t|\leqslant\frac{\pi}{3}}\{x\,|\,|p(t)|\leqslant 1\}$; intersection of convex slabs. Below: $m = 2$. 
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.65,page=13]{fig/note06/02.pdf}
-  \hspace{1em}
-  \includegraphics[scale=0.6,page=14]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item intersection of (any number of) convex sets is convex
+    \item e.g. $\ds S = \Big\{x\in\mathbb{R}^m\;\Big|\;|p(t)|\leqslant 1\;\forall\,|t|\leqslant\frac{\pi}{3}\Big\}$, $\ds\;p(t) = \sum_{k = 1}^m x_k\cos kt$\\is convex by $\ds S = \bigcap_{|t|\leqslant\frac{\pi}{3}}\{x\,|\,|p(t)|\leqslant 1\}$; intersection of convex slabs. Below: $m = 2$. 
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.65,page=13]{fig/note06/02.pdf}
+    \hspace{1em}
+    \includegraphics[scale=0.6,page=14]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Affine Mappings}
-
-\begin{itemize}
-  \item suppose $\ds f:\mathbb{R}^n\to\mathbb{R}^m$ is {\bf affine}, i.e. 
-    \begin{align*}
-      f(x) = A\,x + b\quad\text{with}\;A\in\mathbb{R}^{m\times n},\;b\in\mathbb{R}^m
-    \end{align*}
-  \item the {\bf image} of a convex set under $f$ is convex: 
-    \begin{align*}
-      S\subseteq\mathbb{R}^n\;\text{convex}\ie f(S) = \{f(x)\,|\,x\in S\}\;\text{convex}
-    \end{align*}
-  \item the {\bf inverse image} of a convex set under $f$ is convex: 
-    \begin{align*}
-      C\subseteq\mathbb{R}^m\;\text{convex}\ie f^{-1}(C) = \{x\in\mathbb{R}^n\,|\,f(x)\in C\}\;\text{convex}
-    \end{align*}
-  \item e.g. scaling $\ds a S + b = \{a x + b\,|\,x\in S\}$, $a$, $b\in\mathbb{R}$ is convex
-  \item e.g. projection $\ds \proj_x(S) = \{x\,|\,(x, y)\in S\}$ is convex
-\end{itemize}
-
+  \begin{itemize}
+    \item suppose $\ds f:\mathbb{R}^n\to\mathbb{R}^m$ is {\bf affine}, i.e. 
+      \begin{align*}
+        f(x) = A\,x + b\quad\text{with}\;A\in\mathbb{R}^{m\times n},\;b\in\mathbb{R}^m
+      \end{align*}
+    \item the {\bf image} of a convex set under $f$ is convex: 
+      \begin{align*}
+        S\subseteq\mathbb{R}^n\;\text{convex}\ie f(S) = \{f(x)\,|\,x\in S\}\;\text{convex}
+      \end{align*}
+    \item the {\bf inverse image} of a convex set under $f$ is convex: 
+      \begin{align*}
+        C\subseteq\mathbb{R}^m\;\text{convex}\ie f^{-1}(C) = \{x\in\mathbb{R}^n\,|\,f(x)\in C\}\;\text{convex}
+      \end{align*}
+    \item e.g. scaling $\ds a S + b = \{a x + b\,|\,x\in S\}$, $a$, $b\in\mathbb{R}$ is convex
+    \item e.g. projection $\ds \proj_x(S) = \{x\,|\,(x, y)\in S\}$ is convex
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Perspective and Linear-Fractional Function}
-
-\begin{itemize}
-  \item {\bf perspective function} $\ds p:\mathbb{R}^{n + 1}\to\mathbb{R}^n$: 
-    \begin{align*}
-      p(x, t) = \frac{x}{t}\quad\dom p = \{(x, t)\,|\,t > 0\} 
-    \end{align*}
-  \item {\bf linear-fractional function} $\ds f:\mathbb{R}^n\to\mathbb{R}^m$: 
-    \begin{align*}
-      f(x) = \frac{A\,x + b}{c^\top x + d}\quad\dom f = \{x\,|\,c^\top x + d > 0\} 
-    \end{align*}
-  \item images and inverse images of convex sets under perspective and linear-fractional functions are all convex
-\end{itemize}
-
+  \begin{itemize}
+    \item {\bf perspective function} $\ds p:\mathbb{R}^{n + 1}\to\mathbb{R}^n$: 
+      \begin{align*}
+        p(x, t) = \frac{x}{t}\quad\dom p = \{(x, t)\,|\,t > 0\} 
+      \end{align*}
+    \item {\bf linear-fractional function} $\ds f:\mathbb{R}^n\to\mathbb{R}^m$: 
+      \begin{align*}
+        f(x) = \frac{A\,x + b}{c^\top x + d}\quad\dom f = \{x\,|\,c^\top x + d > 0\} 
+      \end{align*}
+    \item images and inverse images of convex sets under perspective and linear-fractional functions are all convex
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Separating Hyperplane Theorem}
-\begin{itemize}
-  \item if $C$, $D$ are nonempty disjoint ($C\cap D=\varnothing$) convex sets, $\exists\,a\ne 0$, $b$ s.t. $\ds a^\top x\leqslant b$ for $x\in C$, $a^\top x\geqslant b$ for $x\in D$ 
-  \item the hyperplane $\ds\{x\,|\,a^\top x = b\}$ {\bf separates} $C$ and $D$
-  \item strict separating requires additional assumptions (e.g. $C$ is closed; $D$ is a singleton)
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.91,page=18]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item if $C$, $D$ are nonempty disjoint ($C\cap D=\varnothing$) convex sets, $\exists\,a\ne 0$, $b$ s.t. $\ds a^\top x\leqslant b$ for $x\in C$, $a^\top x\geqslant b$ for $x\in D$ 
+    \item the hyperplane $\ds\{x\,|\,a^\top x = b\}$ {\bf separates} $C$ and $D$
+    \item strict separating requires additional assumptions (e.g. $C$ is closed; $D$ is a singleton)
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.91,page=18]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Supporting Hyperplane Theorem}
-
-\begin{itemize}
-  \item suppose $x_0$ is a boundary point of $C\subseteq\mathbb{R}^n$
-  \item {\bf supporting hyperplane} to $C$ at $x_0$: $\{x\,|\,a^\top x = a^\top x_0\}$, where $a\ne 0$ and $a^\top x\leqslant a^\top x_0$ $\forall\,x\in C$. 
-  \item if $C$ is convex, then there exists a supporting hyperplane at every boundary point of $C$ 
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.91,page=21]{fig/note06/02.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item suppose $x_0$ is a boundary point of $C\subseteq\mathbb{R}^n$
+    \item {\bf supporting hyperplane} to $C$ at $x_0$: $\{x\,|\,a^\top x = a^\top x_0\}$, where $a\ne 0$ and $a^\top x\leqslant a^\top x_0$ $\forall\,x\in C$. 
+    \item if $C$ is convex, then there exists a supporting hyperplane at every boundary point of $C$ 
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.91,page=21]{fig/note06/02.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Convex Function}
-
-\begin{itemize}
-  \item $f:\mathbb{R}^n\to\mathbb{R}$ is {\bf convex} if $\dom f$ is convex and $\forall\,x,\,y\in\dom f$, $0\leqslant\theta\leqslant 1$, $\ds f(\theta x + (1 - \theta)y)\leqslant\theta f(x) + (1 - \theta) f(y)$
-  \item $f:\mathbb{R}^n\to\mathbb{R}$ is {\bf strictly convex} if $\dom f$ is convex and $\forall\,x,\,y\in\dom f$, $x\ne y$, $0 < \theta < 1$, $\ds f(\theta x + (1 - \theta)y) < \theta f(x) + (1 - \theta) f(y)$
-  \item $f$ is {\bf concave} if $-f$ is convex
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=1,page=1]{fig/note06/03.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item $f:\mathbb{R}^n\to\mathbb{R}$ is {\bf convex} if $\dom f$ is convex and $\forall\,x,\,y\in\dom f$, $0\leqslant\theta\leqslant 1$, $\ds f(\theta x + (1 - \theta)y)\leqslant\theta f(x) + (1 - \theta) f(y)$
+    \item $f:\mathbb{R}^n\to\mathbb{R}$ is {\bf strictly convex} if $\dom f$ is convex and $\forall\,x,\,y\in\dom f$, $x\ne y$, $0 < \theta < 1$, $\ds f(\theta x + (1 - \theta)y) < \theta f(x) + (1 - \theta) f(y)$
+    \item $f$ is {\bf concave} if $-f$ is convex
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=1,page=1]{fig/note06/03.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Example Functions on $\mathbb{R}$}
-
-\begin{itemize}
-  \item convex functions
-    \begin{itemize}
-      \item affine: $\ds ax + b$, $\forall\,a,\;b\in\mathbb{R}$
-      \item exponential: $\ds e^{a x}$, $\forall\,a\in\mathbb{R}$
-      \item power: $\ds x^\alpha$ on $x > 0$, $\forall\,\alpha\geqslant 1\,\vee\,\alpha\leqslant 0$
-      \item power of absolute value: $\ds |x|^\alpha$, $\forall\,\alpha\geqslant 1$
-      \item positive part (relu): $\max\{x, 0\}$
-    \end{itemize}
-  \item concave functions
-    \begin{itemize}
-      \item affine: $\ds ax + b$, $\forall\,a,\;b\in\mathbb{R}$
-      \item power: $\ds x^\alpha$ on $x > 0$, $\forall\,0\leqslant\alpha\leqslant 1$
-      \item logarithm: $\ds\log x$ on $x > 0$
-      \item entropy: $\ds -x\log x$ on $x > 0$ 
-      \item negative part: $\min\{x, 0\}$
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item convex functions
+      \begin{itemize}
+        \item affine: $\ds ax + b$, $\forall\,a,\;b\in\mathbb{R}$
+        \item exponential: $\ds e^{a x}$, $\forall\,a\in\mathbb{R}$
+        \item power: $\ds x^\alpha$ on $x > 0$, $\forall\,\alpha\geqslant 1\,\vee\,\alpha\leqslant 0$
+        \item power of absolute value: $\ds |x|^\alpha$, $\forall\,\alpha\geqslant 1$
+        \item positive part (relu): $\max\{x, 0\}$
+      \end{itemize}
+    \item concave functions
+      \begin{itemize}
+        \item affine: $\ds ax + b$, $\forall\,a,\;b\in\mathbb{R}$
+        \item power: $\ds x^\alpha$ on $x > 0$, $\forall\,0\leqslant\alpha\leqslant 1$
+        \item logarithm: $\ds\log x$ on $x > 0$
+        \item entropy: $\ds -x\log x$ on $x > 0$ 
+        \item negative part: $\min\{x, 0\}$
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Example Convex Functions on $\mathbb{R}^n$}
-
-\begin{itemize}
-  \item affine: $\ds a^\top\!x + b$
-  \item any norm 
-    \begin{itemize}
-      \item $\ds\|x\|_p = \big(|x_1|^p + |x_2|^p + \cdots + |x_n|^p\big)^{\frac{1}{p}}$, $\forall\,p > 1$
-      \item $\ds\|x\|_\infty = \max\,\{|x_1|, |x_2|,\,\ldots\,,|x_n|\}$
-    \end{itemize}
-  \item sum of squares: $\ds\|x\|_2^2 = x_1^2 + x_2^2 + \cdots + x_n^2$
-  \item max function: $\ds\max(x) = \max\,\{x_1, x_2,\,\ldots\,,x_n\}$
-  \item softmax / log-sum-exp: $\ds\log\big(e^{x_1} + e^{x_2} + \cdots + e^{x_n}\big)$
-\end{itemize}
-
+  \begin{itemize}
+    \item affine: $\ds a^\top\!x + b$
+    \item any norm 
+      \begin{itemize}
+        \item $\ds\|x\|_p = \big(|x_1|^p + |x_2|^p + \cdots + |x_n|^p\big)^{\frac{1}{p}}$, $\forall\,p > 1$
+        \item $\ds\|x\|_\infty = \max\,\{|x_1|, |x_2|,\,\ldots\,,|x_n|\}$
+      \end{itemize}
+    \item sum of squares: $\ds\|x\|_2^2 = x_1^2 + x_2^2 + \cdots + x_n^2$
+    \item max function: $\ds\max(x) = \max\,\{x_1, x_2,\,\ldots\,,x_n\}$
+    \item softmax / log-sum-exp: $\ds\log\big(e^{x_1} + e^{x_2} + \cdots + e^{x_n}\big)$
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Example Functions on $\mathbb{R}^{m\times n}$}
-
-\begin{itemize}
-  \item Let $\ds X\in\mathbb{R}^{m\times n}$ be the variable
-  \item general affine function
-    \begin{align*}
-      f(X) = \tr(A^\top X) + b = \sum_{i=1}^m\sum_{j=1}^n A_{ij} X_{ij} + b, \quad A\in\mathbb{R}^{m\times n},\;b\in\mathbb{R}
-    \end{align*}
-  \item spectral norm (maximum singular value) is convex: 
-    \begin{align*}
-      f(X) = \|X\|_2 = \sigma_{\text{max}}(X) = \sqrt{\lambda_{\text{max}}(X^\top X)}
-    \end{align*}
-  \item log determinant is concave:
-    \begin{align*}
-      f(X) = \log\det X, \quad X\in\mathsf{S}^n_{++}
-    \end{align*}
-\end{itemize}
+  \begin{itemize}
+    \item Let $\ds X\in\mathbb{R}^{m\times n}$ be the variable
+    \item general affine function
+      \begin{align*}
+        f(X) = \tr(A^\top X) + b = \sum_{i=1}^m\sum_{j=1}^n A_{ij} X_{ij} + b, \quad A\in\mathbb{R}^{m\times n},\;b\in\mathbb{R}
+      \end{align*}
+    \item spectral norm (maximum singular value) is convex: 
+      \begin{align*}
+        f(X) = \|X\|_2 = \sigma_{\text{max}}(X) = \sqrt{\lambda_{\text{max}}(X^\top X)}
+      \end{align*}
+    \item log determinant is concave:
+      \begin{align*}
+        f(X) = \log\det X, \quad X\in\mathsf{S}^n_{++}
+      \end{align*}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Extended-Value Extension}
@@ -830,349 +811,363 @@
 \end{frame}
 
 \begin{frame}{Restriction of a Convex Function to a Line}
-
-\begin{itemize}
-  \item $f:\mathbb{R}^n\to\mathbb{R}$ is convex (concave) $\ifff$ $g:\mathbb{R}\to R$, 
-    \begin{align*}
-      g(t) = f(x + t\,v), \quad\dom g = \{t\,|\, x+t\,v\in\dom f\}  
-    \end{align*}
-    is convex (concave) in $t$ for all $x\in\dom f$ and $v\in\mathbb{R}^n$
-  \item useful for checking convexity / concavity of multivariate $f$; e.g. to check the concavity of log determinant: Let $X\in\mathsf{S}^n_{++}$, $V\in\mathsf{S}^n$,
-    \begin{align*} 
-      g(t) &= f(X + t\,V) = \log\det(X + t\,V) \\
-           &= \log\det\big(X^{\frac{1}{2}}\big(I + t\,X^{-\frac{1}{2}}VX^{-\frac{1}{2}}\big)X^{\frac{1}{2}}\big) \\
-           &= \log\det X + \log\det\big(I + t\,X^{-\frac{1}{2}}VX^{-\frac{1}{2}}\big) \\
-           &= \log\det X + \sum_{i=1}^n\log(1 + t\lambda_i) 
-         \end{align*}\vspace{-3em}
-    where $\lambda_i$ are the eigenvalues of $\ds X^{-\frac{1}{2}}VX^{-\frac{1}{2}}$; $g$ is concave in $t$
-\end{itemize}
-
+  \begin{itemize}
+    \item $f:\mathbb{R}^n\to\mathbb{R}$ is convex (concave) $\ifff$ $g:\mathbb{R}\to R$, 
+      \begin{align*}
+        g(t) = f(x + t\,v), \quad\dom g = \{t\,|\, x+t\,v\in\dom f\}  
+      \end{align*}
+      is convex (concave) in $t$ for all $x\in\dom f$ and $v\in\mathbb{R}^n$
+    \item useful for checking convexity / concavity of multivariate $f$; e.g. to check the concavity of log determinant: Let $X\in\mathsf{S}^n_{++}$, $V\in\mathsf{S}^n$,
+      \begin{align*} 
+        g(t) &= f(X + t\,V) = \log\det(X + t\,V) \\
+             &= \log\det\big(X^{\frac{1}{2}}\big(I + t\,X^{-\frac{1}{2}}VX^{-\frac{1}{2}}\big)X^{\frac{1}{2}}\big) \\
+             &= \log\det X + \log\det\big(I + t\,X^{-\frac{1}{2}}VX^{-\frac{1}{2}}\big) \\
+             &= \log\det X + \sum_{i=1}^n\log(1 + t\lambda_i) 
+           \end{align*}\vspace{-3em}
+      where $\lambda_i$ are the eigenvalues of $\ds X^{-\frac{1}{2}}VX^{-\frac{1}{2}}$; $g$ is concave in $t$
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{First-Order Condition}
-
-\begin{itemize}
-  \item $f:\mathbb{R}^n\to\mathbb{R}$ is twice differentiable if $\dom f$ is open and the gradient $\nabla f$ exists at each $x\in\dom f$.
-  \item {\bf first-order condition} differentiable $f$ with convex domain is convex $\ifff$ $\ds f(y) \geqslant f(x) + \nabla f(x)^\top(y - x),\;\forall\,x,\,y\in\dom f$
-  \item first order Taylor approximation of convex $f$ is a {\bf global underestimator} of $f$
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=1,page=2]{fig/note06/03.pdf}
-  %\caption{$y = \sin x$，$y = \sin^{-1} x$}
-\end{figure}
-
+  \begin{itemize}
+    \item $f:\mathbb{R}^n\to\mathbb{R}$ is twice differentiable if $\dom f$ is open and the gradient $\nabla f$ exists at each $x\in\dom f$.
+    \item {\bf first-order condition} differentiable $f$ with convex domain is convex $\ifff$ $\ds f(y) \geqslant f(x) + \nabla f(x)^\top(y - x),\;\forall\,x,\,y\in\dom f$
+    \item first order Taylor approximation of convex $f$ is a {\bf global underestimator} of $f$
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=1,page=2]{fig/note06/03.pdf}
+    %\caption{$y = \sin x$，$y = \sin^{-1} x$}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Second-Order Condition}
-
-\begin{itemize}
-  \item $f:\mathbb{R}^n\to\mathbb{R}$ is {\bf differentiable} if $\dom f$ is open and the Hessian matrix $\nabla^2 f\in\mathsf{S}^n$ exists at each $x\in\dom f$: 
-    \begin{align*}
-      \big\{\nabla^2 f(x)\big\}_{ij} = \frac{\partial^2 f}{\partial x_i\partial x_j}(x)
-    \end{align*}
-  \item {\bf second-order condition} for twice differentiable $f$ with convex domain is convex: 
-    \begin{itemize}
-      \item $f$ is convex $\ifff$ $\nabla^2 f\succcurlyeq 0$, $\forall\,x\in\dom f$
-      \item $\nabla^2 f\succ 0$, $\forall\,x\in\dom f$ $\ie$ $f$ is strictly convex
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item $f:\mathbb{R}^n\to\mathbb{R}$ is {\bf differentiable} if $\dom f$ is open and the Hessian matrix $\nabla^2 f\in\mathsf{S}^n$ exists at each $x\in\dom f$: 
+      \begin{align*}
+        \big\{\nabla^2 f(x)\big\}_{ij} = \frac{\partial^2 f}{\partial x_i\partial x_j}(x)
+      \end{align*}
+    \item {\bf second-order condition} for twice differentiable $f$ with convex domain is convex: 
+      \begin{itemize}
+        \item $f$ is convex $\ifff$ $\nabla^2 f\succcurlyeq 0$, $\forall\,x\in\dom f$
+        \item $\nabla^2 f\succ 0$, $\forall\,x\in\dom f$ $\ie$ $f$ is strictly convex
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Examples}
-
-\begin{itemize}
-  \item {\bf quadratic function}: $\ds f(x) = \frac{1}{2}\,x^\top P x + q^\top x + r$ with $P\in\mathsf{S}^n$ 
-    \begin{align*}
-      \nabla f(x) = P x + q,\quad \nabla^2 f(x) = P
-    \end{align*}
-    convex if $P\succcurlyeq 0$ (concave if $P\preccurlyeq 0$)
-  \item {\bf least-squares objective}: $\ds f(x) = \|A\,x - b\|^2$ 
-    \begin{align*}
-      \nabla f(x) = 2A^\top(A\,x - b),\quad \nabla^2 f(x) = 2 A^\top A 
-    \end{align*}
-    convex for any $A$
-  \item {\bf quadratic-over-linear function}: $\ds f(x, y) = \frac{x^2}{y}$, $y > 0$ 
-    \begin{align*}
-      \nabla f(x, y) = \begin{pmatrix}\frac{2x}{y} & -\frac{x^2}{y^2}\end{pmatrix},\quad \nabla^2 f(x, y) = \frac{2}{y^3}\begin{pmatrix}y^2 & -xy \\ -xy & x^2 \end{pmatrix}
-    \end{align*}
-    convex for $y > 0$
-\end{itemize}
-
+\begin{frame}{Examples I}
+  \begin{itemize}
+    \item {\bf quadratic function}: $\ds f(x) = \frac{1}{2}\,x^\top P x + q^\top x + r$ with $P\in\mathsf{S}^n$ 
+      \begin{align*}
+        \nabla f(x) = P x + q,\quad \nabla^2 f(x) = P
+      \end{align*}
+      convex if $P\succcurlyeq 0$ (concave if $P\preccurlyeq 0$)
+    \item {\bf least-squares objective}: $\ds f(x) = \|A\,x - b\|^2$ 
+      \begin{align*}
+        \nabla f(x) = 2A^\top(A\,x - b),\quad \nabla^2 f(x) = 2 A^\top A 
+      \end{align*}
+      convex for any $A$
+    \item {\bf quadratic-over-linear function}: $\ds f(x, y) = \frac{x^2}{y}$, $y > 0$ 
+      \begin{align*}
+        \nabla f(x, y) = \begin{pmatrix}\frac{2x}{y} & -\frac{x^2}{y^2}\end{pmatrix},\quad \nabla^2 f(x, y) = \frac{2}{y^3}\begin{pmatrix}y^2 & -xy \\ -xy & x^2 \end{pmatrix}
+      \end{align*}
+      convex for $y > 0$
+  \end{itemize}
 \end{frame}
 
-\begin{frame}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=1.1,page=3]{fig/note06/03.pdf}
-  \caption{Graph of quadratic-over-linear function $\ds f(x, y) = \frac{x^2}{y}$, $y > 0$}
-\end{figure}
-
-\begin{itemize}
-  \item {\bf log-sum-exp function}: $\ds f(x) = \log\Big(\sum_{k = 1}^n e^{x_k}\Big)$ is convex:
-    \begin{align*}
-      \nabla^2 f(x) = \frac{1}{\symbfup{1}^\top z}\diag(z) - \frac{1}{(\symbfup{1}^\top z)^2}zz^\top, \quad z_k = e^{x_k}
-    \end{align*}
-  \item to show that $\nabla^2 f(x)\succcurlyeq 0$, one must verify $\ds v^\top\nabla^2 f(x)\,v\geqslant 0\;\forall\,v$:
-    \begin{align*}  
-      v^\top\nabla^2 f(x)\,v = \frac{\big(\sum_k z_k v_k^2\big)\big(\sum_k z_k\big) - \big(\sum_k v_k z_k\big)^2}{\big(\sum_k z_k\big)^2}\geqslant 0
-    \end{align*}
-  by Cauchy-Schwarz inequality $\ds \big(\sum_k z_k v_k^2\big)\big(\sum_k z_k\big) \geqslant \big(\sum_k v_k z_k\big)^2$
-  \item {\bf geometric-mean function}: $\ds f(x) = \Big(\prod_{k = 1}^n x_k\Big)^{\frac{1}{n}}$ on $x\succ 0$ is concave
-\end{itemize}
+\begin{frame}{Examples II}
+  \begin{itemize}
+    \item {\bf log-sum-exp function}: $\ds f(x) = \log\Big(\sum_{k = 1}^n e^{x_k}\Big)$ is convex:
+      \begin{align*}
+        \nabla^2 f(x) = \frac{1}{\symbfup{1}^\top z}\diag(z) - \frac{1}{(\symbfup{1}^\top z)^2}zz^\top, \quad z_k = e^{x_k}
+      \end{align*}
+      \begin{itemize}
+        \item to show that $\nabla^2 f(x)\succcurlyeq 0$, one must verify $\ds v^\top\nabla^2 f(x)\,v\geqslant 0\;\forall\,v$:
+          \begin{align*}  
+            v^\top\nabla^2 f(x)\,v = \frac{\big(\sum_k z_k v_k^2\big)\big(\sum_k z_k\big) - \big(\sum_k v_k z_k\big)^2}{\big(\sum_k z_k\big)^2}\geqslant 0
+          \end{align*}
+          by Cauchy-Schwarz inequality $\ds \Big(\sum_k z_k v_k^2\Big)\Big(\sum_k z_k\Big) \geqslant \Big(\sum_k v_k z_k\Big)^2$
+      \end{itemize}
+    \item {\bf geometric-mean function}: $\ds f(x) = \Big(\prod_{k = 1}^n x_k\Big)^{\frac{1}{n}}$ on $x\succ 0$ is concave
+  \end{itemize}
+%\begin{figure}[!htbp]
+%  \centering
+%  \includegraphics[scale=0.6,page=3]{fig/note06/03.pdf}
+%  \caption{Graph of quadratic-over-linear function $\ds f(x, y) = \frac{x^2}{y}$, $y > 0$}
+%\end{figure}
 \end{frame}
 
 \begin{frame}{Epigraph, Sublevel Set}
-\begin{itemize}
-  \item {\bf $\alpha$-sublevel set} of $f:\mathbb{R}^n\to\mathbb{R}$: $\ds C_\alpha = \{x\in\dom f\,|\, f(x)\leqslant\alpha\}$
-  \item sublevel sets of convex functions are convex sets
-  \item {\bf epigraph} of $f: \mathbb{R}^n\to\mathbb{R}$: \\ $\ds\epi f = \{(x, t)\in\mathbb{R}^{n+1}\,|\,x\in\dom f,\; f(x)\leqslant t\}$
-  \item $f$ is convex $\ifff$ $\ds\epi f$ is a convex set
-\end{itemize}
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.8,page=5]{fig/note06/03.pdf}
-\end{figure}
-
+  \begin{itemize}
+    \item {\bf $\alpha$-sublevel set} of $f:\mathbb{R}^n\to\mathbb{R}$: $\ds C_\alpha = \{x\in\dom f\,|\, f(x)\leqslant\alpha\}$
+    \item sublevel sets of convex functions are convex sets
+    \item {\bf epigraph} of $f: \mathbb{R}^n\to\mathbb{R}$: $\ds\epi f = \{(x, t)\in\mathbb{R}^{n+1}\,|\,x\in\dom f,\; f(x)\leqslant t\}$
+    \item $f$ is convex $\ifff$ $\ds\epi f$ is a convex set
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.8,page=5]{fig/note06/03.pdf}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Jensen's Inequality}
-
-\begin{itemize}
-  \item {\bf basic form}: if $f$ is convex, then for $x$, $y\in\dom f$, $0\leqslant\theta\leqslant 1$
-    \begin{align*}
-      f(\theta x + (1 - \theta) y) \leqslant \theta f(x) + (1 - \theta) f(y)
-    \end{align*}
-  \item {\bf extension}: if $f$ is convex and $z$ is a random variable on $\dom f$,
-    \begin{align*}
-      f\big(\expc{z}\,\big) \leqslant \expc{f(z)}
-    \end{align*}
-  \item basic form is special case with discrete distribution
-    \begin{align*}
-      \prb\{z = x\} = \theta,\quad\prb\{z = y\} = 1 - \theta
-    \end{align*}
-  \item e.g. for $\ds z\sim\mathsf{N}(\mu,\sigma^2)$, let $\ds f(x) = e^x$, then
-    \begin{align*}
-      f\big(\expc{z}\,\big) = f(\mu) = e^{\mu}\leqslant e^{\mu + \frac{\sigma^2}{2}} = \expc{f(z)}
-    \end{align*}
-\end{itemize}
-
+  \begin{itemize}
+    \item {\bf basic form}: if $f$ is convex, then for $x$, $y\in\dom f$, $0\leqslant\theta\leqslant 1$
+      \begin{align*}
+        f(\theta x + (1 - \theta) y) \leqslant \theta f(x) + (1 - \theta) f(y)
+      \end{align*}
+    \item {\bf extension}: if $f$ is convex and $z$ is a random variable on $\dom f$,
+      \begin{align*}
+        f\big(\expc{z}\,\big) \leqslant \expc{f(z)}
+      \end{align*}
+    \item basic form is special case with discrete distribution
+      \begin{align*}
+        \prb\{z = x\} = \theta,\quad\prb\{z = y\} = 1 - \theta
+      \end{align*}
+    \item e.g. for $\ds z\sim\mathsf{N}(\mu,\sigma^2)$, let $\ds f(x) = e^x$, then
+      \begin{align*}
+        f\big(\expc{z}\,\big) = f(\mu) = e^{\mu}\leqslant e^{\mu + \frac{\sigma^2}{2}} = \expc{f(z)}
+      \end{align*}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Showing Convexity of a Function}
-
-\begin{itemize}
-  \item apply definition (often simplified by restricting to a line)
-  \item for twice differentiable functions, show $\ds\nabla^2 f(x)\succcurlyeq 0$
-  \item show that $f$ is obtained from simple convex functions by operations that preserve convexity
-    \begin{itemize}
-      \item nonnegative multiple, sum, integral
-      \item composition with affine function
-      \item pointwise maximum and supremum
-      \item partial minimization
-      \item composition
-      \item perspective
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item apply definition (often simplified by restricting to a line)
+    \item for twice differentiable functions, show $\ds\nabla^2 f(x)\succcurlyeq 0$
+    \item show that $f$ is obtained from simple convex functions by operations that preserve convexity
+      \begin{itemize}
+        \item nonnegative multiple, sum, integral
+        \item composition with affine function
+        \item pointwise maximum and supremum
+        \item partial minimization
+        \item composition
+        \item perspective
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Nonnegative Multiple, Sum, Integral}
-\begin{itemize}
-  \item {\bf nonnegative multiple}: $\alpha f$ is convex if $f$ is convex and $\alpha\geqslant 0$
-  \item {\bf sum}: $f_1 + f_2$ is convex if $f_1$, $f_2$ is convex
-  \item {\bf infinite sum}: if each of $\ds f_i$ is convex, then $\ds\sum_{i = 1}^\infty f_i$ is convex
-  \item {\bf integral}: if $\ds f(x, \alpha)$ is convex in $x$ for each $\alpha\in\mathcal{A}$, then 
-    \begin{align*}
-      \int_{\alpha\in\mathcal{A}}f(x,\alpha)\,\text{d}\alpha
-    \end{align*} 
-    is convex
-  \item analogous rules for concave functions
-\end{itemize}
-
+  \begin{itemize}
+    \item {\bf nonnegative multiple}: $\alpha f$ is convex if $f$ is convex and $\alpha\geqslant 0$
+    \item {\bf sum}: $f_1 + f_2$ is convex if $f_1$, $f_2$ is convex
+    \item {\bf infinite sum}: if each of $\ds f_i$ is convex, then $\ds\sum_{i = 1}^\infty f_i$ is convex
+    \item {\bf integral}: if $\ds f(x, \alpha)$ is convex in $x$ for each $\alpha\in\mathcal{A}$, then 
+      \begin{align*}
+        \int_{\alpha\in\mathcal{A}}f(x,\alpha)\,\text{d}\alpha
+      \end{align*} 
+      is convex
+    \item analogous rules for concave functions
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Composition with Affine Function}
-
-\begin{itemize}
-  \item $\ds f(A\,x + b)$ is convex if $f$ is convex
-  \item e.g.
-    \begin{itemize}
-      \item log barrier for linear inequalities
-        \begin{align*}
-          f(x) &= - \sum_{i = 1}^m \log\big(b_i - a_i^\top x\big) \\
-          \dom f &= \{x\,|\,a_i^\top x < b_i,\;i=1,2,\ldots,m\}
-        \end{align*}
-      \item norm approximation error (any norm)
-        \begin{align*}
-          f(x) = \|A\,x - b\|
-        \end{align*}
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item $\ds f(A\,x + b)$ is convex if $f$ is convex
+    \item e.g.
+      \begin{itemize}
+        \item log barrier for linear inequalities
+          \begin{align*}
+            f(x) &= - \sum_{i = 1}^m \log\big(b_i - a_i^\top x\big) \\
+            \dom f &= \{x\,|\,a_i^\top x < b_i,\;i=1,2,\ldots,m\}
+          \end{align*}
+        \item norm approximation error (any norm)
+          \begin{align*}
+            f(x) = \|A\,x - b\|
+          \end{align*}
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Pointwise Maximum}
-
-\begin{itemize}
-  \item $\ds f(x) = \max\,\{f_1(x),f_2(x),\,\ldots,f_m(x)\}$ is convex if each $f_i$ is convex
-  \item e.g.
-    \begin{itemize}
-      \item piecewise linear function
-        \begin{align*}
-          f(x) = \max_i\big(a_i^\top x + b_i\big)
-        \end{align*}
-      \item sum of $r$ largest components of $x\in\mathbb{R}^n$  
-        \begin{align*}
-          f(x) = x_{[1]} + x_{[2]} + \cdots + x_{[r]}
-        \end{align*}
-        where $x_{[i]}$ is $i$-th largest component of $x$. Note that
-        \begin{align*}
-          f(x) = \max\,\{x_{i_1} + x_{i_2} + \cdots + x_{i_r}\,|\,1\leqslant i_1 < i_2 < \cdots < i_r\leqslant n\}
-        \end{align*}
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item $\ds f(x) = \max\,\{f_1(x),f_2(x),\,\ldots,f_m(x)\}$ is convex if each $f_i$ is convex
+    \item e.g.
+      \begin{itemize}
+        \item piecewise linear function
+          \begin{align*}
+            f(x) = \max_i\big(a_i^\top x + b_i\big)
+          \end{align*}
+        \item sum of $r$ largest components of $x\in\mathbb{R}^n$  
+          \begin{align*}
+            f(x) = x_{[1]} + x_{[2]} + \cdots + x_{[r]}
+          \end{align*}
+          where $x_{[i]}$ is $i$-th largest component of $x$. Note that
+          \begin{align*}
+            f(x) = \max\,\{x_{i_1} + x_{i_2} + \cdots + x_{i_r}\,|\,1\leqslant i_1 < i_2 < \cdots < i_r\leqslant n\}
+          \end{align*}
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Pointwise Supremum}
-
-\begin{itemize}
-  \item $\ds g(x) = \sup_{y\in\mathcal{A}}f(x, y)$ is convex if $f(x, y)$ is convex in $x$ for each $y\in\mathcal{A}$
-  \item e.g.
-    \begin{itemize}
-      \item distance to farthest point in a set $C$
-        \begin{align*}
-          f(x) = \sup_{y\in C}\,\|x - y\|
-        \end{align*}
-      \item maximum eigenvalue of symmetric matrix 
-        \begin{align*}
-          \lambda_{\text{max}}(X) = \sup_{\|y\|_2 = 1} y^\top X\,y, \quad X\in\mathsf{S}^n 
-        \end{align*}
-      \item support function of a set $C$
-        \begin{align*}
-          S_C(x) = \sup_{y\in C}\,y^\top x
-        \end{align*}
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item $\ds g(x) = \sup_{y\in\mathcal{A}}f(x, y)$ is convex if $f(x, y)$ is convex in $x$ for each $y\in\mathcal{A}$
+    \item e.g.
+      \begin{itemize}
+        \item distance to farthest point in a set $C$
+          \begin{align*}
+            f(x) = \sup_{y\in C}\,\|x - y\|
+          \end{align*}
+        \item maximum eigenvalue of symmetric matrix 
+          \begin{align*}
+            \lambda_{\text{max}}(X) = \sup_{\|y\|_2 = 1} y^\top X\,y, \quad X\in\mathsf{S}^n 
+          \end{align*}
+        \item support function of a set $C$
+          \begin{align*}
+            S_C(x) = \sup_{y\in C}\,y^\top x
+          \end{align*}
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Partial Minimization}
-
-\begin{itemize}
-  \item the function $\ds g(x) = \inf_{y\in C} f(x, y)$ is called the {\bf partial minimization} of $f$ w.r.t. $y$
-  \item if $f(x, y)$ is convex in $(x, y)$ and $C$ is a convex set, then partial minimization $g$ is convex
-  \item e.g.
-    \begin{itemize}
-      \item let $f(x, y) = x^\top A\,x + 2 x^\top B\,y + y^\top C\,y\;$ with $\ds\;\begin{pmatrix}A & B \\ B^\top & C\end{pmatrix}\succcurlyeq 0$, $C\succ 0$; minimizing over $y$ gives 
-        \begin{align*}
-          g(x) = \inf_{y\in C}\,f(x, y) = x^\top\big(A - BC^{-1}B^\top\big)\,x
-        \end{align*}
-        $g$ is convex, hence Schur complement $A - BC^{-1}B^\top\succcurlyeq 0$
-      \item distance to a convex set $S$
-        \begin{align*}
-          \dist(x, S) = \inf_{y\in S}\,\|x - y\|
-        \end{align*}
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item the function $\ds g(x) = \inf_{y\in C} f(x, y)$ is called the {\bf partial minimization} of $f$ w.r.t. $y$
+    \item if $f(x, y)$ is convex in $(x, y)$ and $C$ is a convex set, then partial minimization $g$ is convex
+    \item e.g.
+      \begin{itemize}
+        \item let $f(x, y) = x^\top A\,x + 2 x^\top B\,y + y^\top C\,y\;$ with $\ds\;\begin{pmatrix}A & B \\ B^\top & C\end{pmatrix}\succcurlyeq 0$, $C\succ 0$; minimizing over $y$ gives 
+          \begin{align*}
+            g(x) = \inf_{y\in C}\,f(x, y) = x^\top\big(A - BC^{-1}B^\top\big)\,x
+          \end{align*}
+          $g$ is convex, hence Schur complement $A - BC^{-1}B^\top\succcurlyeq 0$
+        \item distance to a convex set $S$
+          \begin{align*}
+            \dist(x, S) = \inf_{y\in S}\,\|x - y\|
+          \end{align*}
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Composition with Scalar Functions}
-
-\begin{itemize}
-  \item composition of $g:\mathbb{R}^n\to\mathbb{R}$ and $h:\mathbb{R}^n\to\mathbb{R}$ is $\ds f(x) = h(g(x))$ ($\ds f = h\circ g$)
-  \item composition $f$ is convex if
-    \begin{itemize}
-      \item $g$ convex, $h$ convex, $\ds\widetilde{h}$ nondecreasing; or
-      \item $g$ concave, $h$ convex, $\ds\widetilde{h}$ nonincreasing
-    \end{itemize}
-  \item proof for $n = 1$, differentiable $g$, $h$
-    \begin{align*}
-      f''(x) = h''(g(x))\,g'(x)^2 + h'(g(x))\,g''(x)
-    \end{align*}
-  \item e.g.
-    \begin{itemize}
-      \item $f(x) = e^{g(x)}$ is convex if $g$ is convex
-      \item $\ds f(x) = \frac{1}{g(x)}$ is convex if $g$ is concave and positive
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item composition of $g:\mathbb{R}^n\to\mathbb{R}$ and $h:\mathbb{R}^n\to\mathbb{R}$ is $\ds f(x) = h(g(x))$ ($\ds f = h\circ g$)
+    \item composition $f$ is convex if
+      \begin{itemize}
+        \item $g$ convex, $h$ convex, $\ds\widetilde{h}$ nondecreasing; or
+        \item $g$ concave, $h$ convex, $\ds\widetilde{h}$ nonincreasing
+      \end{itemize}
+    \item proof for $n = 1$, differentiable $g$, $h$
+      \begin{align*}
+        f''(x) = h''(g(x))\,g'(x)^2 + h'(g(x))\,g''(x)
+      \end{align*}
+    \item e.g.
+      \begin{itemize}
+        \item $f(x) = e^{g(x)}$ is convex if $g$ is convex
+        \item $\ds f(x) = \frac{1}{g(x)}$ is convex if $g$ is concave and positive
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Composition: General}
-
-\begin{itemize}
-  \item composition of $g:\mathbb{R}^n\to\mathbb{R}^k$ and $h:\mathbb{R}^n\to\mathbb{R}$ is $\ds f(x) = h(g_1(x), g_2(x),\ldots, g_k(x))$
-  \item composition $f$ is convex if $h$ is convex and for each $i$, one of the following holds:
-    \begin{itemize}
-      \item $g_i$ convex, $\ds\widetilde{h}$ nondecreasing in its $i$-th argument
-      \item $g_i$ concave, $\ds\widetilde{h}$ nonincreasing in its $i$-th argument
-      \item $g_i$ affine
-    \end{itemize}
-  \item e.g.
-    \begin{itemize}
-      \item $\ds\log\Big(\sum_{i = 1}^m e^{g_i(x)}\Big)$ is convex if each $g_i$ is convex
-      \item $\ds\frac{p(x)^2}{q(x)}$ is convex if $p$ is nonnegative and convex and $q$ is positive and concave
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item composition of $g:\mathbb{R}^n\to\mathbb{R}^k$ and $h:\mathbb{R}^n\to\mathbb{R}$ is $\ds f(x) = h(g_1(x), g_2(x),\ldots, g_k(x))$
+    \item composition $f$ is convex if $h$ is convex and for each $i$, one of the following holds:
+      \begin{itemize}
+        \item $g_i$ convex, $\ds\widetilde{h}$ nondecreasing in its $i$-th argument
+        \item $g_i$ concave, $\ds\widetilde{h}$ nonincreasing in its $i$-th argument
+        \item $g_i$ affine
+      \end{itemize}
+    \item e.g.
+      \begin{itemize}
+        \item $\ds\log\Big(\sum_{i = 1}^m e^{g_i(x)}\Big)$ is convex if each $g_i$ is convex
+        \item $\ds\frac{p(x)^2}{q(x)}$ is convex if $p$ is nonnegative and convex and $q$ is positive and concave
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Perspective}
-
-\begin{itemize}
-  \item perspective of $f:\mathbb{R}^n\to\mathbb{R}$ is the function $\ds g(x, t):\mathbb{R}^n\times\mathbb{R}\to\mathbb{R}$ defined as 
-    \begin{align*}
-      g(x, t) = t\,f\Big(\frac{x}{t}\Big), \quad\dom g = \Big\{(x, t)\;\Big|\;\frac{x}{t}\in\dom f,\;t > 0\Big\}
-    \end{align*}
-  \item $g$ is convex if $f$ is convex
-  \item e.g.
-    \begin{itemize}
-      \item $\ds f(x) = x^\top x$ is convex, so $\ds g(x, t) = \frac{x^\top x}{t}$ is convex if $t > 0$
-      \item $\ds f(x) = -\log x$ is convex, so the {\bf relative entropy} 
-        \begin{align*}
-          g(x, t) = t\,\log t - t\,\log x
-        \end{align*} 
-        is convex on $x > 0$, $t > 0$ 
-    \end{itemize}
-\end{itemize}
-
+  \begin{itemize}
+    \item perspective of $f:\mathbb{R}^n\to\mathbb{R}$ is the function $\ds g(x, t):\mathbb{R}^n\times\mathbb{R}\to\mathbb{R}$ defined as 
+      \begin{align*}
+        g(x, t) = t\,f\Big(\frac{x}{t}\Big), \quad\dom g = \Big\{(x, t)\;\Big|\;\frac{x}{t}\in\dom f,\;t > 0\Big\}
+      \end{align*}
+    \item $g$ is convex if $f$ is convex
+    \item e.g.
+      \begin{itemize}
+        \item $\ds f(x) = x^\top x$ is convex, so $\ds g(x, t) = \frac{x^\top x}{t}$ is convex if $t > 0$
+        \item $\ds f(x) = -\log x$ is convex, so the {\bf relative entropy} 
+          \begin{align*}
+            g(x, t) = t\,\log t - t\,\log x
+          \end{align*} 
+          is convex on $x > 0$, $t > 0$ 
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Convexity Verification: An Example}
-
-\begin{itemize}
-  \item test the convexity of $\ds f(x, y) = \frac{(x - y)^2}{1 - \max(x, y)}, \; x < 1,\;y < 1$
-  \item $x$, $y$, and $1$ are affine
-  \item $\max(x, y)$ is convex; $x - y$ is affine
-  \item $1 - \max(x, y)$ is concave
-  \item $\ds\frac{u^2}{v}$ is convex, monontone decreasing in $v$ for $v > 0$
-  \item $f$ is composition of $\ds\frac{u^2}{v}$ with $u = x - y$, $v = 1 - \max(x, y)$, hence convex
-\end{itemize}
-
+  \begin{itemize}
+    \item test the convexity of $\ds f(x, y) = \frac{(x - y)^2}{1 - \max(x, y)}, \; x < 1,\;y < 1$
+    \item $x$, $y$, and $1$ are affine
+    \item $\max(x, y)$ is convex; $x - y$ is affine
+    \item $1 - \max(x, y)$ is concave
+    \item $\ds\frac{u^2}{v}$ is convex, monontone decreasing in $v$ for $v > 0$
+    \item $f$ is composition of $\ds\frac{u^2}{v}$ with $u = x - y$, $v = 1 - \max(x, y)$, hence convex
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Convexity Verification: A Caveat}
-
-\begin{itemize}
-  \item test the convexity of $\ds f(x) = \sqrt{1 + x^2}$
-  \item $\sqrt{\cdot}$ is concave 
-  \item $1$, $x^2$ are convex 
-  \item $\sqrt{1 + x^2}$ is $\,\ldots\,$ indefinite ?
-  \item but, note that $\ds\|\cdot\|_2$ is convex
-  \item $\ds\sqrt{1 + x^2}$ can be represented as the 2-norm of vector $(1, x)$ --- $\ds\|(1, x)\|_2$, hence is convex
-  \item The general composition rules are only sufficient, not necessary
-\end{itemize}
-
+  \begin{itemize}
+    \item test the convexity of $\ds f(x) = \sqrt{1 + x^2}$
+    \item $\sqrt{\cdot}$ is concave 
+    \item $1$, $x^2$ are convex 
+    \item $\sqrt{1 + x^2}$ is $\,\ldots\,$ indefinite ?
+    \item but, note that $\ds\|\cdot\|_2$ is convex
+    \item $\ds\sqrt{1 + x^2}$ can be represented as the 2-norm of vector $(1, x)$ --- $\ds\|(1, x)\|_2$, hence is convex
+    \item The general composition rules are only sufficient, not necessary
+  \end{itemize}
 \end{frame}
 
-%\subbegin{frame}{Outline}
-%\begin{frame}
-%  \tableofcontents
-%\end{frame}
+\begin{frame}
+  \begin{block}{Standard Form of General Optimization}
+    \vspace{-5mm}
+    \begin{align*}
+      \text{minimize}\quad &f_0(x) \\
+      \text{subject to}\quad &f_i(x)\leqslant 0, \quad i = 1, 2,\,\ldots,\,m \\
+      \qquad\qquad &h_i(x) = 0, \quad i = 1, 2,\,\ldots,\,p \\
+    \end{align*}
+
+    \vspace{-9mm}
+    \begin{itemize}
+      \item $\ds x\in\mathbb{R}^n$ is the optimization variable
+      \item $\ds f_0(x):\mathbb{R}^n\to\mathbb{R}$ is the objective / cost 
+      \item $\ds f_i(x):\mathbb{R}^n\to\mathbb{R}$, $i = 1, 2,\,\ldots,\,m\,$ are the inequality constraints 
+      \item $\ds h_i(x):\mathbb{R}^n\to\mathbb{R}$, $i = 1, 2,\,\ldots,\,p\,$ are the equality constraints 
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Standard Form of Convex Optimization}
+  \vspace{-5mm}
+  \begin{align*}
+    \text{minimize}\quad &f_0(x) \\
+    \text{subject to}\quad &f_i(x)\leqslant 0, \quad i = 1, 2,\,\cdots,\,m \\
+    \qquad\qquad &a_i^\top x = b_i, \quad i = 1, 2,\,\ldots,\,p
+  \end{align*}
+  \vspace{-8mm}
+  \begin{itemize}
+    \item objective and inequality constraints $f_0$, $f_1$,$\,\ldots,\,$$f_m$ are convex
+    \item equality constraints are affine, often written as $\ds A\,x = b$
+    \item feasible and optimal sets of a convex optimization problem are convex
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Local and Global Optima}
+  \begin{thm}
+    Locally optimal point of a convex optimization problem is (globally) optimal.
+  \end{thm}
+  \begin{prf}
+    \begin{itemize}\setlength\itemsep{0em}
+      \item suppose $x$ is locally optimal, but $\exists\,y$ with $f_0(y) < f_0(x)$
+      \item $x$ locally optimal means $\exists\, R > 0$ such that if $x'$ is feasible and $\|x' - x\|\leqslant R$, then $f_0(x')\geqslant f_0(x)$ 
+      \item set $\ds z = \theta y + (1 - \theta) x$ with $\ds\theta = \frac{R}{2\|y - x\|_2}$
+      \item $\ds\|y - x\|_2 > R$, so $\ds 0 < \theta < \frac{1}{2}$
+      \item $z$ is a convex combination of two feasible points, hence also feasible
+      \item $\ds\|z - x\|_2 = \frac{R}{2}$ and $f_0(z)\leqslant\theta f_0(y) + (1 - \theta) f_0(x) < f_0(x)$, which contradicts that $x$ is locally optimal
+    \end{itemize}
+  \end{prf}
+\end{frame}
 
 %\begin{frame}[allowframebreaks]
 %  \frametitle{References}
