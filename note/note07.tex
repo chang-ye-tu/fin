@@ -376,7 +376,7 @@
 \end{frame}
 
 \begin{frame}{Equilibrium: The Capital-Asset Pricing Model}
-  \begin{itemize}
+  \begin{itemize}[<+->]
     \item Investors indexed by $\ds j\in\mathcal{J}$, each with proportions of wealth $x_{0, j}$ and $\ds\vx_j = (x_{1, j},\,x_{2, j},\,\ldots,\,x_{s, j})^\top$ 
     \item When each investor $j$ has the utility function as above, the optimal $\ds\vx_j$ $\propto$ $\ds\vx_t$ $\ie$ $\ds\vx_j = (1 - x_{0, j})\,\vx_t$ $\forall j\in\mathcal{J}$
     \item The total value of the demand for risky asset $i$: $\ds\sum_{j\in\mathcal{J}} w_j x_{i, j} = \Big(\sum_{j\in\mathcal{J}}(1 - x_{0, j})w_j\Big)(\vx_t)_i$ 
@@ -386,18 +386,24 @@
   \end{itemize}
 \end{frame}
 
+\section{Problems and Solutions}
+
 \begin{frame}{Problem}
   Suppose that an investment $X$ has either (i) the uniform distribution $U[0, 2\mu]$ or (ii) the exponential distribution with $\expc X = \mu$, and the investor has a utility function which is either (a) logarithmic, $v(x) = \log x$ (b) power form, $v(x) = x^\theta$. Show that both the compensatory risk premium and the investment risk premium are proportional to $\mu$ in all 4 possible cases.
 \end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}[fragile]
   \frametitle{Solution}
-  For distributions (i)(ii) of $X$, the r.v. $\ds Y\equiv\frac{X}{\mu}$ does not depend on $\mu$, so the equation $\ds\expc v(X + \alpha) = v(\mu)$ for the compensatory risk premium $\alpha$ reduces to $\ds\expc v(Y + c) = v(1)$ in cases (a)(b) when $\alpha=c\mu$. For the insurance risk premium when $\beta = d\mu$, $d$ is the solution of $\expc v(Y) = v(1 - d)$.\\
-  For case (i)(a), $\ds\expc v(Y + c) = \int_0^2\frac{\log(y + c)}{2}\,\text{d}y = \frac{1}{2}\big((2 + c)\log(2 + c) - c\log c - 2\big)$, and $v(1) = \log 1 = 0$, so $\alpha = c\mu$ where $c$ is the unique positive root of $(2 + c)\log(2 + c) - c\log c - 2 = 0$. Using {\tt rmaxima}
-  %\begin{verbatim}
-  %  find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
-  %\end{verbatim}
+  \begin{itemize}[<+->]
+    \item For distributions (i)(ii) of $X$, the r.v. $\ds Y\equiv\frac{X}{\mu}$ does not depend on $\mu$, so $\ds\expc v(X + \alpha) = v(\mu)$ for the compensatory risk premium $\alpha$ reduces to $\ds\expc v(Y + c) = v(1)$ in cases (a)(b) when $\alpha=c\mu$. For the insurance risk premium when $\beta = d\mu$, $d$ is the solution of $\expc v(Y) = v(1 - d)$.
+    \item For case (i)(a), $\ds\expc v(Y + c) = \int_0^2\frac{\log(y + c)}{2}\,\text{d}y = \frac{1}{2}\big((2 + c)\log(2 + c) - c\log c - 2\big)$, and $v(1) = \log 1 = 0$, so $\alpha = c\mu$ where $c$ is the unique positive root of $(2 + c)\log(2 + c) - c\log c - 2 = 0$. Using {\tt rmaxima}
+\begin{verbatim}
+
+find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
+
+\end{verbatim}
   we have $c = 0.176965531$. For the insurance premium $\beta = d\mu$, $\ds\expc\log Y = \log 2 - 1 = \log(1 - d)$, so $\ds d = 1 - \frac{2}{e} = 0.264$.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Problem}
