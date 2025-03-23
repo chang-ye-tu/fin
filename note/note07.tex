@@ -388,12 +388,12 @@
 
 \section{Problems and Solutions}
 
-\begin{frame}{Problem}
+\begin{frame}{Problem 1}
   Suppose that an investment $X$ has either (i) the uniform distribution $U[0, 2\mu]$ or (ii) the exponential distribution with $\expc X = \mu$, and the investor has a utility function which is either (a) logarithmic, $v(x) = \log x$ (b) power form, $v(x) = x^\theta$. Show that both the compensatory risk premium and the investment risk premium are proportional to $\mu$ in all 4 possible cases.
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Solution}
+  \frametitle{Problem 1 Solution}
   \begin{itemize}[<+->]
     \item For distributions (i)(ii) of $X$, the r.v. $\ds Y\equiv\frac{X}{\mu}$ does not depend on $\mu$, so $\ds\expc v(X + \alpha) = v(\mu)$ for the compensatory risk premium $\alpha$ reduces to $\ds\expc v(Y + c) = v(1)$ in cases (a)(b) when $\alpha=c\mu$. For the insurance risk premium when $\beta = d\mu$, $d$ is the solution of $\expc v(Y) = v(1 - d)$.
     \item For case (i)(a), $\ds\expc v(Y + c) = \int_0^2\frac{\log(y + c)}{2}\,\text{d}y = \frac{1}{2}\big((2 + c)\log(2 + c) - c\log c - 2\big)$, and $v(1) = \log 1 = 0$, so $\alpha = c\mu$ where $c$ is the unique positive root of $(2 + c)\log(2 + c) - c\log c - 2 = 0$. Using {\tt rmaxima}
@@ -406,12 +406,12 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Problem}
+\begin{frame}{Problem 2}
   An investor has a utility function $v(x) = \sqrt{x}$ and is considering three investments with random outcomes $X$, $Y$, $Z$. Here $X$ has the uniform distribution $U[0, a]$, $Y$ has the gamma distribution $\Gamma(\gamma,\lambda)$ with probability density function $\ds\frac{e^{-\lambda y}\lambda^\gamma y^{\gamma - 1}}{\Gamma(\gamma)}$ for $y > 0$, where $\gamma > 0$, $\lambda > 0$, and $Z$ is log-normal, i.e $Z\sim N(\nu, \sigma^2)$. The parameter of the distributions are such that $\expc X = \expc Y = \expc Z = \mu$ and $\var X = \var Y = \var Z$. Recall that the gamma function $\ds\Gamma(\gamma) = \int_0^\infty u^{\gamma - 1} e^{-u}\,\text{d}u$ that satisfies $\Gamma(\gamma + 1) = \gamma\,\Gamma(\gamma)$ and $\Gamma(\nicefrac{1}{2}) = \sqrt{\pi}$. Determine the investor's preference ordering of $X$, $Y$, $Z$ for all values of $\mu$.
 \end{frame}
 
 \begin{frame}[allowframebreaks]
-  \frametitle{Solution}
+  \frametitle{Problem 2 Solution}
   \begin{itemize}
     \item $X\sim U[0, a]$ $\ie$ $\ds\expc X = \frac{a}{2}$, $\ds\var X = \frac{a^2}{12}$ 
     \item $Y\sim \Gamma(\gamma, \lambda)$ $\ie$ $\ds\expc Y = \frac{\gamma}{\lambda}$, $\ds\var Y = \frac{\gamma}{\lambda^2}$
@@ -433,7 +433,7 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
   So $Z\succ Y\succ X$.
 \end{frame}
 
-\begin{frame}{Problem}
+\begin{frame}{Problem 3}
   Suppose that an investor has the utility function $v(x) = 1 - e^{-a x}$ with $a > 0$, and the outcome of an investment is a r.v. $X$ with mean $\mu$, finite variance and finite moment-generating function $\psi(a) = \expc\{e^{-ax}\}$ for $a > 0$. 
   \begin{enumerate}
     \item Show that the compensatory risk premium and the insurance risk premium have the same value $\upalpha$, and express $\upalpha$ in terms of $\mu$ and the moment generating function $\psi$.
@@ -442,28 +442,27 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
   \end{enumerate}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Solution}
-  The compensatory risk premium $\alpha$ solves $\expc{v(\alpha + X)} = v(\mu)$ while the insurance risk premium $\beta$ solves $\expc{v(X)} = v(\mu - \beta)$ giving the common value:
-
-\[\alpha = \beta = \mu + \frac{1}{a} \ln (\psi(a)).\]
-
-The expansion for small $a$ is straightforward; when $\alpha = \frac{a}{2}\var{X}$ for all $a > 0$
-
-\[\psi(a) = \expc{e^{-aX}} = e^{-a\mu+\frac{a^2}{2}\var{X}}\]
-
-which is true only when $X$ has a normal distribution. For the final part:
-
-\[\psi''\psi - (\psi')^2 = \expc{X^2e^{-aX}}\expc{e^{-aX}} - (\expc{Xe^{-aX}})^2 \geqslant 0\]
-
-by the Cauchy-Schwarz inequality applied to the random variables $A = Xe^{-\frac{a}{2}X}$ and $B = e^{-\frac{a}{2}X}$. To see that $\alpha$ is increasing:
-
-\[\frac{\text{d}\alpha}{\text{d}a} = \frac{1}{a^2}\left(\frac{a\psi'}{\psi} - \ln (\psi)\right) = \frac{1}{a^2}f(a),\text{ say}.\]
-
-But $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0$ and the conclusion follows.
+\begin{frame}{Problem 3 Solution}
+  The compensatory risk premium $\alpha$ solves $\expc{v(\alpha + X)} = v(\mu)$ while the insurance risk premium $\beta$ solves $\expc{v(X)} = v(\mu - \beta)$ giving the common value
+  \begin{align*}
+    \alpha = \beta = \mu + \frac{1}{a} \ln (\psi(a))
+  \end{align*}
+  The expansion for small $a$ is straightforward; when $\alpha = \frac{a}{2}\var{X}$ for all $a > 0$
+  \begin{align*}
+    \psi(a) = \expc{e^{-aX}} = e^{-a\mu+\frac{a^2}{2}\var{X}}
+  \end{align*}
+  which is true only when $X$ is normally distributed. For the final part
+  \begin{align*}
+    \psi''\psi - (\psi')^2 = \expc{X^2e^{-aX}}\expc{e^{-aX}} - (\expc{Xe^{-aX}})^2 \geqslant 0
+  \end{align*}
+  by the Cauchy-Schwarz inequality applied to r.v.s $A = Xe^{-\frac{a}{2}X}$ and $B = e^{-\frac{a}{2}X}$. To see that $\alpha$ is increasing
+  \begin{align*}
+    \frac{\text{d}\alpha}{\text{d}a} = \frac{1}{a^2}\left(\frac{a\psi'}{\psi} - \ln (\psi)\right) = \frac{1}{a^2}f(a),\text{ say}
+  \end{align*}
+  But $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0$ and the conclusion follows.
 \end{frame}
 
-\begin{frame}{Problem}
+\begin{frame}{Problem 4}
   Consider a one-period investment model in which there are only two risky assets. The returns on these assets have means $3$, $4$ respectively and variances $2$, $3$ respectively with the covariance between the returns being $2$.
   \begin{enumerate}
     \item Calculate the mean-variance efficient frontier and the minimum-variance portfolio in terms of the mean return.
@@ -473,7 +472,7 @@ But $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0
 \end{frame}
 
 \begin{frame}[allowframebreaks]
-  \frametitle{Solution}
+  \frametitle{Problem 4 Solution}
   The inverse matrix of $\ds\begin{pmatrix}a & b \\ c & d\end{pmatrix}$ is $\ds\frac{1}{ad - bc}\begin{pmatrix}d & -b \\ -c & a\end{pmatrix}$, so if $\ds V = \begin{pmatrix}2 & 2 \\ 2 & 3\end{pmatrix}$, $\ds V^{-1} = \frac{1}{2}\begin{pmatrix}3 & -2 \\ -2 & 2\end{pmatrix}$. $\ds\alpha = \ve^\top\vV^{-1}\ve = \frac{1}{2}$, $\ds\beta = \ve^\top\vV^{-1}\vr = \frac{3}{2}$, $\ds\gamma = \vr^\top\vV^{-1}\vr = \frac{11}{2}$, $\ds\delta = \alpha\gamma - \beta^2 = \frac{1}{2}$.
   \begin{enumerate}
     \item $\ds\min_{x_1, x_2}\begin{pmatrix}x_1 & x_2\end{pmatrix}\begin{pmatrix}2 & 2\\ 2 & 3\end{pmatrix}\begin{pmatrix}x_1 \\ x_2\end{pmatrix} = \min_{x_1, x_2} 2x_1^2 + 4x_1 x_2 + 3x_2^2\;$ s.t. $\ds\begin{cases}x_1 + x_2 = 1 \\ 3x_1 + 4 x_2 = \mu\end{cases}$. From constraints $x_1 = 4 - \mu$, $x_2 = \mu - 3$, so the mean-variance efficient frontier is $\sigma^2 = \mu^2 - 6\mu + 11$.  
@@ -482,7 +481,7 @@ But $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{Problem}
+\begin{frame}{Problem 5}
   Suppose that $v$ is concave, $X\sim N(\mu,\sigma^2)$ and $f(\sigma, \mu) = \expc v(X)$.
   \begin{enumerate}
     \item Show that $\ds\frac{\partial f}{\partial\mu} > 0$ when $v$ is strictly increasing, and $\ds\frac{\partial f}{\partial\sigma}\leqslant 0$. Hence show in the context of mean-variance analysis that, when all returns are jointly normally distributed, an investor maximizing the expected utility of his final wealth will choose a mean-variance-efficient optimal portfolio.
@@ -491,72 +490,80 @@ But $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0
 \end{frame}
 
 \begin{frame}[allowframebreaks]
-  \frametitle{Solution}
-Write $X = \mu + \sigma Y$ where $Y\sim N(0,1)$. Then it follows that:
-\[\frac{\partial f}{\partial \mu} = \expc\{v'(\mu + \sigma Y)\} > 0 \text{ when } v' > 0,\]
-and using the relation (A.14):
-\[\frac{\partial f}{\partial\sigma} = \expc\{Yv'(\mu + \sigma Y)\} = \sigma \expc\{v''(\mu + \sigma Y)\} \leqslant 0,\]
-by the concavity of $v$. Now when returns are normally distributed then the wealth created by each portfolio has a normal distribution; this argument shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\mu)$ on the efficient frontier. To see the concavity of $f$, note that:
-\[\frac{\partial^2 f}{\partial \mu^2} = \expc\{v''(\mu + \sigma Y)\} \leqslant 0 \text{ and } \frac{\partial^2 f}{\partial \sigma^2} = \expc\,\{Y^2v''(\mu + \sigma Y)\} \leqslant 0,\]
-\[\frac{\partial^2 f}{\partial \mu \partial \sigma} = \expc\{Yv''(\mu + \sigma Y)\},\]
-and then:
-\[\frac{\partial^2 f}{\partial \mu^2}\frac{\partial^2 f}{\partial \sigma^2} \geqslant \left(\frac{\partial^2 f}{\partial \mu \partial \sigma}\right)^2\]
-follows by applying the Cauchy-Schwarz inequality to the random variables $A = Y\sqrt{-v''(\mu + \sigma Y)}$ and $B = \sqrt{-v''(\mu + \sigma Y)}$; this shows that the $2 \times 2$ matrix of second derivatives has non-positive diagonal entries and a non-negative determinant which is sufficient for the matrix to be negative semi-definite. The fact that $f$ is concave means that sets of the form $\{(\sigma,\mu) : f(\sigma,\mu) > c\}$ are convex which gives the last statement.
+  \frametitle{Problem 5 Solution}
+Write $X = \mu + \sigma Y$ where $Y\sim N(0,1)$. Then it follows that
+  \begin{align*}
+    \frac{\partial f}{\partial \mu} &= \expc\{v'(\mu + \sigma Y)\} > 0 \text{ when } v' > 0 \\
+    \frac{\partial f}{\partial\sigma} &= \expc\{Yv'(\mu + \sigma Y)\} = \sigma \expc\{v''(\mu + \sigma Y)\} \leqslant 0
+  \end{align*}
+  by the concavity of $v$. Now when returns are normally distributed then the wealth created by each portfolio is normally distributed; this argument shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\mu)$ on the efficient frontier. To see the concavity of $f$, note that
+  \begin{align*}
+    \frac{\partial^2 f}{\partial \mu^2} &= \expc\{v''(\mu + \sigma Y)\} \leqslant 0 \text{ and } \frac{\partial^2 f}{\partial \sigma^2} = \expc\,\{Y^2v''(\mu + \sigma Y)\} \leqslant 0 \\
+    \frac{\partial^2 f}{\partial \mu \partial \sigma} &= \expc\{Yv''(\mu + \sigma Y)\}
+  \end{align*}
+  and then
+  \begin{align*}
+    \frac{\partial^2 f}{\partial \mu^2}\frac{\partial^2 f}{\partial \sigma^2} \geqslant \left(\frac{\partial^2 f}{\partial \mu \partial \sigma}\right)^2
+  \end{align*}
+  follows by applying the Cauchy-Schwarz inequality to the r.v.s $A = Y\sqrt{-v''(\mu + \sigma Y)}$ and $B = \sqrt{-v''(\mu + \sigma Y)}$; this shows that the $2 \times 2$ matrix of second derivatives has non-positive diagonal entries and a non-negative determinant which is sufficient for the matrix to be negative semi-definite. The fact that $f$ is concave means that sets of the form $\{(\sigma,\mu) : f(\sigma,\mu) \geqslant c\}$ are convex which gives the last statement.
 \end{frame}
 
-\begin{frame}{Problem}
-  Suppose that an investor has a concave utility function $v$. The investor seeks to maximize $\expc v(W)$ where $\ds W = (x_0 r_0 + \vx^\top\vR)w$ is his final wealth.
+\begin{frame}{Problem 6}
+  Suppose that an investor has a concave utility function $v$. The investor seeks to maximize $\expc v(W)$ where $\ds W = (x_0 r_0 + \vx^\top\vR)\,w$ is his final wealth.
   \begin{enumerate}
-    \item Show that, when $\overline{W}$ is his optimal final wealth, then $\ds\expc\{v'(\overline{W})(R_j - r_0)\} = 0$, $\forall\,j = 1, 2, \ldots, s$.
-    \item Show that, when $\vR$ has a multivariate normal distribution, then $\ds r_j - r_0 = \alpha\cov(\overline{W}, R_j)$, $\forall\,j = 1, 2, \ldots, s$, where $\ds\upalpha = -\frac{\expc\{v''(\overline{W})\}}{\expc\{v'(\overline{W})\}}$ is his global risk aversion.
+    \item Show that, when $\overline{W}$ is his optimal final wealth, then $\ds\expc\big\{v'(\overline{W})(R_j - r_0)\big\} = 0$, $\;\forall\,j = 1,\,2,\,\ldots,\,s$.
+    \item Show that, when $\vR$ has a multivariate normal distribution, then $\ds r_j - r_0 = \alpha\cov(\overline{W}, R_j)$, $\;\forall\,j = 1,\,2,\,\ldots,\,s$, where $\ds\upalpha = -\frac{\expc\big\{v''(\overline{W})\big\}}{\expc\big\{v'(\overline{W})\big\}}$ is his global risk aversion.
     \item Now suppose that the market is determined by investors $i = 1, 2, \ldots, n$, where investor $i$ has concave utility $v_i$, initial wealth $w_i$, optimal final wealth $\overline{W}_i$ and global risk aversion $\upalpha_i$. With the normality assumption, show that $\ds\expc M - r_0 = \overline{w}\,\overline{\upalpha}\var M$, where $\ds M = \frac{\sum_{i=1}^n\overline{W}_i}{\sum_{i=1}^n w_i}$ is the market rate of return, $\ds\overline{w} = \frac{\sum_{i=1}^n w_i}{n}$ is the average initial wealth of investors, and $\overline{\upalpha}$ is the harmonic mean of $\upalpha_i$.
   \end{enumerate}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
-  \frametitle{Solution}
-  The objective function to maximize is
-  \begin{align*}
-    f(\mathbf{x}) = \expc v\left(w\left(r_0 + \sum_{j=1}^s x_j(R_j - r_0)\right)\right)
-  \end{align*}
-  where $\mathbf{x} = (x_1,\ldots,x_s)^\top$ and we have used the condition that $x_0 + \sum_{j=1}^s x_j = 1$. The first-order conditions give
-  \begin{align*}
-    \frac{\partial f}{\partial x_j} = w\expc{v'(\overline{W})(R_j - r_0)} = 0, \text{ for } 1 \leqslant j \leqslant s
-  \end{align*}
-  Since $r_j = \expc{R_j}$ and the fact that $\overline{W}$ and $R_j$ have a joint normal distribution we have that
-  \begin{align*}
-    0 &= \expc\{v'(\overline{W})(R_j - r_0)\} = \expc\{v'(\overline{W})(R_j - r_j)\} + \expc\{v'(\overline{W})\}(r_j - r_0) \\
-      &= \cov(v'(\overline{W}), R_j) + \expc\{v'(\overline{W})\}(r_j - r_0) \\
-      &= \expc\{v''(\overline{W})\}\cov(\overline{W}, R_j) + \expc\{v'(\overline{W})\}(r_j - r_0)
-    \end{align*}
-  where the last equality uses (A.21), and this gives the relation
-  \begin{align*}
-    r_j - r_0 = \alpha \cov(\overline{W}, R_j)
-  \end{align*}
-  as required. For the final part, recall that for random variables $X$ and $Y$ and $a$ a constant $\cov(X, Y + a) = \cov(X, Y)$ and $\cov(aX, Y) = a\cov(X,Y)$. Now for each $i$
-  \begin{align*}
-    \frac{1}{\alpha_i}(r_j - r_0) = \cov(\overline{W}_i, R_j)
-  \end{align*}
-  and summing this on $i$ yields
-  \begin{align*}
-    \left(\sum_{i=1}^n\frac{1}{\alpha_i}\right)(r_j - r_0) = \left(\sum_{i=1}^n w_i\right)\cov(M, R_j)
-  \end{align*}
-  Divide through by $n$ and multiply by $\overline{\alpha}$, where $\ds\frac{1}{\overline{\alpha}} = \frac{\sum_{i=1}^n\frac{1}{\alpha_i}}{n}$, to obtain
-  \begin{align*}
-    \expc{R_j} - r_0 = w\,\overline{\alpha}\,\cov(M, R_j)
-  \end{align*}
-  When $\overline{x}_{ij}$ is the optimal proportion invested by investor $i$ in asset $j$ then
-  \begin{align*}
-    \overline{W_i} = w_i\left(r_0 + \sum_{j=1}^s \overline{x}_{ij}(R_j - r_0)\right)
-  \end{align*}
-  which when summed on $i$ gives
-  \begin{align*}
-    (M - r_0)\left(\sum_{i=1}^n w_i\right) = \sum_{i=1}^n\sum_{j=1}^s w_i\overline{x}_{ij}(R_j - r_0)
-  \end{align*}
-  Take the expectation in (B.3), multiply (B.2) by $w_i\overline{x}_{ij}$, sum on $i$ and $j$, rearrange the expression using the two properties of covariance mentioned above and the result (1.21) follows. This shows that the risk premium for the market is proportional to $\overline{\alpha}$ which is a measure of the risk aversion in the economy.
+  \frametitle{Problem 6 Solution}
+  \begin{enumerate}
+    \item The objective function to maximize is
+      \begin{align*}
+        f(\mathbf{x}) = \expc v\left(w\left(r_0 + \sum_{j=1}^s x_j(R_j - r_0)\right)\right)
+      \end{align*}
+      where $\mathbf{x} = (x_1,\ldots,x_s)^\top$ and we have used the condition that $x_0 + \sum_{j=1}^s x_j = 1$. The first-order conditions give
+      \begin{align*}
+        \frac{\partial f}{\partial x_j} = w\expc{v'(\overline{W})(R_j - r_0)} = 0, \text{ for } 1 \leqslant j \leqslant s
+      \end{align*}
+      Since $r_j = \expc{R_j}$ and the fact that $\overline{W}$ and $R_j$ have a joint normal distribution we have that
+      \begin{align*}
+        0 &= \expc\big\{v'(\overline{W})(R_j - r_0)\big\} = \expc\big\{v'(\overline{W})(R_j - r_j)\big\} + \expc\big\{v'(\overline{W})\big\}(r_j - r_0) \\
+          &= \cov(v'(\overline{W}), R_j) + \expc\big\{v'(\overline{W})\big\}(r_j - r_0) \\
+          &= \expc\big\{v''(\overline{W})\big\}\cov(\overline{W}, R_j) + \expc\big\{v'(\overline{W})\big\}(r_j - r_0)
+        \end{align*}
+      where the last equality uses, and this gives
+      \begin{align*}
+        r_j - r_0 = \alpha \cov(\overline{W}, R_j)
+      \end{align*}
+      Note that for r.v.s $X$ and $Y$ and constant $a$, $\cov(X, Y + a) = \cov(X, Y)$ and $\cov(aX, Y) = a\cov(X,Y)$. Now for each $i$
+      \begin{align*}
+        \frac{1}{\alpha_i}(r_j - r_0) = \cov(\overline{W}_i, R_j)
+      \end{align*}
+      and summing this on $i$ yields
+      \begin{align*}
+        \left(\sum_{i=1}^n\frac{1}{\alpha_i}\right)(r_j - r_0) = \left(\sum_{i=1}^n w_i\right)\cov(M, R_j)
+      \end{align*}
+      Divide through by $n$ and multiply by $\overline{\alpha}$, where $\ds\frac{1}{\overline{\alpha}} = \frac{\sum_{i=1}^n\frac{1}{\alpha_i}}{n}$, to obtain
+      \begin{align}\label{eq:m0}
+        \expc{R_j} - r_0 = w\,\overline{\alpha}\,\cov(M, R_j)
+      \end{align}
+      When $\overline{x}_{ij}$ is the optimal proportion invested by investor $i$ in asset $j$ then
+      \begin{align*}
+        \overline{W_i} = w_i\left(r_0 + \sum_{j=1}^s \overline{x}_{ij}(R_j - r_0)\right)
+      \end{align*}
+      which when summed on $i$ gives
+      \begin{align}\label{eq:m1}
+        (M - r_0)\left(\sum_{i=1}^n w_i\right) = \sum_{i=1}^n\sum_{j=1}^s w_i\overline{x}_{ij}(R_j - r_0)
+      \end{align}
+    \item 
+      Take the expectation in \eqref{eq:m1}, multiply \eqref{eq:m0} by $w_i\overline{x}_{ij}$, sum on $i$ and $j$, rearrange the expression using the two properties of covariance mentioned above and $\ds\expc M - r_0 = \overline{w}\,\overline{\upalpha}\var M$ follows. This shows that the risk premium for the market is proportional to $\overline{\alpha}$ which is a measure of the risk aversion in the economy.
+  \end{enumerate}
 \end{frame}
 
-\begin{frame}{Problem}
+\begin{frame}{Problem 7}
   Consider an investor with the utility function $v(x) = 1 - e^{-ax}$, $a > 0$, who is faced with a riskless asset with return $r_0$ and $s$ risky assets with returns $\vR\sim N(\vr, \vV)$. 
   \begin{enumerate}
     \item Show that when he seeks to maximize the expected utility of his final wealth, he will hold the risky assets in the same proportion as the tangency portfolio.
@@ -564,19 +571,22 @@ follows by applying the Cauchy-Schwarz inequality to the random variables $A = Y
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{Solution}
-  Suppose that the investor's initial wealth is $w > 0$ and that he wishes to minimize $\expc{e^{-aW}}$ where
-  \begin{align*}
-    W = w\left(r_0 + \sum_{j=1}^s x_j(R_j - r_0)\right) = w\,\big(r_0(1-\mathbf{x}^\top\mathbf{e}) + \mathbf{x}^\top\mathbf{R}\big)
-  \end{align*}
-  and $\mathbf{x} = (x_1,\,\ldots,\,x_s)^\top$, $\mathbf{e} = (1,\ldots,1)^\top$, $x_0 = 1 - \mathbf{x}^\top\mathbf{e}$. Note that $\mathbf{x}^\top\mathbf{R}\sim N(\mathbf{r}^\top\mathbf{x}, \mathbf{x}^\top\vV\mathbf{x})$, so 
-  \begin{align*}
-    \expc{e^{-aW}} = \exp\left\{-aw\,r_0(1-\mathbf{x}^\top\mathbf{e}) - aw\,\mathbf{r}^\top\mathbf{x} + \frac{1}{2}a^2w^2\mathbf{x}^\top\vV\mathbf{x}\right\}
-  \end{align*}
-  It is necessary to minimize the expression $\ds\frac{1}{2}aw\,\mathbf{x}^\top\vV\mathbf{x} - \mathbf{x}^\top(\mathbf{r} - r_0\mathbf{e})$ for which the minimum occurs when $\ds\mathbf{x} = \frac{1}{aw}\,\vV^{-1}(\mathbf{r} - r_0\mathbf{e})$, and the conclusion follows. The amount of his wealth invested in the risky assets is $\ds(\mathbf{x}^\top\mathbf{e})w = \frac{\beta - \alpha r_0}{a}$, which decreases in $a > 0$ when $\beta > \alpha r_0$.
+\begin{frame}{Problem 7 Solution}
+  \begin{enumerate}
+    \item Suppose that the investor's initial wealth is $w > 0$ and that he wishes to minimize $\expc{e^{-aW}}$ where
+      \begin{align*}
+        W = w\left(r_0 + \sum_{j=1}^s x_j(R_j - r_0)\right) = w\,\big(r_0(1-\mathbf{x}^\top\mathbf{e}) + \mathbf{x}^\top\mathbf{R}\big)
+      \end{align*}
+      and $\mathbf{x} = (x_1,\,\ldots,\,x_s)^\top$, $\mathbf{e} = (1,\ldots,1)^\top$, $x_0 = 1 - \mathbf{x}^\top\mathbf{e}$. Note that $\mathbf{x}^\top\mathbf{R}\sim N(\mathbf{r}^\top\mathbf{x}, \mathbf{x}^\top\vV\mathbf{x})$, so 
+      \begin{align*}
+        \expc{e^{-aW}} = \exp\left\{-aw\,r_0(1-\mathbf{x}^\top\mathbf{e}) - aw\,\mathbf{r}^\top\mathbf{x} + \frac{1}{2}a^2w^2\mathbf{x}^\top\vV\mathbf{x}\right\}
+      \end{align*}
+      It amounts to minimize $\ds\frac{1}{2}aw\,\mathbf{x}^\top\vV\mathbf{x} - \mathbf{x}^\top(\mathbf{r} - r_0\mathbf{e})$ for which the minimum occurs when $\ds\mathbf{x} = \frac{1}{aw}\,\vV^{-1}(\mathbf{r} - r_0\mathbf{e})$, and the conclusion follows. 
+    \item The amount of his wealth invested in the risky assets is $\ds(\mathbf{x}^\top\mathbf{e})w = \frac{\beta - \alpha r_0}{a}$, which decreases in $a > 0$ when $\beta > \alpha r_0$.
+  \end{enumerate}
 \end{frame}
 
-\begin{frame}{Problem}
+\begin{frame}{Problem 8}
   Consider an investor with $\vR = (R_1, R_2, \ldots, R_s)^\top$ where $R_i$s are independent r.v. with $R_i$ having gamma distribution, $\expc{R_i} = r_i$ and $\var R_i = \sigma_i^2$. Suppose that he has the utility function $v(x) = 1 - e^{-ax}$, $a > 0$, and he seeks to maximize the expected utility of his final wealth. 
   \begin{enumerate}
     \item Show that he divides his wealth between the diversified portfolio and a second portfolio which should be identified; determine the amounts that he invests in each. 
@@ -586,53 +596,56 @@ follows by applying the Cauchy-Schwarz inequality to the random variables $A = Y
 \end{frame}
 
 \begin{frame}[allowframebreaks]
-  \frametitle{Solution}
-  When $R_i$ has the gamma distribution $\Gamma(\gamma_i, \lambda_i)$ we have that $\ds\expc{R_i} = r_i = \frac{\gamma_i}{\lambda_i}$ and $\ds\var{R_i} = \sigma_i^2 = \frac{\gamma_i}{\lambda_i^2}$, from which it follows that $\ds\gamma_i = \frac{r_i^2}{\sigma_i^2}$ and $\ds\lambda_i = \frac{r_i}{\sigma_i^2}$. For $\phi + \lambda_i > 0$, note that
-  \begin{multline*}
-    \expc{e^{-\phi R_i}} = \int_0^\infty \frac{e^{-\phi x}e^{-\lambda_i x}\lambda_i^{\gamma_i}x^{\gamma_i-1}}{\Gamma(\gamma_i)}\,\text{d}x \\= \left(\frac{\lambda_i}{\phi + \lambda_i}\right)^{\gamma_i} \int_0^\infty \frac{e^{-\phi x}e^{-\lambda_i x}(\phi + \lambda_i)^{\gamma_i}x^{\gamma_i-1}}{\Gamma(\gamma_i)}\,\text{d}x = \left(\frac{\lambda_i}{\phi + \lambda_i}\right)^{\gamma_i}
-  \end{multline*}
-  because the integrand in the latter integral is a probability density function, and so the value of the integral is 1. The investor wishes to solve the constrained optimization problem
-  \begin{align*}
-    \text{maximize}\quad \expc\left\{1 - e^{-aw(\mathbf{x}^\top\mathbf{R})}\right\} \quad\text{subject to}\quad \mathbf{x}^\top\mathbf{e} = 1
-  \end{align*}
-  but this is equivalent to minimizing
-  \begin{align*}
-    \expc\left\{e^{-aw(\mathbf{x}^\top\mathbf{R})}\right\} = \prod_{i=1}^s\,\expc\left\{e^{-awx_i R_i}\right\} = \prod_{i=1}^s \left(\frac{\lambda_i}{awx_i + \lambda_i}\right)^{\gamma_i}
-  \end{align*}
-  subject to the constraint. Taking logarithms, we need to
-  \begin{align*}
-    \text{maximize} \quad \sum_{i=1}^s \gamma_i \ln(awx_i + \lambda_i) \quad \text{subject to} \quad \sum_{i=1}^s x_i = 1
-  \end{align*}
-  Maximizing the Lagrangian
-  \begin{align*}
-    \mathcal{L} = \sum_{i=1}^s \gamma_i \ln(awx_i + \lambda_i) + \theta\left(1 - \sum_{i=1}^s x_i\right)
-  \end{align*}
-  in $x_i$ gives $\ds x_i = \frac{\gamma_i}{\theta} - \frac{\lambda_i}{aw}$. Substituting back into the constraint shows that the Lagrange multiplier is given as
-  \begin{align*}
-    \theta = \frac{\sum_{j=1}^s \gamma_j}{1 + \frac{1}{aw}\sum_{j=1}^s \lambda_j}
-  \end{align*}
-  from which it follows that the optimal portfolio may be expressed as
-  \begin{align*}
-    \mathbf{x} = \left(1 + \frac{1}{aw}\sum_{j=1}^s \lambda_j\right)\overline{\mathbf{x}} - \left(\frac{1}{aw}\sum_{j=1}^s \lambda_j\right)\mathbf{x}_d
-  \end{align*}
-  where the two portfolios $\overline{\mathbf{x}}$ and $\mathbf{x}_d$ are
-  \begin{align*}
-    (\overline{\mathbf{x}})_i = \frac{\gamma_i}{\sum_j\gamma_j} = \frac{\frac{r_i^2}{\sigma_i^2}}{\sum_j \frac{r_j^2}{\sigma_j^2}} \text{ and } (\mathbf{x}_d)_i = \frac{\lambda_i}{\sum_j\lambda_j} = \frac{\frac{r_i}{\sigma_i^2}}{\sum_j\frac{r_j}{\sigma_j^2}}
-  \end{align*}
-  with the latter portfolio being the diversified portfolio (see Example 1.1). As his initial wealth is $w$, the investor invests the amount $\ds w + \sum_j\frac{\lambda_j}{a}$ in $\overline{\mathbf{x}}$ and the amount $\ds -\sum_j\frac{\lambda_j}{a}$ in the diversified portfolio. Note that in the case when the random variables $R_i$ have exponential distributions, then $\gamma_i = 1$, or $r_i^2 = \sigma_i^2$, for each $1 \leqslant i \leqslant s$, so that the portfolio $\overline{\mathbf{x}}$ is just the uniform portfolio $\ds\overline{\mathbf{x}} = \left(\frac{1}{s},\,\ldots,\,\frac{1}{s}\right)^\top$ which apportions wealth equally between the $s$ risky assets.
-  For the final part, when there is a riskless asset and we set $x_0 = 1 - \mathbf{x}^\top\mathbf{e}$, we see that we wish to minimize the expression
-  \begin{align*}
-    \expc\left\{e^{-aw(r_0(1-\mathbf{x}^\top\mathbf{e})+\mathbf{x}^\top\mathbf{R})}\right\} &= e^{awr_0(\sum_j x_j-1)} \prod_{i=1}^s\,\expc\big\{e^{-awx_i R_i}\big\} \\ &= e^{awr_0(\sum_j x_j-1)} \prod_{i=1}^s \left(\frac{\lambda_i}{awx_i + \lambda_i}\right)^{\gamma_i}
-  \end{align*}
-  in $\mathbf{x} = \left(x_1,\,\ldots,\,x_s\right)^\top$, which is equivalent to maximizing
-  \begin{align*}
-    \sum_{i=1}^s \gamma_i\ln(awx_i + \lambda_i) - awr_0\sum_{i=1}^s x_i
-  \end{align*}
-  Deduce that for $1 \leqslant i \leqslant s$, the optimal $\ds x_i = \frac{1}{aw}\Big(\frac{\gamma_i}{r_0} - \lambda_i\Big)$, and the optimal investment in the risky assets is determined by
-  \begin{align*}
-    \mathbf{x} = \left(\frac{1}{awr_0}\sum_{j=1}^s \gamma_j\right)\overline{\mathbf{x}} - \left(\frac{1}{aw}\sum_{j=1}^s \lambda_j\right)\mathbf{x}_d
-  \end{align*}
-  The investor is long in the particular risky asset $i$ when $x_i > 0$, which is true if and only if $r_i > r_0$; he is long overall in risky assets if and only if $\ds\sum_{j=1}^s x_j > 0$ which is equivalent to the condition that $\ds\frac{1}{r_0} > \sum_{j=1}^s(r_j/\sigma_j^2)/\sum_{j=1}^s(r_j^2/\sigma_j^2)$.
+  \frametitle{Problem 8 Solution}
+  \begin{enumerate}
+    \item When $R_i\sim\Gamma(\gamma_i, \lambda_i)$, $\ds\expc{R_i} = r_i = \frac{\gamma_i}{\lambda_i}$ and $\ds\var{R_i} = \sigma_i^2 = \frac{\gamma_i}{\lambda_i^2}$ $\ie$ $\ds\gamma_i = \frac{r_i^2}{\sigma_i^2}$, $\ds\lambda_i = \frac{r_i}{\sigma_i^2}$. For $\phi + \lambda_i > 0$, note that
+    \begin{multline*}
+      \expc{e^{-\phi R_i}} = \int_0^\infty \frac{e^{-\phi x}e^{-\lambda_i x}\lambda_i^{\gamma_i}x^{\gamma_i-1}}{\Gamma(\gamma_i)}\,\text{d}x \\= \left(\frac{\lambda_i}{\phi + \lambda_i}\right)^{\gamma_i} \int_0^\infty \frac{e^{-\phi x}e^{-\lambda_i x}(\phi + \lambda_i)^{\gamma_i}x^{\gamma_i-1}}{\Gamma(\gamma_i)}\,\text{d}x = \left(\frac{\lambda_i}{\phi + \lambda_i}\right)^{\gamma_i}
+    \end{multline*}
+    because the integrand in the latter integral is a probability density function, and so the value of the integral is 1. The investor wishes to solve the constrained optimization problem
+    \begin{align*}
+      \text{maximize}\quad \expc\left\{1 - e^{-aw(\mathbf{x}^\top\mathbf{R})}\right\} \quad\text{subject to}\quad \mathbf{x}^\top\mathbf{e} = 1
+    \end{align*}
+    which is equivalent to minimizing
+    \begin{align*}
+      \expc\left\{e^{-aw(\mathbf{x}^\top\mathbf{R})}\right\} = \prod_{i=1}^s\,\expc\left\{e^{-awx_i R_i}\right\} = \prod_{i=1}^s \left(\frac{\lambda_i}{awx_i + \lambda_i}\right)^{\gamma_i}
+    \end{align*}
+    subject to the constraint. Taking logarithms, we need to
+    \begin{align*}
+      \text{maximize} \quad \sum_{i=1}^s \gamma_i \ln(awx_i + \lambda_i) \quad \text{subject to} \quad \sum_{i=1}^s x_i = 1
+    \end{align*}
+    Maximizing the Lagrangian
+    \begin{align*}
+      \mathcal{L} = \sum_{i=1}^s \gamma_i \ln(awx_i + \lambda_i) + \theta\left(1 - \sum_{i=1}^s x_i\right)
+    \end{align*}
+    in $x_i$ gives $\ds x_i = \frac{\gamma_i}{\theta} - \frac{\lambda_i}{aw}$. Substituting back into the constraint shows that the Lagrange multiplier is given as
+    \begin{align*}
+      \theta = \frac{\sum_{j=1}^s \gamma_j}{1 + \frac{1}{aw}\sum_{j=1}^s \lambda_j}
+    \end{align*}
+    from which it follows that the optimal portfolio may be expressed as
+    \begin{align*}
+      \mathbf{x} = \left(1 + \frac{1}{aw}\sum_{j=1}^s \lambda_j\right)\overline{\mathbf{x}} - \left(\frac{1}{aw}\sum_{j=1}^s \lambda_j\right)\mathbf{x}_d
+    \end{align*}
+    where the two portfolios $\overline{\mathbf{x}}$ and $\mathbf{x}_d$ are
+    \begin{align*}
+      (\overline{\mathbf{x}})_i = \frac{\gamma_i}{\sum_j\gamma_j} = \frac{\frac{r_i^2}{\sigma_i^2}}{\sum_j \frac{r_j^2}{\sigma_j^2}} \text{ and } (\mathbf{x}_d)_i = \frac{\lambda_i}{\sum_j\lambda_j} = \frac{\frac{r_i}{\sigma_i^2}}{\sum_j\frac{r_j}{\sigma_j^2}}
+    \end{align*}
+    with the latter portfolio being the diversified portfolio. As his initial wealth is $w$, the investor invests the amount $\ds w + \frac{1}{a}\sum_j\lambda_j$ in $\overline{\mathbf{x}}$ and the amount $\ds-\frac{1}{a}\sum_j\lambda_j$ in the diversified portfolio. Note that in the case when the r.v.s $R_i$ have exponential distributions, then $\gamma_i = 1$, or $r_i^2 = \sigma_i^2$, for each $1 \leqslant i \leqslant s$, so that the portfolio $\overline{\mathbf{x}}$ is just the uniform portfolio $\ds\overline{\mathbf{x}} = \left(\frac{1}{s},\,\ldots,\,\frac{1}{s}\right)^\top$ which apportions wealth equally between the $s$ risky assets.
+    \item When there is a riskless asset, set $x_0 = 1 - \mathbf{x}^\top\mathbf{e}$ and we wish to minimize
+      \begin{align*}
+        \expc\left\{e^{-aw(r_0(1-\mathbf{x}^\top\mathbf{e})+\mathbf{x}^\top\mathbf{R})}\right\} &= e^{awr_0(\sum_j x_j-1)} \prod_{i=1}^s\,\expc\big\{e^{-awx_i R_i}\big\} \\ &= e^{awr_0(\sum_j x_j-1)} \prod_{i=1}^s \left(\frac{\lambda_i}{awx_i + \lambda_i}\right)^{\gamma_i}
+      \end{align*}
+      in $\mathbf{x} = \left(x_1,\,\ldots,\,x_s\right)^\top$, which is equivalent to maximizing
+      \begin{align*}
+        \sum_{i=1}^s \gamma_i\ln(awx_i + \lambda_i) - awr_0\sum_{i=1}^s x_i
+      \end{align*}
+      Deduce that for $1 \leqslant i \leqslant s$, the optimal $\ds x_i = \frac{1}{aw}\Big(\frac{\gamma_i}{r_0} - \lambda_i\Big)$, and the optimal investment in the risky assets is determined by
+      \begin{align*}
+        \mathbf{x} = \left(\frac{1}{awr_0}\sum_{j=1}^s \gamma_j\right)\overline{\mathbf{x}} - \left(\frac{1}{aw}\sum_{j=1}^s \lambda_j\right)\mathbf{x}_d
+      \end{align*}
+    \item 
+      The investor is long in the particular risky asset $i$ when $x_i > 0$, which is true if and only if $r_i > r_0$; he is long overall in risky assets if and only if $\ds\sum_{j=1}^s x_j > 0$ which is equivalent to the condition that $\ds\frac{1}{r_0} > \frac{\sum_{j=1}^s\frac{r_j}{\sigma_j^2}}{\sum_{j=1}^s\frac{r_j^2}{\sigma_j^2}}$.
+  \end{enumerate}
 \end{frame}
 
 %\begin{frame}[allowframebreaks]
