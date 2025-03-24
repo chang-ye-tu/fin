@@ -23,7 +23,7 @@
 | 03/04               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note04.pdf">Surprises & Paradoxes III</a> |
 | 03/11, 03/13        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note05.pdf">Financial Markets & Instruments</a> | 
 | 03/18               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note06.pdf">Review of Prerequisite Mathematics</a> |
-| 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Optimization</a>|
+| 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Choice</a>|
 | 04/08, 04/10        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a> |
 | 04/15               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note09.pdf">Kelly Criterion</a> |
 | 04/22, 04/24        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note10.pdf">Machine Learning in Finance</a> |
