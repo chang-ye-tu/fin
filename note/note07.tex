@@ -86,8 +86,8 @@
 \newcommand{\vr}{\symbfup{r}}
 \newcommand{\vZero}{\symbfup{0}}
 
-\DeclareMathOperator\prb{{\sf P}}
-\DeclareMathOperator\expc{{\sf E}}
+\DeclareMathOperator\prb{\mathsf{P}}
+\DeclareMathOperator\expc{\mathsf{E}}
 \DeclareMathOperator\var{var}
 \DeclareMathOperator\cov{cov}
 \DeclareMathOperator\cor{cor}
@@ -105,6 +105,7 @@
 \DeclareMathOperator*{\relint}{relint}
 
 \theoremstyle{definition}
+\newtheorem*{axiom}{Axiom}
 \newtheorem*{dfn}{Definition}
 \newtheorem*{prp}{Property}
 \newtheorem*{thm}{Theorem}
@@ -113,10 +114,11 @@
 \newtheorem*{sol}{Solution}
 \newtheorem*{prf}{Proof}
 \usepackage{nicefrac}
+\usepackage{multicol}
 
 \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
 
-\title{Portfolio Optimization}
+\title{Portfolio Choice}
 \author{}
 \date{}
 
@@ -130,6 +132,237 @@
 %\begin{frame}
 %  \tableofcontents
 %\end{frame}
+
+\section{Utility}
+
+\begin{frame}{Preferences and Utility}
+  \begin{itemize}[<+->]
+    \item Let $\Gamma$ be a sample space of possible outcomes for gambles with random payoffs
+    \item Let $\mathbb{P}$ be a set of probabilities on $\Gamma$, where $\mathcal{A} \in \mathbb{P}$ satisfies:
+      \begin{enumerate}[(i)]
+        \item $0 \leqslant \mathcal{A}(G) \leqslant 1$, for all $G \subseteq \Gamma$
+        \item $\mathcal{A}(\Gamma) = 1$
+        \item For disjoint events $\{G_i\}_i$: $\mathcal{A}\left(\bigcup_i G_i\right) = \sum_i \mathcal{A}(G_i)$
+      \end{enumerate}
+    \item $\mathcal{A} \in \mathbb{P}$ is a \emph{gamble} - probability distribution of the outcome
+    \item $\mathbb{P}$ is closed under convex combinations: $p\,\mathcal{A} + (1-p)\,\mathcal{B} \in \mathbb{P}$ $\forall\,0 \leqslant p \leqslant 1$
+    \item The gamble $p\,\mathcal{A} + (1-p)\,\mathcal{B}$ corresponds to tossing a coin with probability $p$ of ``heads'', choosing $\mathcal{A}$ for heads and $\mathcal{B}$ for tails
+    \item By induction, for $p_i \geqslant 0$ with $\sum_{i=1}^k p_i = 1$: $p_1\mathcal{A}_1 + \cdots + p_k\mathcal{A}_k \in \mathbb{P}$
+    \item An investor has a preference relation $\succ$ on $\mathbb{P}$
+    \item $\mathcal{A} \succ \mathcal{B}$ means ``$\mathcal{A}$ is preferred to $\mathcal{B}$''
+    \item Define the indifference relation $\sim$ on $\mathbb{P}$ by setting $\mathcal{A} \sim \mathcal{B}$ when $\mathcal{A} \not\succ \mathcal{B}$ and $\mathcal{B} \not\succ \mathcal{A}$; $\mathcal{A} \sim \mathcal{B}$ means ``investor is indifferent between $\mathcal{A}$ and $\mathcal{B}$''
+    \item The relations $\succ$ and $\sim$ satisfy rational axioms as follows.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rational Axioms}
+  \begin{enumerate}[<+->]
+  \item (Completeness)
+    For any $\mathcal{A}, \mathcal{B} \in \mathbb{P}$ exactly one of the following holds:
+    \vspace{-3mm}
+    \begin{multicols}{3}
+      \begin{enumerate}[(i)]
+        \item $\mathcal{A} \succ \mathcal{B}$
+        \item $\mathcal{B} \succ \mathcal{A}$
+        \item $\mathcal{A} \sim \mathcal{B}$
+      \end{enumerate}
+    \end{multicols}
+    \vspace{-3mm}
+
+  \item (Equivalence Relation)
+    The relation $\sim$ is an equivalence relation on $\mathbb{P}$:
+    \vspace{-3mm}
+    \begin{multicols}{2}
+    \begin{enumerate}[(i)]
+      \item $\mathcal{A} \sim \mathcal{A}$ for all $\mathcal{A} \in \mathbb{P}$
+      \item If $\mathcal{A} \sim \mathcal{B}$ then $\mathcal{B} \sim \mathcal{A}$
+      \item If $\mathcal{A} \sim \mathcal{B}$ and $\mathcal{B} \sim \mathcal{C}$ then $\mathcal{A} \sim \mathcal{C}$
+    \end{enumerate}
+  \end{multicols}
+    \vspace{-3mm}
+
+  \item (Transitivity of Preference)
+    For any $\mathcal{A}, \mathcal{B}, \mathcal{C} \in \mathbb{P}$, if $\mathcal{A} \succ \mathcal{B}$ and $\mathcal{B} \succ \mathcal{C}$ then $\mathcal{A} \succ \mathcal{C}$.
+
+  \item (Mixed Transitivity)
+    For any $\mathcal{A}, \mathcal{B}, \mathcal{C} \in \mathbb{P}$,
+    \begin{enumerate}[(i)]
+      \item If $\mathcal{A} \succ \mathcal{B}$ and $\mathcal{B} \sim \mathcal{C}$ then $\mathcal{A} \succ \mathcal{C}$
+      \item If $\mathcal{A} \sim \mathcal{B}$ and $\mathcal{B} \succ \mathcal{C}$ then $\mathcal{A} \succ \mathcal{C}$
+    \end{enumerate}
+
+  \item (Independence -- Indifference)
+    For any $\mathcal{A}, \mathcal{C} \in \mathbb{P}$ and $p \in [0,1]$, if $\mathcal{A} \sim \mathcal{C}$ and $\mathcal{B} \in \mathbb{P}$ then $p\,\mathcal{A} + (1-p)\,\mathcal{B} \sim p\,\mathcal{C} + (1-p)\,\mathcal{B}$.
+
+  \item (Independence -- Preference) 
+    For any $\mathcal{A}, \mathcal{C} \in \mathbb{P}$ and $p \in (0,1]$, if $\mathcal{A} \succ \mathcal{C}$ and $\mathcal{B} \in \mathbb{P}$ then $p\,\mathcal{A} + (1-p)\,\mathcal{B} \succ p\,\mathcal{C} + (1-p)\,\mathcal{B}$.
+
+  \item (Continuity) 
+    For any $\mathcal{A}, \mathcal{B}, \mathcal{C} \in \mathbb{P}$, if $\mathcal{A} \succ \mathcal{C} \succ \mathcal{B}$ then there exists $p \in [0,1]$ with $p\,\mathcal{A} + (1-p)\,\mathcal{B} \sim \mathcal{C}$.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Uniqueness of Probability Values}
+  \begin{lemma}
+    Suppose that $\mathcal{A}, \mathcal{B}, \mathcal{C} \in \mathbb{P}$ with $\mathcal{A} \succ \mathcal{C} \succ \mathcal{B}$ and $p\,\mathcal{A}+(1-p)\,\mathcal{B} \sim \mathcal{C}$, then $0 < p < 1$ and $p$ is unique.
+  \end{lemma}
+  
+  \begin{prf}
+    \begin{itemize}[<+->]
+      \item Trivially $p \neq 0$ or $1$
+      \item Suppose $p$ is not unique: $\exists\,q$ with $q\,\mathcal{A} + (1-q)\,\mathcal{B} \sim \mathcal{C}$
+      \item WLOG assume $q < p$, so $0 < p-q < 1-q$
+      \item Note that $\mathcal{B} = \left(\frac{p-q}{1-q}\right)\mathcal{B} + \left(\frac{1-p}{1-q}\right)\mathcal{B}$ and $\mathcal{A} \succ \mathcal{B}$
+      \item By Independence -- Preference Axiom $\ds\left(\frac{p-q}{1-q}\right)\mathcal{A} + \left(\frac{1-p}{1-q}\right)\mathcal{B} \succ \mathcal{B}$
+      \item However $\ds p\,\mathcal{A} + (1-p)\,\mathcal{B} = q\,\mathcal{A} + (1-q)\left(\left(\frac{p-q}{1-q}\right)\mathcal{A} + \left(\frac{1-p}{1-q}\right)\mathcal{B}\right)$
+      \item By Independence -- Preference Axiom again $\ds p\,\mathcal{A} + (1-p)\,\mathcal{B} \succ q\,\mathcal{A} + (1-q)\,\mathcal{B}$
+      \item But this contradicts that both expressions are indifferent to $\mathcal{C}$
+    \end{itemize}
+  \end{prf}
+\end{frame}
+
+\begin{frame}{Existence of Utility Function}
+  \begin{theorem}
+    There exists a real-valued function $f : \mathbb{P} \to \mathbb{R}$ with
+    \[f(\mathcal{A}) > f(\mathcal{B}) \quad \text{if and only if} \quad \mathcal{A} \succ \mathcal{B},\]
+    and
+    \[f(p\,\mathcal{A} + (1-p)\,\mathcal{B}) = pf(\mathcal{A}) + (1-p)\,f(\mathcal{B})\]
+    for any $\mathcal{A}, \mathcal{B} \in \mathbb{P}$ and $0 \leqslant p \leqslant 1$. Furthermore, $f$ is unique up to affine transformations.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}{Proof of Utility Function Existence (Part 1)}
+  \begin{prf}
+    \begin{itemize}[<+->]
+      \item If $\mathcal{A} \sim \mathcal{B}$ for all $\mathcal{A}, \mathcal{B} \in \mathbb{P}$, take $f(\mathcal{A}) \equiv 0$
+      \item Otherwise, $\exists$ a pair $\mathcal{C}, \mathcal{D} \in \mathbb{P}$ with $\mathcal{C} \succ \mathcal{D}$
+      \item For any $\mathcal{A} \in \mathbb{P}$, five possibilities:
+        \vspace{-3mm}
+        \begin{multicols}{3}
+        \begin{enumerate}[(a)]
+          \item $\mathcal{A} \succ \mathcal{C}$
+          \item $\mathcal{A} \sim \mathcal{C}$
+          \item $\mathcal{C} \succ \mathcal{A} \succ \mathcal{D}$
+          \item $\mathcal{A} \sim \mathcal{D}$
+          \item $\mathcal{D} \succ \mathcal{A}$
+        \end{enumerate}
+      \end{multicols}
+      \vspace{-3mm}
+      \item Define $f(\mathcal{C}) = 1$ and $f(\mathcal{D}) = 0$
+      \item For case (a): $\exists$ unique $p \in (0, 1)$ with $p\,\mathcal{A} + (1-p)\,\mathcal{D} \sim \mathcal{C}$; define $\ds f(\mathcal{A}) = \frac{1}{p}$
+      \item For case (b): set $f(\mathcal{A}) = 1$
+      \item For case (c): $\exists$ unique $q \in (0, 1)$ with $q\,\mathcal{C} + (1-q)\,\mathcal{D} \sim \mathcal{A}$; define $f(\mathcal{A}) = q$
+      \item For case (d): set $f(\mathcal{A}) = 0$
+      \item For case (e): $\exists$ unique $r \in (0, 1)$ with $r\mathcal{C} + (1-r)\mathcal{A} \sim \mathcal{D}$; define $\ds f(\mathcal{A}) = \frac{-r}{1-r}$
+    \end{itemize}
+  \end{prf}
+\end{frame}
+
+\begin{frame}{Proof of Utility Function Existence (Part 2)}
+  \begin{prf}[continued]
+    \begin{itemize}[<+->]
+      \item To verify $f$ satisfies the conditions requires checking 15 cases: 5 where both $\mathcal{A}$ and $\mathcal{B}$ are in the same case, and 10 where they're in different cases
+      \item Consider one example: both $\mathcal{A}$ and $\mathcal{B}$ satisfy case (c): $\mathcal{C} \succ \mathcal{A} \succ \mathcal{D}$ and $\mathcal{C} \succ \mathcal{B} \succ \mathcal{D}$
+      \item We have $f(\mathcal{A}) = q_1$ and $f(\mathcal{B}) = q_2$ where $\ds\mathcal{A} \sim q_1\,\mathcal{C} + (1-q_1)\,\mathcal{D}$ and $\ds\mathcal{B} \sim q_2\,\mathcal{C} + (1-q_2)\,\mathcal{D}$
+      \item When $q_1 = q_2$: $\mathcal{A} \sim \mathcal{B}$ and condition is satisfied
+      \item When $q_1 > q_2$: $\ds q_1\,\mathcal{C} + (1-q_1)\,\mathcal{D} \succ q_2\,\mathcal{C} + (1-q_2)\,\mathcal{D}$, so $\mathcal{A} \succ \mathcal{B}$ and $f(\mathcal{A}) > f(\mathcal{B})$ as required
+      \item Similarly when $q_1 < q_2$: $\mathcal{B} \succ \mathcal{A}$ 
+      \item For linearity, let $p \in (0, 1)$ and apply Independence -- Indifference Axiom:
+        \begin{align*}
+          p\,\mathcal{A} + (1-p)\,\mathcal{B} &\sim p(q_1\,\mathcal{C} + (1-q_1)\,\mathcal{D}) + (1-p)(q_2\,\mathcal{C} + (1-q_2)\,\mathcal{D})\\
+          &\sim (pq_1 + (1-p)q_2)\mathcal{C} + (p(1-q_1) + (1-p)(1-q_2))\mathcal{D}
+        \end{align*}
+    \end{itemize}
+    \vspace{-5mm}
+  \end{prf}
+\end{frame}
+
+\begin{frame}{Proof of Utility Function Existence (Part 3)}
+  \begin{prf}[continued]
+    \begin{itemize}[<+->]
+      \item From definition of $f$: $f(p\,\mathcal{A} + (1-p)\,\mathcal{B}) = p\,q_1 + (1-p)\,q_2 = p\,f(\mathcal{A}) + (1-p)\,f(\mathcal{B})$
+      \item To verify $f$ is unique up to affine transformations, suppose $g$ also satisfies the conditions
+      \item Since $\mathcal{C} \succ \mathcal{D}$, we have $g(\mathcal{C}) > g(\mathcal{D})$
+      \item Define $\beta = g(\mathcal{D})$ and $\alpha = g(\mathcal{C})-g(\mathcal{D}) > 0$
+      \item For an $\mathcal{A}$ in case (c) with $f(\mathcal{A}) = q$, we have $\mathcal{A} \sim q\,\mathcal{C} + (1-q)\,\mathcal{D}$
+      \item Therefore $\ds g(\mathcal{A}) = g(q\,\mathcal{C} + (1-q)\,\mathcal{D}) = qg(\mathcal{C}) + (1-q)g(\mathcal{D}) = q(\alpha + \beta) + (1-q)\beta = q\alpha + \beta = \alpha f(\mathcal{A}) + \beta$
+      \item The other cases follow similarly, proving $\ds g(\mathcal{A}) = \alpha f(\mathcal{A}) + \beta$ for all $\mathcal{A} \in \mathbb{P}$
+    \end{itemize}
+  \end{prf}
+  
+  \begin{itemize}[<+->]
+    \item For an investor with consistent preferences, there exists a function $f$, unique up to affine transformations, which quantifies preference ordering
+    \item For $p_i \geqslant 0$ with $\sum_{i=1}^k p_i = 1$: $f\left(\sum_{i=1}^k p_i \mathcal{A}_i\right) = \sum_{i=1}^k p_i f(\mathcal{A}_i)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Expected Utility}
+  \begin{itemize}[<+->]
+    \item In finance, an investor faces investments yielding random payoffs
+    \item Let $\Omega$ be a probability space with measure $\prb$
+    \item Let $\mathcal{X}$ be the set of real-valued random variables on $\Omega$
+    \item For $X \in \mathcal{X}$, let $\prb^X$ be the probability distribution on $\mathbb{R}$ induced by $X$
+    \item Take $\Gamma = \mathbb{R}$ and $\mathbb{P} = \{\prb^X : X \in \mathcal{X}\}$
+    \item If $X$ takes values $\{x_1, \ldots, x_m\}$, then:
+      \[\prb^X(\{x\}) = 
+      \begin{cases}
+      \prb(X = x) & \text{for } x \in \{x_1, \ldots, x_m\}, \\
+      0 & \text{otherwise}.
+      \end{cases}\]
+    \item Define a utility function $v: \mathbb{R} \to \mathbb{R}$ by $v(x) = f(\prb^x)$, where $\prb^x$ assigns probability 1 to value $x$
+    \item Then $f(\prb^X) = \sum_{i=1}^m f(\prb^{x_i})\prb(X = x_i) = \sum_{i=1}^m v(x_i)\prb(X = x_i) = \expc\{v(X)\}$
+    \item This gives us $\expc\{v(X)\} > \expc\{v(Y)\} \ifff X \succ Y$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Risk Attitudes}
+  \begin{itemize}[<+->]
+    \item Consider an investment with outcome described by r.v. $X$ on $(\Omega, \prb)$
+    \item Investor has utility function $v: \mathbb{R} \to \mathbb{R}$ and prefers higher expected utility
+    \item Let $\expc_{\prb}$ denote expectation with respect to $\prb$
+    \item An investor is \emph{risk averse} when $\ds\expc_{\prb} v(X) \leqslant v(\expc_{\prb} X)$
+      for all r.v.s $X$ and all probabilities $\prb$
+    \item This is equivalent to $v$ being concave
+    \item For two values $x, y \in \mathbb{R}$ and $\lambda \in [0, 1]$ with $\prb(X = x) = \lambda$, $\prb(X = y) = 1 - \lambda$: $\ds\lambda v(x) + (1-\lambda)v(y) \leqslant v(\lambda x + (1-\lambda)y)$
+    \item Risk aversion implies preferring certain outcome $\mu$ to random investment with mean $\mu$
+    \item An investor is \emph{risk neutral} when $\expc_{\prb} v(X) = v(\expc_{\prb} X)$ for all $\prb$ and $X$
+    \item Risk neutrality corresponds to $v$ being affine (linear)
+    \item An investor is \emph{risk preferring} when $\expc_{\prb} v(X) > v(\expc_{\prb} X)$, corresponding to $v$ being convex
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Risk Premiums}
+  \begin{itemize}[<+->]
+    \item \emph{Compensatory risk premium} $\alpha$ is the amount that must be added to make an investor indifferent between a risky investment and a certain outcome:
+      \[\expc\{v(\alpha + X)\} = v(\mu) \quad \text{with} \quad \mu = \expc X\]
+    \item \emph{Insurance risk premium} $\beta$ is the amount an investor would pay to avoid risk:
+      \[\expc\{v(X)\} = v(\mu - \beta) \quad \text{with} \quad \mu = \expc X\]
+    \item The insurance premium $\beta$ satisfies: if $X$ and $Y$ have same mean $\mu$ and $v$ is strictly increasing, then $\ds X \succ Y \ifff \beta_X < \beta_Y$
+    \item Using the Taylor expansion of $\expc\{v(X)\}$ about $\mu = \expc X$, we have $\ds\expc\{v(X)\} = \expc\left\{v(\mu) + (X - \mu)v'(\mu) + \frac{(X - \mu)^2}{2}v''(\mu) + \cdots\right\} = v(\mu) + \frac{\var X}{2}v''(\mu) + \cdots$
+    \item Expanding $v(\mu - \beta)$ and equating yields $\ds\beta \approx \frac{1}{2}\left(\frac{-v''(\mu)}{v'(\mu)}\right)\var X$
+    \item $\ds -\frac{v''(\mu)}{v'(\mu)}$ is the \emph{Arrow-Pratt absolute risk aversion} at $\mu$
+    \item $\ds -\frac{\expc\{v''(X)\}}{\expc\{v'(X)\}}$ is the \emph{global absolute risk aversion} for investment $X$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{HARA Utility Functions}
+  \begin{itemize}[<+->]
+    \item \emph{Hyperbolic absolute risk aversion} (HARA) functions have form:
+      \[v(x) = \frac{1-\gamma}{\gamma}\left(\frac{ax}{1-\gamma} + b\right)^\gamma\]
+      for constants $a$, $b$, $\gamma$ with $\ds\frac{ax}{1-\gamma} + b \geqslant 0$ (usually $b \geqslant 0$)
+    \item Arrow-Pratt risk aversion for HARA functions:
+      \[-\frac{v''(x)}{v'(x)} = \left(\frac{x}{1-\gamma} + \frac{b}{a}\right)^{-1}\]
+    \item Special cases (possibly with affine transformations):
+      \begin{enumerate}[(a)]
+        \item \emph{Quadratic}: $v(x) = x - \frac{1}{2}\theta x^2$; take $\gamma = 2$, $a = \sqrt{\theta}$, $ab = 1$
+        \item \emph{Exponential}: $v(x) = -e^{-ax}$; let $\gamma \to -\infty$. Has absolute risk aversion $a$
+        \item \emph{Power}: $v(x) = x^\gamma$ with $\gamma > 0$. Strictly concave only when $\gamma < 1$. Case $\gamma = 1$ gives risk-neutral utility
+        \item \emph{Logarithmic}: $v(x) = \ln x$. Follows from HARA as $\gamma \to 0$, using l'Hôpital's rule: $\ds\frac{x^\gamma - 1}{\gamma} \to \ln x$
+      \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\section{Mean-Variance Analysis}
 
 \begin{frame}{Classical PO: Mean-Variance (MV) Criterion}
   \begin{itemize}[<+->]
@@ -434,32 +667,29 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 \end{frame}
 
 \begin{frame}{Problem 3}
-  Suppose that an investor has the utility function $v(x) = 1 - e^{-a x}$ with $a > 0$, and the outcome of an investment is a r.v. $X$ with mean $\mu$, finite variance and finite moment-generating function $\psi(a) = \expc\{e^{-ax}\}$ for $a > 0$. 
+  Suppose that an investor has the utility function $v(x) = 1 - e^{-a x}$ with $a > 0$, and the outcome of an investment is a r.v. $X$ with mean $\mu$, finite variance and finite moment-generating function $\psi(a) = \expc\big\{e^{-aX}\big\}$ for $a > 0$. Show that 
   \begin{enumerate}
-    \item Show that the compensatory risk premium and the insurance risk premium have the same value $\upalpha$, and express $\upalpha$ in terms of $\mu$ and the moment generating function $\psi$.
-    \item Both the Arrow-Pratt and global risk aversions are $a$. Confirm directly that as $a\downarrow 0$, $\ds\upalpha = \frac{a}{2}\var{X} + o(a)$. Under what circumstances is it true that $\ds\upalpha = \frac{a}{2}\var{X}$ for all $a > 0$?
-    \item Prove that $\psi''\psi - (\psi')^2\geqslant 0$ and hence $\upalpha$ is an increasing function of $a$. This shows that the more risk-averse the investor is, the higher the value of the premium that is required.
+    \item The compensatory risk premium and the insurance risk premium have the same value $\upalpha$, and express $\upalpha$ in terms of $\mu$ and the moment generating function $\psi$.
+    \item Both the Arrow-Pratt and global risk aversions are $a$.
+    \item As $a\downarrow 0$, $\ds\upalpha = \frac{a}{2}\var{X} + \mathcal{O}(a)$. Under what circumstances is it true that $\ds\upalpha = \frac{a}{2}\var{X}$ for $a > 0$?
+    \item $\psi''\psi - (\psi')^2\geqslant 0$ and hence $\upalpha$ is an increasing function of $a$. This shows that the more risk-averse the investor is, the higher the value of the premium that is required.
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{Problem 3 Solution}
-  The compensatory risk premium $\alpha$ solves $\expc{v(\alpha + X)} = v(\mu)$ while the insurance risk premium $\beta$ solves $\expc{v(X)} = v(\mu - \beta)$ giving the common value
-  \begin{align*}
-    \alpha = \beta = \mu + \frac{1}{a} \ln (\psi(a))
-  \end{align*}
-  The expansion for small $a$ is straightforward; when $\alpha = \frac{a}{2}\var{X}$ for all $a > 0$
-  \begin{align*}
-    \psi(a) = \expc{e^{-aX}} = e^{-a\mu+\frac{a^2}{2}\var{X}}
-  \end{align*}
-  which is true only when $X$ is normally distributed. For the final part
-  \begin{align*}
-    \psi''\psi - (\psi')^2 = \expc{X^2e^{-aX}}\expc{e^{-aX}} - (\expc{Xe^{-aX}})^2 \geqslant 0
-  \end{align*}
-  by the Cauchy-Schwarz inequality applied to r.v.s $A = Xe^{-\frac{a}{2}X}$ and $B = e^{-\frac{a}{2}X}$. To see that $\alpha$ is increasing
-  \begin{align*}
-    \frac{\text{d}\alpha}{\text{d}a} = \frac{1}{a^2}\left(\frac{a\psi'}{\psi} - \ln (\psi)\right) = \frac{1}{a^2}f(a),\text{ say}
-  \end{align*}
-  But $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0$ and the conclusion follows.
+\begin{frame}[allowframebreaks]
+  \frametitle{Problem 3 Solution}
+  \begin{enumerate}
+    \item 
+      \begin{itemize}
+        \item The compensatory risk premium $\alpha$ solves $\expc\big\{v(\alpha + X)\big\} = v(\mu)$ $\ie$ $\expc\big\{1 - e^{-a(\alpha + X)}\big\} = 1 - e^{-a\mu}$ $\ie$ $1 - e^{-a\alpha}\expc\big\{e^{-aX}\big\} = 1 - e^{-a\mu}$ $\ie$ $-a\alpha + \ln\psi(a) = -a\mu$ $\ie$ $\ds\alpha = \mu + \frac{1}{a}\ln(\psi(a))$
+        \item The insurance risk premium $\beta$ solves $\expc{v(X)} = v(\mu - \beta)$ $\ie$ $\expc\big\{1 - e^{-a X}\big\} = 1 - e^{-a(\mu - \beta)}$ $\ie$ $1 - \psi(a) = 1 - e^{-a(\mu - \beta)}$ $\ie$ $\ln\psi(a) = -a(\mu - \beta)$ $\ie$ $\ds\beta = \mu + \frac{1}{a}\ln(\psi(a))$
+      \end{itemize}
+      So $\ds\alpha = \beta = \mu + \frac{1}{a}\ln(\psi(a))$.
+    \item Note that $\ds v'(x) = ae^{-ax}$, $\ds v''(x) = -a^2e^{-ax}$, the Arrow-Pratt absolute risk aversion is $\ds -\frac{v''(\mu)}{v'(\mu)} = \frac{a^2e^{-a\mu}}{ae^{-a\mu}} = a$, the global absolute risk aversion is $\ds -\frac{\expc\big\{v''(X)\big\}}{\expc\big\{v'(X)\big\}} = \frac{a^2\expc\big\{e^{-a X}\big\}}{a\expc\big\{e^{-a X}\big\}} = a$.
+    \item From $\ds\alpha(a) = \mu + \frac{1}{a}\ln(\psi(a))$ $\ie$ $\ds\psi(a) = e^{a(\alpha(a) - \mu)}$; Differentiation yields $\ds\psi'(a) = e^{a(\alpha(a) - \mu)}(\alpha(a) - \mu + a\,\alpha'(a))$, $\ds\psi''(a) = e^{a(\alpha(a) - \mu)}(2\alpha'(a) + a\,\alpha''(a))$ \\ $+$ $\ds e^{a(\alpha(a) - \mu)}(\alpha(a) - \mu + a\,\alpha'(a))^2$. Note that $\ds\psi(0) = 1$, $\ds\psi'(0) = -\mu$, $\ds\psi''(0) = \expc{X^2}$; setting $a = 0$ yields $\ds\psi'(0) = e^{0(\alpha(0) - \mu)}(\alpha(0) - \mu + 0\,\alpha'(0))$ $\ie$ $\ds-\mu = \alpha(0) - \mu$ $\ie$ $\ds\alpha(0) = 0$, $\ds\psi''(0) = e^{0(\alpha(0) - \mu)}(2\alpha'(0) + 0\,\alpha''(0))$ $+$ $\ds e^{0(\alpha(0) - \mu)}(\alpha(0) - \mu + 0\,\alpha'(0))^2$ $\ie$ $\ds\expc{X^2} = 2\alpha'(0) + \mu^2$ $\ie$ $\ds\alpha'(0)$ $=$ $\ds\frac{1}{2}(\expc{X^2} - \mu^2)$ $=$ $\ds\frac{1}{2}\var{X}$. For small $a > 0$, the Taylor expansion of $\ds\alpha(a) = \alpha(0) + a\,\alpha'(0) + \mathcal{O}(a^2) = \frac{a}{2}\var{X} + \mathcal{O}(a^2)$. When $\ds\alpha(a) = \frac{a}{2}\var{X}$ exactly for $a > 0$, then $\ds\psi(a) = \expc\big\{e^{-aX}\big\} = e^{-a\mu + \frac{a^2}{2}\var{X}}$, which is true only when $X$ is normally distributed.
+    \item $\ds\psi''\psi - (\psi')^2 = \expc\big\{X^2e^{-aX}\big\}\expc\big\{e^{-aX}\big\} - (\expc\big\{Xe^{-aX}\big\})^2 \geqslant 0$
+      by the Cauchy-Schwarz inequality applied to r.v.s $\ds A = Xe^{-\frac{a}{2}X}$ and $\ds B = e^{-\frac{a}{2}X}$. To see that $\alpha$ is increasing $\ds\frac{\text{d}\alpha}{\text{d}a} = \frac{1}{a^2}\left(\frac{a\psi'}{\psi} - \ln (\psi)\right)\equiv\frac{1}{a^2}f(a)$, but $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0$ and the conclusion follows.
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}{Problem 4}
@@ -491,21 +721,26 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 
 \begin{frame}[allowframebreaks]
   \frametitle{Problem 5 Solution}
-Write $X = \mu + \sigma Y$ where $Y\sim N(0,1)$. Then it follows that
-  \begin{align*}
-    \frac{\partial f}{\partial \mu} &= \expc\{v'(\mu + \sigma Y)\} > 0 \text{ when } v' > 0 \\
-    \frac{\partial f}{\partial\sigma} &= \expc\{Yv'(\mu + \sigma Y)\} = \sigma \expc\{v''(\mu + \sigma Y)\} \leqslant 0
-  \end{align*}
-  by the concavity of $v$. Now when returns are normally distributed then the wealth created by each portfolio is normally distributed; this argument shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\mu)$ on the efficient frontier. To see the concavity of $f$, note that
-  \begin{align*}
-    \frac{\partial^2 f}{\partial \mu^2} &= \expc\{v''(\mu + \sigma Y)\} \leqslant 0 \text{ and } \frac{\partial^2 f}{\partial \sigma^2} = \expc\,\{Y^2v''(\mu + \sigma Y)\} \leqslant 0 \\
-    \frac{\partial^2 f}{\partial \mu \partial \sigma} &= \expc\{Yv''(\mu + \sigma Y)\}
-  \end{align*}
-  and then
-  \begin{align*}
-    \frac{\partial^2 f}{\partial \mu^2}\frac{\partial^2 f}{\partial \sigma^2} \geqslant \left(\frac{\partial^2 f}{\partial \mu \partial \sigma}\right)^2
-  \end{align*}
-  follows by applying the Cauchy-Schwarz inequality to the r.v.s $A = Y\sqrt{-v''(\mu + \sigma Y)}$ and $B = \sqrt{-v''(\mu + \sigma Y)}$; this shows that the $2 \times 2$ matrix of second derivatives has non-positive diagonal entries and a non-negative determinant which is sufficient for the matrix to be negative semi-definite. The fact that $f$ is concave means that sets of the form $\{(\sigma,\mu) : f(\sigma,\mu) \geqslant c\}$ are convex which gives the last statement.
+  Write $X = \mu + \sigma Y$ where $Y\sim N(0,1)$. 
+  \begin{enumerate}
+    \item 
+      \begin{align*}
+        \frac{\partial f}{\partial \mu} &= \expc\{v'(\mu + \sigma Y)\} > 0 \text{ when } v' > 0 \\
+        \frac{\partial f}{\partial\sigma} &= \expc\{Yv'(\mu + \sigma Y)\} = \sigma \expc\{v''(\mu + \sigma Y)\} \leqslant 0
+      \end{align*}
+      by the concavity of $v$ ($v'' < 0$). When returns are normally distributed, the wealth created by each portfolio is normally distributed; this shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\,\mu)$ on the efficient frontier.
+    \item To see the concavity of $f$, note that
+      \begin{align*}
+        \frac{\partial^2 f}{\partial \mu^2} &= \expc\{v''(\mu + \sigma Y)\} \leqslant 0 \\
+        \frac{\partial^2 f}{\partial \sigma^2} &= \expc\,\{Y^2v''(\mu + \sigma Y)\} \leqslant 0 \\
+        \frac{\partial^2 f}{\partial \mu \partial \sigma} &= \expc\{Yv''(\mu + \sigma Y)\}
+      \end{align*}
+      and then
+      \begin{align*}
+        \frac{\partial^2 f}{\partial \mu^2}\frac{\partial^2 f}{\partial \sigma^2} \geqslant \left(\frac{\partial^2 f}{\partial \mu \partial \sigma}\right)^2
+      \end{align*}
+      follows by applying the Cauchy-Schwarz inequality to the r.v.s $A = Y\sqrt{-v''(\mu + \sigma Y)}$ and $B = \sqrt{-v''(\mu + \sigma Y)}$; this shows that the $2 \times 2$ matrix of second derivatives has non-positive diagonal entries and a non-negative determinant which is sufficient for the matrix to be negative semi-definite. The fact that $f$ is concave means that sets of the form $\{(\sigma,\mu) : f(\sigma,\mu) \geqslant c\}$ are convex which gives the last statement.
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}{Problem 6}
