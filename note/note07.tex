@@ -1,4 +1,4 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt,handout]{beamer}
 
 \usetheme{Madrid}
 \usecolortheme{default}
@@ -209,10 +209,9 @@
   
   \begin{prf}
     \begin{itemize}[<+->]
-      \item Trivially $p \neq 0$ or $1$
-      \item Suppose $p$ is not unique: $\exists\,q$ with $q\,\mathcal{A} + (1-q)\,\mathcal{B} \sim \mathcal{C}$
+      \item Trivially $p \neq 0$, $1$; Suppose $p$ is not unique: $\exists\,q$ with $q\,\mathcal{A} + (1-q)\,\mathcal{B} \sim \mathcal{C}$
       \item WLOG assume $q < p$, so $0 < p-q < 1-q$
-      \item Note that $\mathcal{B} = \left(\frac{p-q}{1-q}\right)\mathcal{B} + \left(\frac{1-p}{1-q}\right)\mathcal{B}$ and $\mathcal{A} \succ \mathcal{B}$
+      \item Note that $\ds\mathcal{B} = \left(\frac{p-q}{1-q}\right)\mathcal{B} + \left(\frac{1-p}{1-q}\right)\mathcal{B}$ and $\mathcal{A} \succ \mathcal{B}$
       \item By Independence -- Preference Axiom $\ds\left(\frac{p-q}{1-q}\right)\mathcal{A} + \left(\frac{1-p}{1-q}\right)\mathcal{B} \succ \mathcal{B}$
       \item However $\ds p\,\mathcal{A} + (1-p)\,\mathcal{B} = q\,\mathcal{A} + (1-q)\left(\left(\frac{p-q}{1-q}\right)\mathcal{A} + \left(\frac{1-p}{1-q}\right)\mathcal{B}\right)$
       \item By Independence -- Preference Axiom again $\ds p\,\mathcal{A} + (1-p)\,\mathcal{B} \succ q\,\mathcal{A} + (1-q)\,\mathcal{B}$
@@ -323,7 +322,7 @@
     \item An investor is \emph{risk averse} when $\ds\expc_{\prb} v(X) \leqslant v(\expc_{\prb} X)$
       for all r.v.s $X$ and all probabilities $\prb$
     \item This is equivalent to $v$ being concave
-    \item For two values $x, y \in \mathbb{R}$ and $\lambda \in [0, 1]$ with $\prb(X = x) = \lambda$, $\prb(X = y) = 1 - \lambda$: $\ds\lambda v(x) + (1-\lambda)v(y) \leqslant v(\lambda x + (1-\lambda)y)$
+    \item Given $x, y \in \mathbb{R}$ and $\lambda \in [0, 1]$ with $\prb(X = x) = \lambda$, $\ds\prb(X = y)$ $=$ $\ds 1 - \lambda$: $\ds\lambda v(x) + (1-\lambda)v(y) \leqslant v(\lambda x + (1-\lambda)y)$
     \item Risk aversion implies preferring certain outcome $\mu$ to random investment with mean $\mu$
     \item An investor is \emph{risk neutral} when $\expc_{\prb} v(X) = v(\expc_{\prb} X)$ for all $\prb$ and $X$
     \item Risk neutrality corresponds to $v$ being affine (linear)
@@ -412,7 +411,7 @@
       \begin{align*}\begin{cases}\lambda\alpha + \nu\beta = 1 \\ \lambda\beta + \nu\gamma = \mu\end{cases}
       \end{align*}
       \onslide<+->
-      Solutions: $\ds\lambda = \frac{\gamma - \beta\mu}{\delta},\;$ $\ds\gamma = \frac{\alpha\mu - \beta}{\delta}$
+      Solutions: $\ds\lambda = \frac{\gamma - \beta\mu}{\delta},\;$ $\ds\nu = \frac{\alpha\mu - \beta}{\delta}$
     \item If $\vr\not=c\,\ve$, $c\in\mathbb{R}$, then from the positive-definiteness of $\vV^{-1}$ 
       \onslide<+->
       \begin{align*}
@@ -430,7 +429,7 @@
       \onslide<+->
       \begin{align*}
         \sigma^2 &= \vx^\top\vV\vx = \vx^\top\vV(\lambda\vV^{-1}\ve + \nu\vV^{-1}\vr) = \lambda(\vx^\top\ve) + \nu(\vx^\top\vr) \\
-        &= \lambda + \nu\mu = \frac{\gamma - \beta\mu}{\delta} + \nu\frac{\alpha\mu-\beta}{\delta} = \frac{\alpha\mu^2 - 2\beta\mu + \gamma}{\delta}\\
+        &= \lambda + \nu\mu = \frac{\gamma - \beta\mu}{\delta} + \frac{\alpha\mu-\beta}{\delta}\mu = \frac{\alpha\mu^2 - 2\beta\mu + \gamma}{\delta}\\
         &\ie\frac{\sigma^2}{\left(\frac{1}{\sqrt{\alpha}}\right)^2} - \frac{\left(\mu - \frac{\beta}{\alpha}\right)^2}{\left(\frac{\sqrt{\delta}}{\alpha}\right)^2} = 1
       \end{align*}
     \item Recall the standard form of hyperbola $(x, y)$ 
