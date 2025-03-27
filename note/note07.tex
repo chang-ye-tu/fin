@@ -316,11 +316,11 @@
 
 \begin{frame}{Risk Attitudes}
   \begin{itemize}[<+->]
-    \item Consider an investment with outcome described by r.v. $X$ on $(\Omega, \prb)$
+    \item Consider an investment with outcome described by random variable $X$ on $(\Omega, \prb)$
     \item Investor has utility function $v: \mathbb{R} \to \mathbb{R}$ and prefers higher expected utility
     \item Let $\expc_{\prb}$ denote expectation with respect to $\prb$
     \item An investor is \emph{risk averse} when $\ds\expc_{\prb} v(X) \leqslant v(\expc_{\prb} X)$
-      for all r.v.s $X$ and all probabilities $\prb$
+      for all random variable $X$ and all probabilities $\prb$
     \item This is equivalent to $v$ being concave
     \item Given $x, y \in \mathbb{R}$ and $\lambda \in [0, 1]$ with $\prb(X = x) = \lambda$, $\ds\prb(X = y)$ $=$ $\ds 1 - \lambda$: $\ds\lambda v(x) + (1-\lambda)v(y) \leqslant v(\lambda x + (1-\lambda)y)$
     \item Risk aversion implies preferring certain outcome $\mu$ to random investment with mean $\mu$
@@ -627,7 +627,7 @@
 \begin{frame}[fragile]
   \frametitle{Problem 1 Solution}
   \begin{itemize}[<+->]
-    \item For distributions (i)(ii) of $X$, the r.v. $\ds Y\equiv\frac{X}{\mu}$ does not depend on $\mu$, so $\ds\expc v(X + \alpha) = v(\mu)$ for the compensatory risk premium $\alpha$ reduces to $\ds\expc v(Y + c) = v(1)$ in cases (a)(b) when $\alpha=c\mu$. For the insurance risk premium when $\beta = d\mu$, $d$ is the solution of $\expc v(Y) = v(1 - d)$.
+    \item For distributions (i)(ii) of $X$, the random variable $\ds Y\equiv\frac{X}{\mu}$ does not depend on $\mu$, so $\ds\expc v(X + \alpha) = v(\mu)$ for the compensatory risk premium $\alpha$ reduces to $\ds\expc v(Y + c) = v(1)$ in cases (a)(b) when $\alpha=c\mu$. For the insurance risk premium when $\beta = d\mu$, $d$ is the solution of $\expc v(Y) = v(1 - d)$.
     \item For case (i)(a), $\ds\expc v(Y + c) = \int_0^2\frac{\log(y + c)}{2}\,\text{d}y = \frac{1}{2}\big((2 + c)\log(2 + c) - c\log c - 2\big)$, and $v(1) = \log 1 = 0$, so $\alpha = c\mu$ where $c$ is the unique positive root of $(2 + c)\log(2 + c) - c\log c - 2 = 0$. Using {\tt rmaxima}
 \begin{verbatim}
 
@@ -666,7 +666,7 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 \end{frame}
 
 \begin{frame}{Problem 3}
-  Suppose that an investor has the utility function $v(x) = 1 - e^{-a x}$ with $a > 0$, and the outcome of an investment is a r.v. $X$ with mean $\mu$, finite variance and finite moment-generating function $\psi(a) = \expc\big\{e^{-aX}\big\}$ for $a > 0$. Show that 
+  Suppose that an investor has the utility function $v(x) = 1 - e^{-a x}$ with $a > 0$, and the outcome of an investment is a random variable $X$ with mean $\mu$, finite variance and finite moment-generating function $\psi(a) = \expc\big\{e^{-aX}\big\}$ for $a > 0$. Show that 
   \begin{enumerate}
     \item The compensatory risk premium and the insurance risk premium have the same value $\upalpha$, and express $\upalpha$ in terms of $\mu$ and the moment generating function $\psi$.
     \item Both the Arrow-Pratt and global risk aversions are $a$.
@@ -687,7 +687,7 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
     \item Note that $\ds v'(x) = ae^{-ax}$, $\ds v''(x) = -a^2e^{-ax}$, the Arrow-Pratt absolute risk aversion is $\ds -\frac{v''(\mu)}{v'(\mu)} = \frac{a^2e^{-a\mu}}{ae^{-a\mu}} = a$, the global absolute risk aversion is $\ds -\frac{\expc\big\{v''(X)\big\}}{\expc\big\{v'(X)\big\}} = \frac{a^2\expc\big\{e^{-a X}\big\}}{a\expc\big\{e^{-a X}\big\}} = a$.
     \item From $\ds\alpha(a) = \mu + \frac{1}{a}\ln(\psi(a))$ $\ie$ $\ds\psi(a) = e^{a(\alpha(a) - \mu)}$; Differentiation yields $\ds\psi'(a) = e^{a(\alpha(a) - \mu)}(\alpha(a) - \mu + a\,\alpha'(a))$, $\ds\psi''(a) = e^{a(\alpha(a) - \mu)}(2\alpha'(a) + a\,\alpha''(a))$ \\ $+$ $\ds e^{a(\alpha(a) - \mu)}(\alpha(a) - \mu + a\,\alpha'(a))^2$. Note that $\ds\psi(0) = 1$, $\ds\psi'(0) = -\mu$, $\ds\psi''(0) = \expc{X^2}$; setting $a = 0$ yields $\ds\psi'(0) = e^{0(\alpha(0) - \mu)}(\alpha(0) - \mu + 0\,\alpha'(0))$ $\ie$ $\ds-\mu = \alpha(0) - \mu$ $\ie$ $\ds\alpha(0) = 0$, $\ds\psi''(0) = e^{0(\alpha(0) - \mu)}(2\alpha'(0) + 0\,\alpha''(0))$ $+$ $\ds e^{0(\alpha(0) - \mu)}(\alpha(0) - \mu + 0\,\alpha'(0))^2$ $\ie$ $\ds\expc{X^2} = 2\alpha'(0) + \mu^2$ $\ie$ $\ds\alpha'(0)$ $=$ $\ds\frac{1}{2}(\expc{X^2} - \mu^2)$ $=$ $\ds\frac{1}{2}\var{X}$. For small $a > 0$, the Taylor expansion of $\ds\alpha(a) = \alpha(0) + a\,\alpha'(0) + \mathcal{O}(a^2) = \frac{a}{2}\var{X} + \mathcal{O}(a^2)$. When $\ds\alpha(a) = \frac{a}{2}\var{X}$ exactly for $a > 0$, then $\ds\psi(a) = \expc\big\{e^{-aX}\big\} = e^{-a\mu + \frac{a^2}{2}\var{X}}$, which is true only when $X$ is normally distributed.
     \item $\ds\psi''\psi - (\psi')^2 = \expc\big\{X^2e^{-aX}\big\}\expc\big\{e^{-aX}\big\} - (\expc\big\{Xe^{-aX}\big\})^2 \geqslant 0$
-      by the Cauchy-Schwarz inequality applied to r.v.s $\ds A = Xe^{-\frac{a}{2}X}$ and $\ds B = e^{-\frac{a}{2}X}$. To see that $\alpha$ is increasing $\ds\frac{\text{d}\alpha}{\text{d}a} = \frac{1}{a^2}\left(\frac{a\psi'}{\psi} - \ln (\psi)\right)\equiv\frac{1}{a^2}f(a)$, but $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0$ and the conclusion follows.
+      by the Cauchy-Schwarz inequality applied to random variables s $\ds A = Xe^{-\frac{a}{2}X}$ and $\ds B = e^{-\frac{a}{2}X}$. To see that $\alpha$ is increasing $\ds\frac{\text{d}\alpha}{\text{d}a} = \frac{1}{a^2}\left(\frac{a\psi'}{\psi} - \ln (\psi)\right)\equiv\frac{1}{a^2}f(a)$, but $f(0) = 0$ and $\ds f' = \frac{a(\psi''\psi - (\psi')^2)}{\psi^2}\geqslant 0$ and the conclusion follows.
   \end{enumerate}
 \end{frame}
 
@@ -720,25 +720,10 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 
 \begin{frame}[allowframebreaks]
   \frametitle{Problem 5 Solution}
-  Write $X = \mu + \sigma Y$ where $Y\sim N(0,1)$. 
+  Note that, when $\ds W \sim N(\mu, \sigma^2)$, then for $a$, $b\in\mathbb{R}$, $a\ne 0$, the random variable $\ds Z = a W + b\sim N(a\mu + b, a^2\sigma^2)$. So if $X\sim N(\mu, \sigma^2)$, $X$ can be written as $X = \mu + \sigma Y$ where $Y\sim N(0,1)$. Moreover $\ds\expc\big\{f(X)(X - \mu)\big\} = \sigma^2\,\expc\big\{f'(X)\big\}$ for any differentiable $f$ and if both sides of the equation are finite: first note that for the standard normal density function $\phi$, $\phi'(y) = -y\phi(y)$, so $\ds\expc\big\{f(X)(X - \mu)\big\} = \sigma\expc\big\{f(\mu + \sigma Y)\,Y\big\} = \int_{-\infty}^{\infty}yf(\mu + \sigma y)\phi(y)\,\text{d}y = -\int_{-\infty}^{\infty}f(\mu + \sigma y)\text{d}\phi(y) = -\sigma f(\mu + \sigma y)\phi(y)\,\Big|_{-\infty}^{\infty} + \sigma^2\int_{-\infty}^{\infty}f'(\mu + \sigma y)\phi(y)\text{d}y = \sigma^2\int_{-\infty}^{\infty}f'(\mu + \sigma y)\phi(y)\text{d}y = \sigma^2\expc\big\{f'(X)\big\}$.
   \begin{enumerate}
-    \item 
-      \begin{align*}
-        \frac{\partial f}{\partial \mu} &= \expc\{v'(\mu + \sigma Y)\} > 0 \text{ when } v' > 0 \\
-        \frac{\partial f}{\partial\sigma} &= \expc\{Yv'(\mu + \sigma Y)\} = \sigma \expc\{v''(\mu + \sigma Y)\} \leqslant 0
-      \end{align*}
-      by the concavity of $v$ ($v'' < 0$). When returns are normally distributed, the wealth created by each portfolio is normally distributed; this shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\,\mu)$ on the efficient frontier.
-    \item To see the concavity of $f$, note that
-      \begin{align*}
-        \frac{\partial^2 f}{\partial \mu^2} &= \expc\{v''(\mu + \sigma Y)\} \leqslant 0 \\
-        \frac{\partial^2 f}{\partial \sigma^2} &= \expc\,\{Y^2v''(\mu + \sigma Y)\} \leqslant 0 \\
-        \frac{\partial^2 f}{\partial \mu \partial \sigma} &= \expc\{Yv''(\mu + \sigma Y)\}
-      \end{align*}
-      and then
-      \begin{align*}
-        \frac{\partial^2 f}{\partial \mu^2}\frac{\partial^2 f}{\partial \sigma^2} \geqslant \left(\frac{\partial^2 f}{\partial \mu \partial \sigma}\right)^2
-      \end{align*}
-      follows by applying the Cauchy-Schwarz inequality to the r.v.s $A = Y\sqrt{-v''(\mu + \sigma Y)}$ and $B = \sqrt{-v''(\mu + \sigma Y)}$; this shows that the $2 \times 2$ matrix of second derivatives has non-positive diagonal entries and a non-negative determinant which is sufficient for the matrix to be negative semi-definite. The fact that $f$ is concave means that sets of the form $\{(\sigma,\mu) : f(\sigma,\mu) \geqslant c\}$ are convex which gives the last statement.
+    \item Note that $\ds\frac{\partial f}{\partial \mu} = \expc\{v'(\mu + \sigma Y)\} > 0$ when $\ds v' > 0$, $\ds\frac{\partial f}{\partial\sigma} = \expc\{Yv'(\mu + \sigma Y)\} = \sigma \expc\{v''(\mu + \sigma Y)\} \leqslant 0$ by the concavity of $v$ ($v'' < 0$). When returns are normally distributed, the wealth created by each portfolio is normally distributed; this shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\,\mu)$ on the efficient frontier.
+    \item To see the concavity of $f$, note that $\ds\frac{\partial^2 f}{\partial \mu^2} = \expc\{v''(\mu + \sigma Y)\} \leqslant 0$, $\ds\frac{\partial^2 f}{\partial \sigma^2} = \expc\,\{Y^2v''(\mu + \sigma Y)\} \leqslant 0$, $\ds \frac{\partial^2 f}{\partial \mu \partial \sigma} = \expc\{Yv''(\mu + \sigma Y)\}$, and then $\ds\frac{\partial^2 f}{\partial \mu^2}\frac{\partial^2 f}{\partial \sigma^2} \geqslant \left(\frac{\partial^2 f}{\partial \mu \partial \sigma}\right)^2$ follows by applying the Cauchy-Schwarz inequality to the random variables $A = Y\sqrt{-v''(\mu + \sigma Y)}$ and $B = \sqrt{-v''(\mu + \sigma Y)}$. This shows that the $2 \times 2$ matrix of second derivatives has non-positive diagonal entries and a non-negative determinant which is sufficient for the matrix to be negative semi-definite: it is clear that the quadratic form $\ds\begin{pmatrix}x & y\end{pmatrix}\begin{pmatrix}a & c\\ c & b\end{pmatrix}\begin{pmatrix}x \\ y\end{pmatrix}$ $=$ $\ds ax^2 + 2cxy + by^2$ $=$ $\ds a\,\Big(x + \frac{c}{a}\,y\Big)^2 + \Big(\frac{ab - c^2}{a}\Big)\,y^2$ \\$\leqslant$ $0$ if $a$, $b\leqslant 0$ and $c^2 - ab\geqslant 0$. The fact that $f$ is concave means that sets of the form $\{(\sigma,\mu) : f(\sigma,\mu) \geqslant c\}$ are convex which gives the last statement.
   \end{enumerate}
 \end{frame}
 
@@ -746,7 +731,7 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
   Suppose that an investor has a concave utility function $v$. The investor seeks to maximize $\expc v(W)$ where $\ds W = (x_0 r_0 + \vx^\top\vR)\,w$ is his final wealth.
   \begin{enumerate}
     \item Show that, when $\overline{W}$ is his optimal final wealth, then $\ds\expc\big\{v'(\overline{W})(R_j - r_0)\big\} = 0$, $\;\forall\,j = 1,\,2,\,\ldots,\,s$.
-    \item Show that, when $\vR$ has a multivariate normal distribution, then $\ds r_j - r_0 = \alpha\cov(\overline{W}, R_j)$, $\;\forall\,j = 1,\,2,\,\ldots,\,s$, where $\ds\upalpha = -\frac{\expc\big\{v''(\overline{W})\big\}}{\expc\big\{v'(\overline{W})\big\}}$ is his global risk aversion.
+    \item Show that, when $\vR$ has a multivariate normal distribution, then $\ds r_j - r_0 = \alpha\cov(\overline{W}, R_j)$, $\;\forall\,j = 1,\,2,\,\ldots,\,s$, where $\ds\upalpha = -\frac{\expc\big\{v''(\overline{W})\big\}}{\expc\big\{v'(\overline{W})\big\}}$. %is his global risk aversion.
     \item Now suppose that the market is determined by investors $i = 1, 2, \ldots, n$, where investor $i$ has concave utility $v_i$, initial wealth $w_i$, optimal final wealth $\overline{W}_i$ and global risk aversion $\upalpha_i$. With the normality assumption, show that $\ds\expc M - r_0 = \overline{w}\,\overline{\upalpha}\var M$, where $\ds M = \frac{\sum_{i=1}^n\overline{W}_i}{\sum_{i=1}^n w_i}$ is the market rate of return, $\ds\overline{w} = \frac{\sum_{i=1}^n w_i}{n}$ is the average initial wealth of investors, and $\overline{\upalpha}$ is the harmonic mean of $\upalpha_i$.
   \end{enumerate}
 \end{frame}
@@ -772,7 +757,7 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
       \begin{align*}
         r_j - r_0 = \alpha \cov(\overline{W}, R_j)
       \end{align*}
-      Note that for r.v.s $X$ and $Y$ and constant $a$, $\cov(X, Y + a) = \cov(X, Y)$ and $\cov(aX, Y) = a\cov(X,Y)$. Now for each $i$
+      Note that for random variables $X$ and $Y$ and constant $a$, $\cov(X, Y + a) = \cov(X, Y)$ and $\cov(aX, Y) = a\cov(X,Y)$. Now for each $i$
       \begin{align*}
         \frac{1}{\alpha_i}(r_j - r_0) = \cov(\overline{W}_i, R_j)
       \end{align*}
@@ -821,7 +806,7 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 \end{frame}
 
 \begin{frame}{Problem 8}
-  Consider an investor with $\vR = (R_1, R_2, \ldots, R_s)^\top$ where $R_i$s are independent r.v. with $R_i$ having gamma distribution, $\expc{R_i} = r_i$ and $\var R_i = \sigma_i^2$. Suppose that he has the utility function $v(x) = 1 - e^{-ax}$, $a > 0$, and he seeks to maximize the expected utility of his final wealth. 
+  Consider an investor with $\vR = (R_1, R_2, \ldots, R_s)^\top$ where $R_i$s are independent random variables with $R_i$ having gamma distribution, $\expc{R_i} = r_i$ and $\var R_i = \sigma_i^2$. Suppose that he has the utility function $v(x) = 1 - e^{-ax}$, $a > 0$, and he seeks to maximize the expected utility of his final wealth. 
   \begin{enumerate}
     \item Show that he divides his wealth between the diversified portfolio and a second portfolio which should be identified; determine the amounts that he invests in each. 
     \item If he may invest in a risky asset with return $r_0$, show that he will again divide his wealth between these two portfolios and the riskless asset; determine the amounts that he invests in each. 
@@ -862,12 +847,12 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
     \end{align*}
     where the two portfolios $\overline{\mathbf{x}}$ and $\mathbf{x}_d$ are
     \begin{align*}
-      (\overline{\mathbf{x}})_i = \frac{\gamma_i}{\sum_j\gamma_j} = \frac{\frac{r_i^2}{\sigma_i^2}}{\sum_j \frac{r_j^2}{\sigma_j^2}} \text{ and } (\mathbf{x}_d)_i = \frac{\lambda_i}{\sum_j\lambda_j} = \frac{\frac{r_i}{\sigma_i^2}}{\sum_j\frac{r_j}{\sigma_j^2}}
+      (\overline{\mathbf{x}})_i = \frac{\gamma_i}{\sum_{j = 1}^s\gamma_j} = \frac{\frac{r_i^2}{\sigma_i^2}}{\sum_{j = 1}^s \frac{r_j^2}{\sigma_j^2}} \text{ and } (\mathbf{x}_d)_i = \frac{\lambda_i}{\sum_{j = 1}^s\lambda_j} = \frac{\frac{r_i}{\sigma_i^2}}{\sum_{j = 1}^s\frac{r_j}{\sigma_j^2}}
     \end{align*}
-    with the latter portfolio being the diversified portfolio. As his initial wealth is $w$, the investor invests the amount $\ds w + \frac{1}{a}\sum_j\lambda_j$ in $\overline{\mathbf{x}}$ and the amount $\ds-\frac{1}{a}\sum_j\lambda_j$ in the diversified portfolio. Note that in the case when the r.v.s $R_i$ have exponential distributions, then $\gamma_i = 1$, or $r_i^2 = \sigma_i^2$, for each $1 \leqslant i \leqslant s$, so that the portfolio $\overline{\mathbf{x}}$ is just the uniform portfolio $\ds\overline{\mathbf{x}} = \left(\frac{1}{s},\,\ldots,\,\frac{1}{s}\right)^\top$ which apportions wealth equally between the $s$ risky assets.
+    with the latter portfolio being the diversified portfolio. As his initial wealth is $w$, the investor invests the amount $\ds w + \frac{1}{a}\sum_{j = 1}^s\lambda_j$ in $\overline{\mathbf{x}}$ and the amount $\ds-\frac{1}{a}\sum_{j = 1}^s\lambda_j$ in the diversified portfolio. Note that in the case when the random variables $R_i$ have exponential distributions, then $\gamma_i = 1$, or $r_i^2 = \sigma_i^2$, for each $1 \leqslant i \leqslant s$, so that the portfolio $\overline{\mathbf{x}}$ is just the uniform portfolio $\ds\overline{\mathbf{x}} = \left(\frac{1}{s},\,\ldots,\,\frac{1}{s}\right)^\top$ which apportions wealth equally between the $s$ risky assets.
     \item When there is a riskless asset, set $x_0 = 1 - \mathbf{x}^\top\mathbf{e}$ and we wish to minimize
       \begin{align*}
-        \expc\left\{e^{-aw(r_0(1-\mathbf{x}^\top\mathbf{e})+\mathbf{x}^\top\mathbf{R})}\right\} &= e^{awr_0(\sum_j x_j-1)} \prod_{i=1}^s\,\expc\big\{e^{-awx_i R_i}\big\} \\ &= e^{awr_0(\sum_j x_j-1)} \prod_{i=1}^s \left(\frac{\lambda_i}{awx_i + \lambda_i}\right)^{\gamma_i}
+        \expc\left\{e^{-aw(r_0(1-\mathbf{x}^\top\mathbf{e})+\mathbf{x}^\top\mathbf{R})}\right\} &= e^{awr_0(\sum_{j = 1}^s x_j-1)} \prod_{i = 1}^s\,\expc\big\{e^{-awx_i R_i}\big\} \\ &= e^{awr_0(\sum_{j = 1}^s x_j-1)} \prod_{i = 1}^s \left(\frac{\lambda_i}{awx_i + \lambda_i}\right)^{\gamma_i}
       \end{align*}
       in $\mathbf{x} = \left(x_1,\,\ldots,\,x_s\right)^\top$, which is equivalent to maximizing
       \begin{align*}
