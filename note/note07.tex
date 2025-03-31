@@ -722,7 +722,7 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
   \frametitle{Problem 5 Solution}
   Note that, when $\ds W \sim N(\mu, \sigma^2)$, then for $a$, $b\in\mathbb{R}$, $a\ne 0$, the random variable $\ds Z = a W + b\sim N(a\mu + b, a^2\sigma^2)$. So if $X\sim N(\mu, \sigma^2)$, $X$ can be written as $X = \mu + \sigma Y$ where $Y\sim N(0,1)$. Moreover $\ds\expc\big\{f(X)(X - \mu)\big\} = \sigma^2\,\expc\big\{f'(X)\big\}$ for any differentiable $f$ and if both sides of the equation are finite: first note that for the standard normal density function $\phi$, $\phi'(y) = -y\phi(y)$, so $\ds\expc\big\{f(X)(X - \mu)\big\} = \sigma\expc\big\{f(\mu + \sigma Y)\,Y\big\} = \int_{-\infty}^{\infty}yf(\mu + \sigma y)\phi(y)\,\text{d}y = -\int_{-\infty}^{\infty}f(\mu + \sigma y)\text{d}\phi(y) = -\sigma f(\mu + \sigma y)\phi(y)\,\Big|_{-\infty}^{\infty} + \sigma^2\int_{-\infty}^{\infty}f'(\mu + \sigma y)\phi(y)\text{d}y = \sigma^2\int_{-\infty}^{\infty}f'(\mu + \sigma y)\phi(y)\text{d}y = \sigma^2\expc\big\{f'(X)\big\}$.
   \begin{enumerate}
-    \item Note that $\ds\frac{\partial f}{\partial \mu} = \expc\{v'(\mu + \sigma Y)\} > 0$ when $\ds v' > 0$, $\ds\frac{\partial f}{\partial\sigma} = \expc\{Yv'(\mu + \sigma Y)\} = \sigma \expc\{v''(\mu + \sigma Y)\} \leqslant 0$ by the concavity of $v$ ($v'' < 0$). When returns are normally distributed, the wealth created by each portfolio is normally distributed; this shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\,\mu)$ on the efficient frontier.
+    \item Note that $\ds\frac{\partial f}{\partial \mu} = \expc\{v'(\mu + \sigma Y)\} > 0$ when $\ds v' > 0$, $\ds\frac{\partial f}{\partial\sigma}$ $=$ $\ds\expc\{Yv'(\mu + \sigma Y)\}$ $=$ $\ds\sigma \expc\{v''(\mu + \sigma Y)\}$ $\leqslant$ $0$ by the concavity of $v$ ($v'' < 0$). When returns are normally distributed, the wealth created by each portfolio is normally distributed; this shows that maximizing in $\sigma$ for fixed $\mu$ gives a value of $(\sigma,\,\mu)$ on the efficient frontier.
     \item To see the concavity of $f$, note that $\ds\frac{\partial^2 f}{\partial \mu^2} = \expc\{v''(\mu + \sigma Y)\} \leqslant 0$, $\ds\frac{\partial^2 f}{\partial \sigma^2} = \expc\,\{Y^2v''(\mu + \sigma Y)\} \leqslant 0$, $\ds \frac{\partial^2 f}{\partial \mu \partial \sigma} = \expc\{Yv''(\mu + \sigma Y)\}$, and then $\ds\frac{\partial^2 f}{\partial \mu^2}\frac{\partial^2 f}{\partial \sigma^2} \geqslant \left(\frac{\partial^2 f}{\partial \mu \partial \sigma}\right)^2$ follows by applying the Cauchy-Schwarz inequality to the random variables $A = Y\sqrt{-v''(\mu + \sigma Y)}$ and $B = \sqrt{-v''(\mu + \sigma Y)}$. This shows that the $2 \times 2$ matrix of second derivatives has non-positive diagonal entries and a non-negative determinant which is sufficient for the matrix to be negative semi-definite: it is clear that the quadratic form $\ds\begin{pmatrix}x & y\end{pmatrix}\begin{pmatrix}a & c\\ c & b\end{pmatrix}\begin{pmatrix}x \\ y\end{pmatrix}$ $=$ $\ds ax^2 + 2cxy + by^2$ $=$ $\ds a\,\Big(x + \frac{c}{a}\,y\Big)^2 + \Big(\frac{ab - c^2}{a}\Big)\,y^2$ \\$\leqslant$ $0$ if $a$, $b\leqslant 0$ and $c^2 - ab\geqslant 0$. The fact that $f$ is concave means that sets of the form $\{(\sigma,\mu) : f(\sigma,\mu) \geqslant c\}$ are convex which gives the last statement.
   \end{enumerate}
 \end{frame}
@@ -739,13 +739,15 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 \begin{frame}[allowframebreaks]
   \frametitle{Problem 6 Solution}
   \begin{enumerate}
-    \item The objective function to maximize is
+    \item The objective function to maximize is \vspace{-2mm}
       \begin{align*}
-        f(\mathbf{x}) = \expc v\left(w\left(r_0 + \sum_{j=1}^s x_j(R_j - r_0)\right)\right)
+        f(\mathbf{x}) = \expc\left\{v\left(w\left(r_0 + \sum_{j=1}^s x_j(R_j - r_0)\right)\right)\right\}
       \end{align*}
-      where $\mathbf{x} = (x_1,\ldots,x_s)^\top$ and we have used the condition that $x_0 + \sum_{j=1}^s x_j = 1$. The first-order conditions give
+      \vspace{-4mm}
+
+      where $\mathbf{x} = (x_1,\ldots,x_s)^\top$ and we have used $\ds x_0 + \sum_{j=1}^s x_j = 1$. The first-order conditions give 
       \begin{align*}
-        \frac{\partial f}{\partial x_j} = w\expc{v'(\overline{W})(R_j - r_0)} = 0, \text{ for } 1 \leqslant j \leqslant s
+        \frac{\partial f}{\partial x_j} = w\expc\big\{v'(\overline{W})(R_j - r_0)\big\} = 0, \text{ for } 1 \leqslant j \leqslant s
       \end{align*}
       Since $r_j = \expc{R_j}$ and the fact that $\overline{W}$ and $R_j$ have a joint normal distribution we have that
       \begin{align*}
@@ -753,11 +755,11 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
           &= \cov(v'(\overline{W}), R_j) + \expc\big\{v'(\overline{W})\big\}(r_j - r_0) \\
           &= \expc\big\{v''(\overline{W})\big\}\cov(\overline{W}, R_j) + \expc\big\{v'(\overline{W})\big\}(r_j - r_0)
         \end{align*}
-      where the last equality uses, and this gives
+        where the last equality uses $\ds\cov(f(X), Y) = \expc\big\{f'(X)\big\}\cov(X, Y)$, and 
       \begin{align*}
         r_j - r_0 = \alpha \cov(\overline{W}, R_j)
       \end{align*}
-      Note that for random variables $X$ and $Y$ and constant $a$, $\cov(X, Y + a) = \cov(X, Y)$ and $\cov(aX, Y) = a\cov(X,Y)$. Now for each $i$
+      Note that for random variables $X$ and $Y$ and constant $a$, $\cov(X, Y + a)$ $=$ $\cov(X, Y)$ and $\cov(aX, Y)$ $=$ $a\cov(X,Y)$. Now for each $i$
       \begin{align*}
         \frac{1}{\alpha_i}(r_j - r_0) = \cov(\overline{W}_i, R_j)
       \end{align*}
@@ -765,6 +767,8 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
       \begin{align*}
         \left(\sum_{i=1}^n\frac{1}{\alpha_i}\right)(r_j - r_0) = \left(\sum_{i=1}^n w_i\right)\cov(M, R_j)
       \end{align*}
+      \vspace{-4mm}
+
       Divide through by $n$ and multiply by $\overline{\alpha}$, where $\ds\frac{1}{\overline{\alpha}} = \frac{\sum_{i=1}^n\frac{1}{\alpha_i}}{n}$, to obtain
       \begin{align}\label{eq:m0}
         \expc{R_j} - r_0 = w\,\overline{\alpha}\,\cov(M, R_j)
