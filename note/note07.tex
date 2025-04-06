@@ -366,7 +366,7 @@
 \begin{frame}{Classical PO: Mean-Variance (MV) Criterion}
   \begin{itemize}[<+->]
     \item Assets evolve from time $0$ to time $1$ for one period
-    \item $s$: \# of risky assets 
+    \item $s$: number of risky assets 
     \item $\vS_0\equiv(S_{1, 0}, S_{2, 0}, \ldots, S_{s, 0})^\top\not=\vZero$: the constant price vector at time $0$
     \item $\vS_1\equiv(S_{1, 1}, S_{2, 1}, \ldots, S_{s, 1})^\top$: the random price vector at time $1$
     \item $\vx\equiv(x_1, x_2, \ldots, x_s)^\top$: the proportion vector of the time-$0$ wealth invested in each asset; $\ds\sum_{i=1}^s x_i = 1$.
@@ -728,11 +728,11 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 \end{frame}
 
 \begin{frame}{Problem 6}
-  Suppose that an investor has a concave utility function $v$. The investor seeks to maximize $\expc v(W)$ where $\ds W = (x_0 r_0 + \vx^\top\vR)\,w$ is his final wealth.
+  Suppose that an investor has a concave utility function $v$. The investor seeks to maximize $\expc\big\{v(W)\big\}$ where $\ds W = (x_0 r_0 + \vx^\top\vR)\,w$ is his final wealth.
   \begin{enumerate}
     \item Show that, when $\overline{W}$ is his optimal final wealth, then $\ds\expc\big\{v'(\overline{W})(R_j - r_0)\big\} = 0$, $\;\forall\,j = 1,\,2,\,\ldots,\,s$.
     \item Show that, when $\vR$ has a multivariate normal distribution, then $\ds r_j - r_0 = \alpha\cov(\overline{W}, R_j)$, $\;\forall\,j = 1,\,2,\,\ldots,\,s$, where $\ds\upalpha = -\frac{\expc\big\{v''(\overline{W})\big\}}{\expc\big\{v'(\overline{W})\big\}}$. %is his global risk aversion.
-    \item Now suppose that the market is determined by investors $i = 1, 2, \ldots, n$, where investor $i$ has concave utility $v_i$, initial wealth $w_i$, optimal final wealth $\overline{W}_i$ and global risk aversion $\upalpha_i$. With the normality assumption, show that $\ds\expc M - r_0 = \overline{w}\,\overline{\upalpha}\var M$, where $\ds M = \frac{\sum_{i=1}^n\overline{W}_i}{\sum_{i=1}^n w_i}$ is the market rate of return, $\ds\overline{w} = \frac{\sum_{i=1}^n w_i}{n}$ is the average initial wealth of investors, and $\overline{\upalpha}$ is the harmonic mean of $\upalpha_i$.
+    \item Now suppose that the market is determined by investors $i = 1, 2, \ldots, n$, where investor $i$ has concave utility $v_i$, initial wealth $w_i$, optimal final wealth $\overline{W}_i$ and global risk aversion $\upalpha_i$. With the normality assumption, show that $\ds\expc M - r_0 = \overline{w}\,\overline{\upalpha}\var M$, where $\ds M = \frac{\sum_{i=1}^n\overline{W}_{\!\!i}}{\sum_{i=1}^n w_i}$ is the market rate of return, $\ds\overline{w} = \frac{\sum_{i=1}^n w_i}{n}$ is the average initial wealth of investors, and $\overline{\upalpha}$ is the harmonic mean of $\upalpha_i$.
   \end{enumerate}
 \end{frame}
 
@@ -747,42 +747,53 @@ find_root((2 + x) * log(2 + x) - x * log(x) - 2, x, 0.01, 20);
 
       where $\mathbf{x} = (x_1,\ldots,x_s)^\top$ and we have used $\ds x_0 + \sum_{j=1}^s x_j = 1$. The first-order conditions give 
       \begin{align*}
-        \frac{\partial f}{\partial x_j} = w\expc\big\{v'(\overline{W})(R_j - r_0)\big\} = 0, \text{ for } 1 \leqslant j \leqslant s
+        \frac{\partial f}{\partial x_j} = w\expc\big\{v'(\overline{W})(R_j - r_0)\big\} = 0, \;\forall\,j = 1,\,2,\,\ldots,\,s
       \end{align*}
-      Since $r_j = \expc{R_j}$ and the fact that $\overline{W}$ and $R_j$ have a joint normal distribution we have that
+    \item Since $r_j = \expc{R_j}$ and the fact that $\overline{W}$ and $R_j$ have a joint normal distribution we have that
       \begin{align*}
         0 &= \expc\big\{v'(\overline{W})(R_j - r_0)\big\} = \expc\big\{v'(\overline{W})(R_j - r_j)\big\} + \expc\big\{v'(\overline{W})\big\}(r_j - r_0) \\
           &= \cov(v'(\overline{W}), R_j) + \expc\big\{v'(\overline{W})\big\}(r_j - r_0) \\
           &= \expc\big\{v''(\overline{W})\big\}\cov(\overline{W}, R_j) + \expc\big\{v'(\overline{W})\big\}(r_j - r_0)
         \end{align*}
-        where the last equality uses $\ds\cov(f(X), Y) = \expc\big\{f'(X)\big\}\cov(X, Y)$, and 
+        where the last equality uses $\ds\cov(f(X), Y) = \expc\big\{f'(X)\big\}\cov(X, Y)$ for jointly normal $X$, $Y$; so 
       \begin{align*}
         r_j - r_0 = \alpha \cov(\overline{W}, R_j)
       \end{align*}
       Note that for random variables $X$ and $Y$ and constant $a$, $\cov(X, Y + a)$ $=$ $\cov(X, Y)$ and $\cov(aX, Y)$ $=$ $a\cov(X,Y)$. Now for each $i$
       \begin{align*}
-        \frac{1}{\alpha_i}(r_j - r_0) = \cov(\overline{W}_i, R_j)
+        \frac{1}{\alpha_i}(r_j - r_0) = \cov(\overline{W}_{\!\!i}, R_j)
       \end{align*}
       and summing this on $i$ yields
       \begin{align*}
-        \left(\sum_{i=1}^n\frac{1}{\alpha_i}\right)(r_j - r_0) = \left(\sum_{i=1}^n w_i\right)\cov(M, R_j)
+        \left(\sum_{i=1}^n\frac{1}{\alpha_i}\right)(r_j - r_0) = \left(\sum_{i=1}^n w_i\right)\cov(M\!,R_j)
       \end{align*}
-      \vspace{-4mm}
-
       Divide through by $n$ and multiply by $\overline{\alpha}$, where $\ds\frac{1}{\overline{\alpha}} = \frac{\sum_{i=1}^n\frac{1}{\alpha_i}}{n}$, to obtain
       \begin{align}\label{eq:m0}
-        \expc{R_j} - r_0 = w\,\overline{\alpha}\,\cov(M, R_j)
+        \expc{R_j} - r_0 = \overline{w}\,\overline{\alpha}\,\cov(M, R_j)
       \end{align}
-      When $\overline{x}_{ij}$ is the optimal proportion invested by investor $i$ in asset $j$ then
+    \item When $\overline{x}_{ij}$ is the optimal proportion invested by investor $i$ in asset $j$ then
       \begin{align*}
-        \overline{W_i} = w_i\left(r_0 + \sum_{j=1}^s \overline{x}_{ij}(R_j - r_0)\right)
+        \overline{W}_{\!\!i} = w_i\left(r_0 + \sum_{j=1}^s \overline{x}_{ij}(R_j - r_0)\right)
       \end{align*}
       which when summed on $i$ gives
       \begin{align}\label{eq:m1}
-        (M - r_0)\left(\sum_{i=1}^n w_i\right) = \sum_{i=1}^n\sum_{j=1}^s w_i\overline{x}_{ij}(R_j - r_0)
+        (M - r_0)\left(\sum_{i=1}^n w_i\right) = \sum_{i=1}^n\sum_{j=1}^s w_i\,\overline{x}_{ij}(R_j - r_0)
       \end{align}
-    \item 
-      Take the expectation in \eqref{eq:m1}, multiply \eqref{eq:m0} by $w_i\overline{x}_{ij}$, sum on $i$ and $j$, rearrange the expression using the two properties of covariance mentioned above and $\ds\expc M - r_0 = \overline{w}\,\overline{\upalpha}\var M$ follows. This shows that the risk premium for the market is proportional to $\overline{\alpha}$ which is a measure of the risk aversion in the economy.
+    Take the expectation in \eqref{eq:m1} yields
+      \begin{align}\label{eq:m11}
+        (\expc{M} - r_0)\left(\sum_{i=1}^n w_i\right) = \sum_{i=1}^n\sum_{j=1}^s w_i\,\overline{x}_{ij}(\expc{R_j} - r_0)
+      \end{align}
+      Multiply \eqref{eq:m0} by $w_i\,\overline{x}_{ij}$, sum on $i$ and $j$ yields
+      \begin{multline}\label{eq:m01}
+        \sum_{i=1}^n\sum_{j=1}^s w_i\,\overline{x}_{ij}(\expc{R_j} - r_0) = \overline{w}\,\overline{\alpha}\,\cov\left(M,\,\sum_{i=1}^n\sum_{j=1}^s w_i\,\overline{x}_{ij} R_j\right) \\= \overline{w}\,\overline{\alpha}\,\cov\left(M,\,\sum_{i=1}^n w_i\left(r_0 + \sum_{j=1}^s\,\overline{x}_{ij}(R_j - r_0)\right)\right) \\ = \overline{w}\,\overline{\alpha}\,\cov\left(M,\,\sum_{i=1}^n \overline{W}_{\!\!i}\right) 
+      \end{multline}
+
+      \vspace{-4mm}
+      Comparing \eqref{eq:m11} \eqref{eq:m01} 
+      \begin{align*}
+        \expc{M} - r_0 = \overline{w}\,\overline{\alpha}\,\cov\left(M,\,\frac{\sum_{i=1}^n \overline{W}_{\!\!i}}{\sum_{i=1}^n w_i}\right) = \overline{w}\,\overline{\alpha}\,\cov\left(M,\,M\right) = \overline{w}\,\overline{\upalpha}\var M
+      \end{align*}
+      which we have used properties $\cov(X, Y + a)$ $=$ $\cov(X, Y)$ and $\cov(aX, Y)$ $=$ $a\cov(X,Y)$ extensively. This shows that the risk premium for the market is proportional to $\overline{\alpha}$ which is a measure of the risk aversion in the economy.
   \end{enumerate}
 \end{frame}
 
