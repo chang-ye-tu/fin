@@ -11,7 +11,7 @@
 
 ## 評分標準
 
-- 學期考（100%）：考題從事先公佈之練習題中選取，於 04/29 上課時間講解。
+- 學期考（100%）：考題從講義中例題選取。
 - 出席**非必須**（與學期成績無關），感覺授課內容方式無幫助 / 身心疲憊者請勿出席。
 
 ## 授課時程
@@ -25,10 +25,10 @@
 | 03/18               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note06.pdf">Review of Prerequisite Mathematics</a> |
 | 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Choice</a>|
 | 04/08, 04/10        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a> |
-| 04/15               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note09.pdf">Kelly Criterion</a> |
-| 04/22, 04/24        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note10.pdf">Black-Litterman Model</a> |
+| 04/15               |  |
+| 04/22, 04/24        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note09.pdf">Kelly Criterion & Black-Litterman Model</a> |
 | 04/29               | <a href="https://docs.google.com/forms/d/e/1FAIpQLSeF8_dxptACOYejKovrbQFdEUEQgEdUAuuM85Ytk2rRhAsVqg/viewform">【面對茫茫的未來，如何找到自己的天命】葉丙成演講</a> |
-| 05/06, 05/08        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note11.pdf">Machine Learning in Finance</a> |
+| 05/06, 05/08        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note10.pdf">Machine Learning in Finance</a> |
 | 05/13 學期考        | |
 
 ## 授課教師
