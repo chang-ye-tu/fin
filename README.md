@@ -24,11 +24,11 @@
 | 03/11, 03/13        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note05.pdf">Financial Markets & Instruments</a> | 
 | 03/18               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note06.pdf">Review of Prerequisite Mathematics</a> |
 | 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Choice</a>|
-| 04/08, 04/10        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a> |
+| 04/08, 04/10        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Choice</a> |
 | 04/15               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a>|
 | 04/22, 04/24        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a> |
 | 04/29               | <a href="https://docs.google.com/forms/d/e/1FAIpQLSeF8_dxptACOYejKovrbQFdEUEQgEdUAuuM85Ytk2rRhAsVqg/viewform">【面對茫茫的未來，如何找到自己的天命】葉丙成演講</a> |
-| 05/06, 05/08        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note10.pdf">Machine Learning in Finance</a> |
+| 05/06, 05/08        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note09.pdf">Machine Learning in Finance</a> |
 | 05/13 學期考        | |
 
 ## 授課教師
@@ -84,6 +84,19 @@ Risk Parity & Risk Budgeting
 - Natenberg, S., 2014. Option Volatility and Pricing: Advanced Trading Strategies and Techniques. 2nd ed., McGraw-Hill, New York.
 - McMillan, L. G., 2012. Options as a Strategic Investment. 5th ed., McGraw-Hill, New York.
 - McNeil, A. J., Frey, R., Embrechts, P., 2015. Quantitative Risk Management: Concepts, Techniques and Tools. Revised edition, Princeton University Press, Princeton, NJ.
+
+- Back, K., 2017. Asset Pricing and Portfolio Choice Theory. 2nd ed., Oxford.
+- Back, K. Solutions Manual: Asset Pricing and Portfolio Choice Theory.
+- Hens, T., Rieger, M. O., 2016. Financial Economics: A Concise Introduction to Classical and Behavioral Finance. 2nd ed., Springer.
+- Hens, T., Rieger, M. O., 2019. Solutions to Financial Economics: Exercises on Classical and Behavioral Finance. Springer.
+- Cao, J., Illing, G., 2019. Money: Theory and Practice. Springer.
+- Cao, J., Illing, G., 2019. Instructor's Manual for Money: Theory and Practice. Springer.
+- Shafer, G., Vovk, V., 2019. Game-Theoretic Foundations for Probability and Finance. Wiley.
+- Lo, A., 2018. Derivative Pricing: A Problem-Based Primer. Chapman & Hall/CRC, Boca Raton, FL.
+- Gan, G.-J., Ma, C.-Q., Xie, H., 2014. Measure, Probability, and Mathematical Finance: A Problem-Oriented Approach. Wiley.
+- Chin, E., Nel, D., Ólafsson, S., 2014. Problems and Solutions in Mathematical Finance. Volume 1: Stochastic Calculus. Wiley.
+- Chin, E., Nel, D., Ólafsson, S., 2017. Problems and Solutions in Mathematical Finance. Volume 2: Equity Derivatives. Wiley.
+- Giannin, E. R., Sgarra, C., 2023. Mathematical Finance: Theory Review and Exercises. 2nd ed., Springer.
 
 03/07: Chakrabarty S. P., Kanaujiya A. Mathematical Portfolio Theory and Analysis Chap. 5
 03/09: St. Petersburg Paradox Revisited: Using expected utility theory, \sum_{k = 1}^\infty\frac{k}{2^k} = 2 proof; Allais Paradox; Prospect theory

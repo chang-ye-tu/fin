@@ -11,9 +11,9 @@
 \usepackage{tikz,pgfplots}
 \usetikzlibrary{arrows.meta, positioning, quotes}
 
-%\usepackage[cache=false]{minted}
-%\renewcommand{\theFancyVerbLine}{\sffamily\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
-%\definecolor{bg}{rgb}{.95,.95,.95}
+\usepackage[cache=false]{minted}
+\renewcommand{\theFancyVerbLine}{\sffamily\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
+\definecolor{bg}{rgb}{.95,.95,.95}
 
 % Font settings
 \renewcommand{\familydefault}{\sfdefault}
@@ -141,7 +141,7 @@
   \end{itemize}
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=0.9,page=1]{fig/bjork.pdf}
+    \includegraphics[scale=0.9,page=1]{fig/note08/bjork.pdf}
     \caption{Asset Dynamics of One Period Model.}
     \label{fig:bn1}
   \end{figure}
@@ -210,7 +210,7 @@
   \end{dfn}
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=.9,page=2]{fig/bjork.pdf}
+    \includegraphics[scale=.9,page=2]{fig/note08/bjork.pdf}
     \caption{The Contingent Claim.}
     \label{fig:bn2}
   \end{figure}
@@ -279,7 +279,7 @@
   \end{itemize}
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=.75,page=3]{fig/bjork.pdf}
+    \includegraphics[scale=.75,page=3]{fig/note08/bjork.pdf}
     \vspace{-3mm}
     \caption{Asset Dynamics of Multiperiod Model: ``Recombining'' Tree.}
     \label{fig:bn3}
@@ -340,11 +340,11 @@
 
 \begin{frame}
   \begin{example}
-    Given $T=3, S_0=80, K=80, u=1.5, d=0.5, p_u=0.6, p_d=0.4, R=0$ (European Call Option), check this multiperiod model is complete.
+    Given $T=3, S_0=80, K=80, u=1.5, d=0.5, p_u=0.6, p_d=0.4, R=0$, compute the European call option price and the replicating portfolio of each node.
   \end{example}
   \begin{figure}
     \centering
-    \includegraphics[scale=.9,page=4]{fig/bjork.pdf}
+    \includegraphics[scale=.9,page=4]{fig/note08/bjork.pdf}
     \caption{Asset Dynamics of the Example.}
   \end{figure}  
 \end{frame}
@@ -352,39 +352,23 @@
 \begin{frame}
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=1,page=5]{fig/bjork.pdf}
+    \includegraphics[scale=1,page=5]{fig/note08/bjork.pdf}
     \caption{Payoff at the End of Terms.}
   \end{figure}
 \end{frame}
 
-%\begin{frame}
-%  \begin{figure}[!htbp]
-%    \centering
-%    \includegraphics[scale=1,page=6]{fig/bjork.pdf}
-%    \caption{Payoff at the End of Terms.}
-%  \end{figure}
-%\end{frame}
-
 \begin{frame}
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=1,page=7]{fig/bjork.pdf}
+    \includegraphics[scale=1,page=7]{fig/note08/bjork.pdf}
     \caption{Iterated Computation of $\ds\Pi(t;X):\;$ $\ds\Pi(t-1; X)\equiv\frac{1}{1+R}\expc^Q\{\Pi(t; X)\}$.} %$\;\ds = \frac{1}{1+R}\left\{q_u\Phi(u) + q_d\Phi(d)\right\}$}
   \end{figure}
 \end{frame}
 
-%\begin{frame}
-%  \begin{figure}[!htbp]
-%    \centering
-%    \includegraphics[scale=1,page=8]{fig/bjork.pdf}
-%    \caption{Payoff at the End of Terms.}
-%  \end{figure}
-%\end{frame}
-
 \begin{frame}
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=1,page=9]{fig/bjork.pdf}
+    \includegraphics[scale=1,page=9]{fig/note08/bjork.pdf}
     \caption{The Completed $\Pi(t; X)$.} 
   \end{figure}
 \end{frame}
@@ -392,69 +376,64 @@
 \begin{frame}
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=1.05,page=10]{fig/bjork.pdf}
-    \caption{Replicating $h_t=(x_t, y_t):\;$ $\ds x = \frac{1}{1+R}\,\frac{u\Phi(d)-d\,\Phi(u)}{u-d}$, $y$ $=$ $\ds\frac{1}{s}\,\frac{\Phi(u)-\Phi(d)}{u-d}$}
+    \includegraphics[scale=1.05,page=10]{fig/note08/bjork.pdf}
+    \caption{Replicating $h_t=(x_t, y_t):\;$ $x_t(k) = \frac{1}{1+R}\,\frac{u\,V_t(k)-d\,V_t(k+1)}{u-d}$, $y_t(k) = \frac{1}{S_{t-1}}\,\frac{V_t(k+1)-V_t(k)}{u-d}$}
   \end{figure}
 \end{frame}
 
-\end{document}
+\begin{frame}
+  \frametitle{Algorithmic Considerations}
+    \begin{align*}
+      \Pi(0;X)=\frac{1}{(1 + R)^T}\cdot\sum_{k=0}^T\binom{T}{k}q_u^k\,q_d^{T-k}\Phi(s\,u^k\,d^{T-k})
+    \end{align*}
+    For big $T$ the formula can't be directly used because of the binomial coefficient
+    \begin{align*}
+      V_T(k) = \Phi(s\,u^k\,d^{T-k}), \quad V_t(k) = \frac{1}{1+R}\left\{q_u\,V_{t+1}(k+1) + q_d\,V_{t+1}(k)\right\}
+    \end{align*}
+  \begin{figure}
+    \includegraphics[width=.45\textwidth,page=2]{fig/note08/gilli.pdf}
+    \includegraphics[width=.45\textwidth,page=3]{fig/note08/gilli.pdf}
+    %\caption{Vector Update} 
+  \end{figure}
+\end{frame}
 
-\subsection{Problems}
+\begin{frame}[fragile]{Python Code Illustration: Common Parts}
+  \begin{minted}{python}
+  import numpy as np
+  
+  S0 = 80; r = 0; K = 80; u = 1.5; d = 0.5; 
+  q = (1 - d) / (u - d); M = 3; 
+  df = 1     # discount factor per time interval
+  # exhibit stock paths
+  S = np.zeros((M + 1, M + 1), dtype=np.float)  
+  S[0, 0] = S0
+  for j in range(1, M + 1, 1):
+      for i in range(j + 1):
+          S[i, j] = S[0, 0] * (u ** (j - i)) * (d ** i)
+  \end{minted}
+\end{frame}
+  
+\begin{frame}[fragile]{Python Codes: Traditional Loops}
+  \begin{minted}[fontsize=\small]{python}
+  iv = np.zeros((M + 1, M + 1), dtype=np.float); z = 0  # inner values
+  for j in range(0, M + 1, 1):
+      for i in range(z + 1):
+          iv[i, j] = round(max(S[i, j] - K, 0), 8)
+      z += 1
+  
+  pv = np.zeros((M + 1, M + 1), dtype=np.float)         # present values
+  pv[:, M] = iv[:, M]
+  z = M + 1
+  for j in range(M - 1, -1, -1):
+      z -= 1
+      for i in range(z):
+          pv[i, j] = (q * pv[i, j + 1] + (1 - q) * pv[i + 1, j + 1]) * df
+  \end{minted}
+\end{frame}
 
-\subsection{Solution 2.1}
-Let $W$ be the final wealth, then after setting $w_i = W(\omega_i)$, $i = 1,2$, the problem is:
-
-\[\begin{aligned}
-\text{maximize} & \quad p_1\sqrt{w_1} + p_2\sqrt{w_2} \\
-\text{subject to} & \quad \alpha(q_1w_1 + q_2w_2) = w_0,
-\end{aligned}\]
-
-where $q_1$, $q_2$ are the martingale probabilities. Maximizing the Lagrangian for this gives $1/(2\sqrt{w_i}) = \lambda\alpha(q_i/p_i)$ so that $w_i = p_i^2/(2\lambda\alpha q_i)^2$. This yields $\phi\lambda = \sqrt{\gamma/(4w_0\alpha)}$ where $\gamma = \sum_{j=1}^2(p_j^2/q_j)$, and hence $w_i = w_0(p_i/q_i)^2/(\alpha\gamma)$. The holding in stock is given by:
-
-\begin{align*}
-x &= \frac{1}{S_0}\left(\frac{w_1 - w_2}{u - d}\right) = \frac{w_0}{\alpha\gamma S_0}\left(\frac{p_1^2}{q_1^2} - \frac{p_2^2}{q_2^2}\right) \\
-&= \frac{w_0(u - d)}{\alpha\gamma S_0}\left(\frac{p_1^2}{(1/\alpha - d)^2} - \frac{p_2^2}{(u - 1/\alpha)^2}\right) \\
-&= \frac{w_0(u - d)}{\alpha\gamma S_0}\left[\frac{(p_1u + p_2d - 1/\alpha)(p_1(u - 1/\alpha) + p_2(1/\alpha - d))}{(1/\alpha - d)^2(u - 1/\alpha)^2}\right] \\
-&= \frac{w_0(u - d)}{\alpha^2\gamma S_0^2}\left[\frac{(E(\alpha S_1) - S_0)(p_1(u - 1/\alpha) + p_2(1/\alpha - d))}{(1/\alpha - d)^2(u - 1/\alpha)^2}\right]
-\end{align*}
-
-from which the result follows.
-
-\subsection{Solution 2.2}
-For (i), we have $u = 3/2$, $d = 1/2$ and the martingale probability of an up jump is $q = 5/6$. The calculations are essentially the same as those made in Example 2.2 and yield the following values:
-
-\[\begin{pmatrix}
-185/64 \\
-31/32 \\
--63/64
-\end{pmatrix} \xrightarrow{5/6} \begin{pmatrix}
-9/2 \\
-1 \\
--3/2
-\end{pmatrix} \xrightarrow{} \begin{pmatrix}
-7 \\
-\\
-\end{pmatrix}\]
-
-\[\xrightarrow{1/6} \begin{pmatrix}
-5/8 \\
-1/2 \\
--3/8
-\end{pmatrix} \xrightarrow{} \begin{pmatrix}
-1 \\
-\\
-0
-\end{pmatrix}\]
-
-The triples on the nodes are made up of, respectively, the price of the option, the number of units of stock held and the holding in the bank account in the hedging portfolio.
-
-For (ii) we need the condition $\rho < 1/2$ to ensure no arbitrage. The martingale probabilities are $q = \rho + 1/2$ and $1-q = 1/2-\rho$, which give the calculations on the tree if the American put is not to be exercised before expiry as:
-
-\[\max\left[0, \frac{3(1-2\rho)^2}{8(1+\rho)^2}\right] = \frac{3(1-2\rho)^2}{8(1+\rho)^2} \xrightarrow{\rho+1/2} \max[0,0] = 0 \xrightarrow{} 0\]
-
-\[\xrightarrow{1/2-\rho} \max\left[1/2, \frac{3(1-2\rho)}{4(1+\rho)}\right] = \frac{3(1-2\rho)}{4(1+\rho)} \xrightarrow{} \frac{3}{2}\]
-
-We obtain the condition that $1/2 \leq 3(1-2\rho)/4(1+\rho)$ which holds when the interest rate is in the range $0 \leq \rho < 1/8$.
+\begin{frame}{Python Codes: Vectorized Loops}
+  \inputminted[fontsize=\footnotesize,linenos=true]{python}{fig/note08/binomial_vec.py}
+\end{frame}
 
 %\begin{frame}[allowframebreaks]
 %  \frametitle{References}
@@ -463,4 +442,4 @@ We obtain the condition that $1/2 \leq 3(1-2\rho)/4(1+\rho)$ which holds when th
 %  \bibliography{note08}
 %\end{frame}
 
-
+\end{document}
