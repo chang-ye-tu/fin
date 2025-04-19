@@ -61,6 +61,8 @@
 \setbeamertemplate{bibliography entry location}{}
 \setbeamertemplate{bibliography entry note}{}
 
+\usepackage{dsfont} % indicator function \mathds{1}
+\DeclareMathOperator\indc{\mathds{1}}
 \newcommand{\ds}{\displaystyle}
 \newcommand{\ie}{\;\Longrightarrow\;}
 \newcommand{\ifff}{\;\Longleftrightarrow\;}
@@ -113,6 +115,7 @@
 \newtheorem*{sol}{Solution}
 \newtheorem*{prf}{Proof}
 \usepackage{nicefrac}
+\usepackage{multicol}
 
 \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
 
@@ -433,6 +436,129 @@
 
 \begin{frame}{Python Codes: Vectorized Loops}
   \inputminted[fontsize=\footnotesize,linenos=true]{python}{fig/note08/binomial_vec.py}
+\end{frame}
+
+\begin{frame}{Option Pricing in Continuous Time}
+  \begin{itemize}
+    \item Option pricing in discrete time: for contract $X$ 
+      \begin{align*}
+        \Pi(0;\,X) = \frac{1}{(1 + R)^T}\expc^Q{X_T}
+      \end{align*}
+    \item Discretize each interval further into $m$ sections, then the compounding factor $(1 + R)^T$ becomes $(1 + \frac{R}m)^{mT}$
+    \item Let $m\to\infty$ (continuous time), $(1 + \frac{R}m)^{mT}\to e^{RT}$
+    \item So option pricing in continuous time: for contract $X$ 
+      \begin{align*}
+        \Pi(0;\,X) = e^{-RT}\expc^Q{X_T}
+      \end{align*}
+    \item Hereafter $r$, instead of $R$, is the underlying interest rate 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Option Pricing: The Black-Scholes Formula I}
+  \begin{itemize}
+    \item Under the risk-neutral probability measure $Q$, the stock $S$ evolves as $S(t) = S(0)\,\exp\big\{\big(r - \delta - \frac{\sigma^2}{2}\big)t + \sigma\sqrt{t}Z\big\}$, where $Z\sim N(0, 1)$.
+    \item For the European call option with strike $K$, the contract is $X(t) = \max\{S(t) - K,\,0\} \equiv (S(t) - K)_+$.
+    \item So the price of the call option at $t = 0$ is
+      \begin{align*}
+        \Pi_c(0;\,X) &= e^{-rT}\expc^Q\{X(T)\} = e^{-rT}\expc^Q\{(S(T) - K)_+\} \\ 
+        &= e^{-rT}\expc^Q\{(S(T) - K)_+\,|\, S(T) > K\} \prb^Q\{S(T) > K\} \\
+        &\qquad+ e^{-rT}\underbrace{\expc^Q\{(S(T) - K)_+\,|\, S(T) < K\}}_{ = 0} \prb^Q\{S(T) < K\} \\
+        &= e^{-rT}\expc^Q\{(S(T) - K)_+\,|\, S(T) > K\} \prb^Q\{S(T) > K\} \\
+        &= e^{-rT}\expc^Q\{S(T) - K\,|\, S(T) > K\} \prb^Q\{S(T) > K\} \\ 
+        &= e^{-rT}\big(\expc^Q\{S(T)\,|\, S(T) > K\} - K\big)\prb^Q\{S(T) > K\} 
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Option Pricing: The Black-Scholes Formula II}
+  \begin{itemize} 
+    \item As $S(T) = S(0)\,\exp\big\{\big(r - \delta - \frac{\sigma^2}{2}\big)T + \sigma\sqrt{T}Z\big\}$, evaluate $\prb^Q\{S(T) > K\}$ and $\expc^Q\{S(T)\,|\, S(T) > K\}$
+    \item Let $\Phi(\cdot)$ be the CDF of $N(0, 1)$, then \vspace{-3mm}
+      \begin{align*}
+        \prb^Q\{S(T) > K\} &= \prb^Q\!\Big\{S(0)\,\exp\Big\{\Big(r - \delta - \frac{\sigma^2}{2}\Big)T + \sigma\sqrt{T}Z\Big\} > K\Big\} \\ 
+        &=\prb^Q\!\Big\{\exp\Big\{\Big(r - \delta - \frac{\sigma^2}{2}\Big)T + \sigma\sqrt{T}Z\Big\} > \frac{K}{S(0)}\Big\} \\
+        &=\prb^Q\!\Big\{\Big(r - \delta - \frac{\sigma^2}{2}\Big)T + \sigma\sqrt{T}Z > \ln\frac{K}{S(0)}\Big\} \\
+%        &=\prb^Q\!\Big\{\sigma\sqrt{T}Z > \ln\frac{K}{S(0)} - \Big(r - \delta - \frac{\sigma^2}{2}\Big)T\Big\} \\
+        &=\prb^Q\!\bigg\{Z > \frac{\ln\frac{K}{S(0)} - \big(r - \delta - \frac{\sigma^2}{2}\big)T}{\sigma\sqrt{T}}\bigg\} \\
+        &=1 - \Phi\bigg(\frac{\ln\frac{K}{S(0)} - \big(r - \delta - \frac{\sigma^2}{2}\big)T}{\sigma\sqrt{T}}\bigg) \\
+        &=\Phi\bigg(\frac{\ln\frac{S(0)}{K} + \big(r - \delta - \frac{\sigma^2}{2}\big)T}{\sigma\sqrt{T}}\bigg) \equiv \Phi(d_2)
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Option Pricing: The Black-Scholes Formula III}
+  \begin{itemize} 
+    \item Define $\ds d_2 = \frac{\ln\frac{S(0)}{K} + \big(r - \delta - \frac{\sigma^2}{2}\big)T}{\sigma\sqrt{T}}$, $\ds d_1$ $=$ $\ds\frac{\ln\frac{S(0)}{K} + \big(r - \delta + \frac{\sigma^2}{2}\big)T}{\sigma\sqrt{T}}$ $=$ $d_2 + \sigma\sqrt{T}$; $\;\ds\expc^Q\{S(T)\,|\, S(T) > K\} = \frac{\expc^Q\big\{S(T)\indc_{\{S(T) > K\}}\big\}}{\prb^Q\{S(T) > K\}}$ and \vspace{-2mm}
+      \begin{align*}
+        \expc^Q\big\{S(T)\indc_{\{S(T) > K\}}\big\} &= \expc^Q\big\{S(T)\indc_{\{Z > -d_2\}}\big\} \\
+        &= \int_{-d_2}^\infty S(0)\,e^{\big(r - \delta - \frac{\sigma^2}{2}\big)T + \sigma\sqrt{T}z}\cdot\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}\,\mathrm{d}z \\
+        &= S(0)\,e^{(r - \delta)T}\int_{-d_2}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2 + \sigma\sqrt{T}z - \frac{1}{2}\sigma^2 T}\,\mathrm{d}z \\
+        &= S(0)\,e^{(r - \delta)T}\int_{-d_2}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}(z - \sigma\sqrt{T})^2}\,\mathrm{d}z \\
+        &= S(0)\,e^{(r - \delta)T}\int_{-d_2-\sigma\sqrt{T}}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}\,\mathrm{d}z \\
+        &= S(0)\,e^{(r - \delta)T}\int_{-d_1}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}\,\mathrm{d}z = S(0)\,e^{(r - \delta)T}\Phi(d_1)
+      \end{align*} 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Option Pricing: The Black-Scholes Formula IV}
+  \begin{itemize}
+    \item The price of the call option with strike $K$ at $t = 0$ is
+      \begin{align*}
+        \Pi_c(0;\,X) &= e^{-rT}\big(\expc^Q\{S(T)\,|\, S(T) > K\} - K\big)\prb^Q\{S(T) > K\} \\
+        &= e^{-rT}\expc^Q\big\{S(T)\indc_{\{S(T) > K\}}\big\} - Ke^{-rT}\prb^Q\{S(T) > K\} \\
+        &= e^{-rT}S(0)\,e^{(r - \delta)T}\Phi(d_1) - Ke^{-rT}\Phi(d_2) \\
+        &= S(0)\,e^{-\delta T}\Phi(d_1) - Ke^{-rT}\Phi(d_2)
+      \end{align*}
+    \item Note that 
+      \begin{align*}
+        (S(T) - K)_+ - (K - S(T))_+ &= \max\{S(T) - K, 0\} - \max\{K - S(T), 0\} \\
+        &= \max\{S(T) - K, 0\} + \min\{S(T) - K, 0\} \\ &= S(T) - K
+      \end{align*}
+    \item Let the price of the put option with strike $K$ at $t = 0$ be $\Pi_p(0;\,X)$, then
+      \begin{align*}
+        \Pi_c(0;\,X) - \Pi_p(0;\,X) &= e^{-rT}\expc^Q\{S(T) - K\}
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Option Pricing: The Black-Scholes Formula V}
+  \begin{itemize}
+    \item Note that $\expc^Q\{e^{kz}\}$ for $z\sim N(0, 1)$ is $e^{\frac{1}{2}k^2}$, then
+      \begin{align*}
+        e^{-rT}\expc^Q\{S(T) - K\} &= e^{-rT}S(0)\,e^{(r - \delta - \frac{1}{2}\sigma^2)T}\expc^Q\big\{e^{\sigma\sqrt{T}Z}\big\} - K e^{-rT} \\
+        &= S(0)\,e^{(- \delta - \frac{1}{2}\sigma^2)T}\underbrace{\expc^Q\big\{e^{\sigma\sqrt{T}Z}\big\}}_{ = e^{\frac{1}{2}\sigma^2T}}- K e^{-rT} \\
+        &= S(0)\,e^{-\delta T} - K e^{-rT}
+      \end{align*}
+    \item By $\Phi(x) + \Phi(-x) = 1$,
+      \begin{align*}
+        \Pi_p(0;\,X) &= \Pi_c(0;\,X) - S(0)\,e^{-\delta T} + K e^{-rT} \\
+                     &= S(0)\,e^{-\delta T}\Phi(d_1) - Ke^{-rT}\Phi(d_2) - S(0)\,e^{-\delta T} + K e^{-rT} \\ 
+                     &= -S(0)\,e^{-\delta T}(1 - \Phi(d_1)) + Ke^{-rT}(1 - \Phi(d_2))\\ 
+                     &= -S(0)\,e^{-\delta T}\Phi(-d_1) + Ke^{-rT}\Phi(-d_2) 
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \begin{ex} You are asked to determine the price of a European put option on a stock. Assuming the Black-Scholes model, you are given
+    \begin{multicols}{2}
+      \begin{itemize}
+        \item The stock price now is $100$.
+        \item The option expires in $6$ months.
+        \item The strike price is $98$.
+        \item The interest rate $r = 0.055$.
+        \item $\delta = 0.01$.
+        \item $\sigma = 0.5$.
+      \end{itemize}
+    \end{multicols}
+    What is the price?
+  \end{ex}
+  \begin{sol}
+    Note that $S(0) = 100$, $T = 0.5$, $K = 98$, $\ds d_1 = \frac{\ln\frac{100}{98} + (0.055 - 0.01 + \frac{0.5^2}{2})\,0.5}{0.5\sqrt{0.5}}$ $=$ $0.29756$, $d_2 = d_1 - 0.5\sqrt{0.5} = -0.056$, $\Phi(-d_1) = 0.38302$, $\Phi(-d_2) = 0.52233$. The price of the put is \vspace{-3mm}
+    \begin{multline*}
+      Ke^{-rT}\Phi(-d_2) - S(0)\,e^{-\delta T}\Phi(-d_1) \\= 98\,e^{-0.055\cdot 0.5}\cdot 0.52233 - 100\,e^{-0.01\cdot 0.5}\cdot 0.38302 = 11.6889.
+    \end{multline*}
+  \end{sol}
 \end{frame}
 
 %\begin{frame}[allowframebreaks]
