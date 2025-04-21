@@ -438,6 +438,298 @@
   \inputminted[fontsize=\footnotesize,linenos=true]{python}{fig/note08/binomial_vec.py}
 \end{frame}
 
+%\begin{frame}
+%  \begin{ex}
+%  An investor purchases a nonindivident-paying stock and writes a $t$-year, European call option for this stock, with call premium $C$.The stock price at time of purchase and strike price are both $K$. Assume that there are no transaction costs. The risk-free annual force of interest is a constant $r$. Let $S$ represent the stock price at time $t$, $S > K$. What is the investor's profit at expiration?
+%  \end{ex}
+%  \begin{sol}
+%    The time $0$ investment is $S_0 - C = K - C$ and the time $t$ payoff is $S - (S - K)_+ = K$ for $S > K$. The profit at expiration is $K - (K - C)e^{rt}$.
+%  \end{sol}
+%\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    Stock A has the following characteristics:
+    \begin{itemize}
+      \item The current price is $40$.
+      \item The price of a 35-strike 1-year European call option is 9.12.
+      \item The price of a 40-strike 1-year European call option is 6.22.
+      \item The price of a 45-strike 1-year European call option is 4.08.
+    \end{itemize}
+    The annual risk-free interest rate is 8\%. Let $S$ be the price of the stock one year from now. All call positions being compared are long. Determine the range of $S$ such that the 45-strike call produces a higher profit than the 40-strike call but a lower profit than the 35-strike call.
+  \end{ex}
+\end{frame}
+
+\begin{frame}
+  \begin{sol}
+    Denote by $p_K$ the profit of a $K$-strike 1-year European call. We first express each $p_K$ in terms of $S$:
+    \begin{align*}
+      p_{35} &= (S - 35)_+ - 9.12\cdot 1.08 = (S - 35)_+ - 9.8496 \\
+      p_{40} &= (S - 40)_+ - 6.22\cdot 1.08 = (S - 40)_+ - 6.7176 \\
+      p_{45} &= (S - 45)_+ - 4.08\cdot 1.08 = (S - 45)_+ - 4.4064 
+    \end{align*}
+    To find the range for $S$ such that $p_{40} < p_{45} < p_{35}$, consider the followings:
+    \begin{itemize}
+      \item If $S < 35$ then all the $(\cdot)_+$ vanish, we have $p_{35} < p_{40} < p_{45}$, a contradiction. 
+      \item If $35 \leqslant S < 40$, then $p_{35} = S - 44.8496$, $p_{40} = - 6.7176$, $p_{45} = -4.4064$. To make $p_{35} > p_{45}$, $S - 44.8496 > -4.4064$ $\ie$ $S > 40.4432$, a contradiction. 
+      \item If $40 \leqslant S < 45$, then $p_{35} = S - 44.8496$, $p_{40} = S - 46.7176$, $p_{45} = -4.4064$. To make $p_{35} > p_{45}$, $S - 44.8496 > -4.4064$ $\ie$ $S > 40.4432$. To make $p_{45} > p_{40}$, $-4.4064 > S - 46.7176$ $\ie$ $42.3112 > S$. 
+      \item If $S\geqslant 45$, $p_{40} < p_{45}$ $\ie$ $S - 46.71716 < S - 49.4064$ cannot hold.
+    \end{itemize}
+    So $40.4432 < S < 42.3112$.
+  \end{sol}
+\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    Investor A wrote a 104-strike 1-year call option whose price is 2. Investor B entered into a 1-year forward with a forward price of 105. The anually compounded risk-free interest rate is 5\%, and it turns out that investors A and B earn the same profit. What is the year 1 stock price? 
+  \end{ex}
+  \begin{sol}
+    Equating the profits of the short call and long forward, 
+    \begin{align*}
+      2\cdot 1.05 - (S_1 - 104)_+ = S_1 - 105
+    \end{align*}
+    Consider the followings:
+    \begin{itemize}
+      \item If $S_1 < 104$ then $2\cdot 1.05 = S_1 - 105$ $\ie$ $S_1 = 107.1$, a contradiction to $S_1 < 104$. 
+      \item If $S_1 \geqslant 104$ then $2\cdot1.05 - (S_1 - 104)  = S_1 - 105$ $\ie$ $S_1 = 105.55$. 
+    \end{itemize}
+    So $S_1 = 105.55$.
+  \end{sol}
+\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    For a certain stock, Investor A purchases a 45-strike call option while Investor B purchases a 135-strike put option. Both options
+are European with the same expiration date. Assume that there are no transaction costs. If the final stock price at expiration is $S$, Investor A's payoff will be 12. Calculate Investor B's payoff at expiration, if the final stock price is $S$.
+  \end{ex}
+  \begin{sol}
+    $S - 45 = 12\ie S = 57$, so investor B's payoff at expiration is $(135 - S)_+ = 135 - 57 = 78$.
+  \end{sol}
+\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    John bought three separate 6-month options on the same stock. %\vspace{-2mm}
+    \begin{itemize}\setlength\itemsep{0em}
+      \item Option I was an American-style put with strike price 20.
+      \item Option II was a Bermudan-style call with strike price 25, where exercise was allowed at any time following an initial 3-month period of call protection.
+      \item Option III was a European-style put with strike price 30.
+    \end{itemize}
+    %\vspace{-2mm} 
+    When the options were bought, the stock price was 20. When the options expired, the stock price was 26. The table below gives the maximum and minimum stock prices during the 6-month period: %\vspace{-2mm}
+    \begin{table}[!htbp]
+      \centering
+      \begin{tabular}{lcc}
+        \toprule
+        Time Period & 1st 3 months of Term & 2nd 3 months of Term \\
+        \midrule
+        Maximum Stock Price & 24 & 28 \\
+        Minimum Stock Price & 18 & 22 \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+    John exercised each option at the optimal time. Rank the three options, from highest to lowest payoff.
+  \end{ex}
+  \begin{sol}
+    III (30 - 26) > II (28 - 25) > I (20 - 18) 
+  \end{sol}
+\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    A customer buys a 50-strike put on an index when the market price of the index is also 50. The premium for the put is 5. Assume that the option contract is for an underlying 100 units of the index. Calculate the customer's profit if the index declines to 45 at expiration.
+  \end{ex}
+  \begin{sol}
+    $100\,(50 - 45 - 5) = 0$
+  \end{sol}
+  \begin{ex}
+    Consider a European put option on a stock index without dividends, with 6 months to expiration and a strike price of 1,000. Suppose that the annual nominal risk-free rate is 4\% convertible semiannually, and that the put costs 74.20 today. Calculate the price that the index must be in 6 months so that being long in the put would produce the same profit as being short in the put.
+  \end{ex}
+  \begin{sol}
+    $(1000 - S_{0.5})_+ - 74.2\cdot 1.02 = 74.2\cdot 1.02 - (1000 - S_{0.5})_+\ie S_{0.5} = 924.32$
+  \end{sol}
+\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    Determine which, if any, of the following positions has or have an unlimited loss potential from adverse price movements in the underlying asset, regardless of the initial premium received.
+    \begin{enumerate}
+      \item Short 1 forward contract
+      \item Short 1 call option
+      \item Short 1 put option
+    \end{enumerate}
+  \end{ex}
+  \begin{sol}
+    1 and 2: Plot the diagram.
+  \end{sol}
+\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    The price of an asset will either rise by 25\% or fall by 40\% in 1 year, with equal probability. A European put option on this asset matures after 1 year. Assume the following:
+    \begin{itemize}
+      \item Price of the asset today: 100
+      \item Strike price of the put option: 130
+      \item Put option premium: 7
+      \item Annual effective risk free rate: 3\%
+    \end{itemize}
+    Calculate the expected profit of the put option.
+  \end{ex}
+  \begin{sol}
+    $(130 - 125)\cdot 0.5 + (130 - 60)\cdot 0.5 - 7\cdot 1.03 = 30.29$
+  \end{sol}
+\end{frame}
+
+\begin{frame}
+  \begin{ex}
+    The market price of Stock A is 50. A customer buys a 50-strike put contract on Stock A for 500. The put contract is for 100 shares of A. Calculate the customer's maximum possible loss.
+  \end{ex}
+  \begin{sol}
+    Because the customer is long a put option, his maximum loss is attained when the price of stock A at maturity is above 50. In that case, the payoff is 0 and the customer will have lost the initial investment of 500.
+  \end{sol}
+\end{frame}
+
+\begin{frame}{Elementary Option Strategies}
+  \begin{itemize}
+    \item Insuring a long position: floors
+      \begin{itemize}
+        \item At time $0$ you own a share of a stock and want to sell in time $T$
+        \item Additionally buy a put option with maturity $T$ and strike $K$
+        \item Payoff at $T$: $S_T + (K - S_T)_+ = \max\{S_T, K\}$, with floor $K$
+      \end{itemize}
+    \item Insuring a short position: caps
+      \begin{itemize}
+        \item At time $0$ you short sell a share of a stock and want to buy back in time $T$
+        \item Additionally buy a call option with maturity $T$ and strike $K$
+        \item Payoff at $T$: $-S_T + (S_T - K)_+ = -\min\{S_T, K\}$, with cap $-K$
+      \end{itemize}
+    \item Short covered calls
+      \begin{itemize}
+        \item At time $0$ you own a share of a stock 
+        \item Additionally sell a call option with maturity $T$ and strike $K$
+        \item Payoff at $T$: $S_T - (S_T - K)_+ = \min\{S_T, K\}$ 
+        \item Earn call premium at $0$ and interests
+      \end{itemize}
+    \item Synthetic forwards
+      \begin{itemize}
+        \item Turn ``options'' into ``obligations''  
+        \item Buy a European call and sell a European put; both options have the same underlying, strike $K$ and maturity $T$ 
+        \item Payoff at $T$: $(S_T - K)_+ - (K - S_T)_+ = S_T - K$ 
+        \item At $T$: if $S_T \geqslant K$, exercise the call option (to buy $K$); else buy $K$ as forced by the put option holder --- All have to buy $K$   
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bull Spreads}
+  Let $K_2 > K_1$.
+  \begin{itemize}
+    \item Call bull spreads: The payoff at $T$ is \vspace{-3mm}
+      \begin{align*}
+        \underbrace{(S_T - K_1)_+}_{\text{Long }K_1\text{ strike call}} - \underbrace{(S_T - K_2)_+}_{\text{Short }K_2\text{ strike call}} = \begin{cases}0 & \text{ if } S_T < K_1\\ S_T - K_1 & \text{ if } K_1\leqslant S_T < K_2 \\K_2 - K_1 & \text{ if } K_2\leqslant S_T \end{cases}
+      \end{align*}
+    \item Put Bull spreads: The payoff at $T$ is \vspace{-3mm}
+      \begin{align*}
+        \underbrace{(K_1 - S_T)_+}_{\text{Long }K_1\text{ strike put}} - \underbrace{(K_2 - S_T)_+}_{\text{Short }K_2\text{ strike put}} = \begin{cases}-(K_2 - K_1) & \text{ if } S_T < K_1\\ S_T - K_2 & \text{ if } K_1\leqslant S_T < K_2 \\ 0 & \text{ if } K_2\leqslant S_T \end{cases}
+      \end{align*}
+  \end{itemize}
+
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.7,page=5]{fig/note08/lo.pdf}
+    \includegraphics[scale=0.7,page=6]{fig/note08/lo.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Bear Spreads}
+  Let $K_2 > K_1$.
+  \begin{itemize}
+    \item Call bear spreads: The payoff at $T$ is \vspace{-3mm}
+      \begin{align*}
+        \underbrace{-(S_T - K_1)_+}_{\text{Short }K_1\text{ strike call}} + \underbrace{(S_T - K_2)_+}_{\text{Long }K_2\text{ strike call}} = \begin{cases}0 & \text{ if } S_T < K_1\\ K_1 - S_T & \text{ if } K_1\leqslant S_T < K_2 \\ -(K_2 - K_1) & \text{ if } K_2\leqslant S_T \end{cases}
+      \end{align*}
+    \item Put bear spreads: The payoff at $T$ is \vspace{-3mm}
+      \begin{align*}
+        \underbrace{-(K_1 - S_T)_+}_{\text{Short }K_1\text{ strike put}} + \underbrace{(K_2 - S_T)_+}_{\text{Long }K_2\text{ strike put}} = \begin{cases}K_2 - K_1 & \text{ if } S_T < K_1\\ K_2 - S_T & \text{ if } K_1\leqslant S_T < K_2 \\ 0 & \text{ if } K_2\leqslant S_T \end{cases}
+      \end{align*}
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.75,page=7]{fig/note08/lo.pdf}
+    \includegraphics[scale=0.75,page=8]{fig/note08/lo.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Collars}
+  \begin{itemize}
+    \item Collars: a long put with strike $K_1$ and a short call with strike $K_2$, $K_2 > K_1$; same underlying and maturity. The payoff at $T$ is \vspace{-1mm}
+      \begin{align*}
+        \underbrace{(K_1 - S_T)_+}_{\text{Long }K_1\text{ strike put}} - \underbrace{(S_T - K_2)_+}_{\text{short }K_2\text{ strike call}} = \begin{cases}K_1 - S_T & \text{ if } S_T < K_1\\ 0 & \text{ if } K_1\leqslant S_T < K_2 \\ K_2 - S_T & \text{ if } K_2\leqslant S_T \end{cases}
+      \end{align*}
+    \item Collared stock: a long stock with a long collar, with payoff at $T$ \vspace{-1mm}
+      \begin{align*}
+        S_T + \underbrace{(K_1 - S_T)_+ - (S_T - K_2)_+}_{\text{Long collar}} = \begin{cases}K_1 & \text{ if } S_T < K_1\\ S_T & \text{ if } K_1\leqslant S_T < K_2 \\ K_2 & \text{ if } K_2\leqslant S_T \end{cases}
+      \end{align*}
+  \end{itemize}
+  \vspace{-3mm}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.7,page=10]{fig/note08/lo.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Straddles}
+  \begin{itemize}
+    \item Straddles: a long put and a long call with the same underlying, strike, and maturity. The payoff at $T$ is \vspace{-1mm}
+      \begin{align*}
+        \underbrace{(K - S_T)_+}_{\text{Long put}} + \underbrace{(S_T - K)_+}_{\text{Long call}} = \begin{cases}K - S_T & \text{ if } S_T < K\\ S_T - K & \text{ if } S_T\geqslant K\end{cases} = |S_T - K|
+      \end{align*}
+    \item Holding a straddle: a bet on the volatility of the underlying being higher than that perceived by the market
+    \item Let $\Delta = \mathrm{FV}_{0,T}(C(0, K) + P(0, K))$, then the profit of a long $K$ strike straddle is zero when $S_T = K\pm\Delta$
+  \end{itemize}
+  %\vspace{-3mm}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.6,page=12]{fig/note08/lo.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Strangles}
+  \begin{itemize}
+    \item Strangles: a long put with strike $K_1$ and a long call with strike $K_2$, all of the same underlying $S_t$, maturity, and $K_1 < S_0 < K_2$. The payoff at $T$ is \vspace{-1mm}
+      \begin{align*}
+        \underbrace{(K_1 - S_T)_+}_{\text{Long strike $K_1$ put}} + \underbrace{(S_T - K_2)_+}_{\text{Long strike $K_2$ call}} = \begin{cases}K_1 - S_T & \text{ if } S_T < K_1\\ 0 & \text{ if } K_1\leqslant S_T < K_2 \\ S_T - K_2 & \text{ if } K_2\leqslant S_T \end{cases}
+      \end{align*}
+    \item The long strangle premium is minimized with smaller $K_1$ and greater $K_2$  
+  \end{itemize}
+  %\vspace{-3mm}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.7,page=13]{fig/note08/lo.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Butterfly Spreads}
+  \begin{itemize}
+    \item Motivation: The loss of a short straddle with strike $K_2$ is limited if add
+      \begin{itemize}
+        \item a long out-of-the-money put with strike $K_1$ --- protection on the downside
+        \item a long out-of-the-money call with strike $K_3$ --- protection on the upside
+      \end{itemize}
+    \item Equivalent combinations: 
+      \begin{itemize}
+        \item 1 long $K_1$ call $+$ 2 short $K_2$ calls $+$ 1 long $K_3$ call 
+        \item 1 long $K_1$ put $+$ 2 short $K_2$ puts $+$ 1 long $K_3$ put
+        \item 1 long $K_1$-$K_2$ (call / put) bull spread $+$ 1 long $K_2$-$K_3$ (call / put) bear spread
+      \end{itemize}
+    \item Asymmetric butterfly spreads can be constructed by varying the number of involved options
+  \end{itemize}
+  \begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.58,page=16]{fig/note08/lo.pdf}
+    \includegraphics[scale=0.58,page=17]{fig/note08/lo.pdf}
+  \end{figure}
+\end{frame}
+
 \begin{frame}{Option Pricing in Continuous Time}
   \begin{itemize}
     \item Option pricing in discrete time: for contract $X$ 
@@ -559,6 +851,61 @@
       Ke^{-rT}\Phi(-d_2) - S(0)\,e^{-\delta T}\Phi(-d_1) \\= 98\,e^{-0.055\cdot 0.5}\cdot 0.52233 - 100\,e^{-0.01\cdot 0.5}\cdot 0.38302 = 11.6889.
     \end{multline*}
   \end{sol}
+\end{frame}
+
+\end{document}
+
+\begin{frame}{Proof of American Call Equals European Call}
+  \begin{itemize}
+    \item Denote the value of the underlying risky asset at time $t$ as $S_t$ and assume the constant interest rate $r$
+    \item Let $C(t, K)$, $P(t, K)$, $\widetilde{C}(t, K)$ be the prices of European call, European put, American call option with the same strike $K$ and maturity $T$ at time $t$ respectively 
+    \item Note that $(S_T - K)^+ - (K - S_T)^+ = S_T - K$ ($\max\{f, 0\} - \max\{-f, 0\} = \max\{f, 0\} + \min\{f, 0\} = f$) 
+    \item By static replication, $C(t, K) - P(t, K) = S_t - K\,e^{-r(T - t)}$, so 
+      \begin{align}\label{eq:am}
+        C(t, K) = P(t, K) + S_t - K\,e^{-r(T - t)} \geqslant S_t - K
+      \end{align}
+    \item It is clear that $\widetilde{C}(t, K)\geqslant C(t, K)$, so it suffices to prove $\widetilde{C}(t, K)\leqslant C(t, K)$
+    \item If no exercise before $T$ then $\widetilde{C}(t, K) = C(t, K)$; otherwise by \eqref{eq:am} 
+      \begin{align*}
+        \widetilde{C}(t, K) = S_t - K\leqslant C(t, K)
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Black-Scholes to the Heat Equation I}
+  \begin{gather*}
+    \frac{\partial v}{\partial t} + \frac{1}{2}\,\sigma^2s^2\frac{\partial^2 v}{\partial s^2} + rs\frac{\partial v}{\partial s} - rv = 0 \\ v(s, t)\text{ for } 0\leqslant t\leqslant T,\;s\geqslant 0, \quad v(0, t) = 0, \quad v(s, T) = \max\{s - K, 0\}
+  \end{gather*}
+  \begin{itemize}\setlength\itemsep{0em}
+    \item Step 1. Let $\ds u(t, s) = e^{-r t}v(t, s)\ie v(t, s) = e^{r t} u(t, s)$, then $\ds\frac{\partial v}{\partial t} = re^{r t} u + e^{r t}\frac{\partial u}{\partial t},\;$ $\ds\frac{\partial v}{\partial s} = e^{r t}\frac{\partial u}{\partial s},\;$ $\ds\frac{\partial^2 v}{\partial s^2} = e^{r t}\frac{\partial^2 u}{\partial s^2}$. The Black-Scholes equation becomes
+    \begin{align*}
+      &\frac{\partial v}{\partial t} + \frac{1}{2}\sigma^2s^2\frac{\partial^2 v}{\partial s^2} + rs\frac{\partial v}{\partial s} - rv = 0\\
+      \ie & re^{r t} u + e^{r t}\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2s^2e^{rt}\frac{\partial^2 u}{\partial s^2} + rse^{rt}\frac{\partial u}{\partial s} - re^{rt}u = 0 \\
+      \ie & \frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2s^2\frac{\partial^2 u}{\partial s^2} + rs\frac{\partial u}{\partial s} = 0
+    \end{align*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Black-Scholes to the Heat Equation II}
+  \begin{itemize}
+    \item Step 2. Transformation of variables: $\ds\lambda = T - t$, $\ds y = \ln s$; $\ds u(t, s)\equiv\widetilde{u}(\lambda, y)$. Then $\ds\frac{\partial u}{\partial t} = \frac{\partial\widetilde{u}}{\partial\lambda}\frac{\partial\lambda}{\partial t} + \frac{\partial\widetilde{u}}{\partial y}\frac{\partial y}{\partial t} = \frac{\partial\widetilde{u}}{\partial\lambda}\frac{\partial\lambda}{\partial t} = -\frac{\partial\widetilde{u}}{\partial\lambda},\;$ $\ds\ds\frac{\partial u}{\partial s} = \frac{\partial\widetilde{u}}{\partial\lambda}\frac{\partial\lambda}{\partial s} + \frac{\partial\widetilde{u}}{\partial y}\frac{\partial y}{\partial s} = \frac{\partial\widetilde{u}}{\partial y}\frac{\partial y}{\partial s} = \frac{1}{s}\frac{\partial\widetilde{u}}{\partial y},\;$ $\ds\frac{\partial^2 u}{\partial s^2} = \frac{\partial}{\partial s}\bigg(\frac{1}{s}\frac{\partial\widetilde{u}}{\partial y}\bigg) = -\frac{1}{s^2}\frac{\partial\widetilde{u}}{\partial y} + \frac{1}{s}\frac{\partial}{\partial s}\bigg(\frac{\partial\widetilde{u}}{\partial y}\bigg) = -\frac{1}{s^2}\frac{\partial\widetilde{u}}{\partial y} + \frac{1}{s}\bigg(\frac{\partial^2 \widetilde{u}}{\partial y^2}\frac{\partial y}{\partial s} + \frac{\partial^2 \widetilde{u}}{\partial\lambda\partial y}\frac{\partial\lambda}{\partial s}\bigg) = -\frac{1}{s^2}\frac{\partial\widetilde{u}}{\partial y} + \frac{1}{s^2}\frac{\partial^2 \widetilde{u}}{\partial y^2}$. So
+    \begin{align*}
+      &\frac{\partial u}{\partial t} + \frac{1}{2}\sigma^2s^2\frac{\partial^2 u}{\partial s^2} + rs\frac{\partial u}{\partial s} = 0 \\
+      \ie & -\frac{\partial\widetilde{u}}{\partial\lambda} + \frac{1}{2}\sigma^2s^2\bigg(-\frac{1}{s^2}\frac{\partial\widetilde{u}}{\partial y} + \frac{1}{s^2}\frac{\partial^2 \widetilde{u}}{\partial y^2}\bigg) + rs\bigg(\frac{1}{s}\frac{\partial\widetilde{u}}{\partial y}\bigg) = 0 \\
+      \ie & -\frac{\partial\widetilde{u}}{\partial\lambda} + \frac{1}{2}\sigma^2\frac{\partial^2 \widetilde{u}}{\partial y^2} + \bigg(r - \frac{1}{2}\sigma^2\bigg)\frac{\partial\widetilde{u}}{\partial y} = 0
+    \end{align*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Black-Scholes to the Heat Equation III}
+  \begin{itemize}
+    \item Step 3. Transformation of variables: $\ds\tau = \lambda$, $\ds z = y + \bigg(r - \frac{1}{2}\sigma^2\bigg)\lambda$; $\ds\widetilde{u}(\lambda, y)\equiv\overline{u}(\tau, z)$. Then $\ds\frac{\partial\widetilde{u}}{\partial\lambda} = \frac{\partial\overline{u}}{\partial\tau}\frac{\partial\tau}{\partial\lambda} + \frac{\partial\overline{u}}{\partial z}\frac{\partial z}{\partial\lambda} = \frac{\partial\overline{u}}{\partial\tau} + \bigg(r - \frac{1}{2}\sigma^2\bigg)\frac{\partial\overline{u}}{\partial z},\;$ $\ds\ds\frac{\partial\widetilde{u}}{\partial y} = \frac{\partial\overline{u}}{\partial\tau}\frac{\partial\tau}{\partial y} + \frac{\partial\overline{u}}{\partial z}\frac{\partial z}{\partial y} = \frac{\partial\overline{u}}{\partial z},\;$ $\ds\frac{\partial^2 \widetilde{u}}{\partial y^2} = \frac{\partial}{\partial y}\bigg(\frac{\partial\overline{u}}{\partial z}\bigg) = \frac{\partial^2 \overline{u}}{\partial \tau\partial z}\frac{\partial \tau}{\partial y} + \frac{\partial^2 \overline{u}}{\partial z^2}\frac{\partial z}{\partial y} = \frac{\partial^2 \overline{u}}{\partial z^2}$. So
+      \begin{align*}
+        &-\frac{\partial\widetilde{u}}{\partial\lambda} + \frac{1}{2}\sigma^2\frac{\partial^2 \widetilde{u}}{\partial y^2} + \bigg(r - \frac{1}{2}\sigma^2\bigg)\frac{\partial\widetilde{u}}{\partial y} = 0 \\
+        \ie & -\frac{\partial\overline{u}}{\partial\tau} - \bigg(r - \frac{1}{2}\sigma^2\bigg)\frac{\partial\overline{u}}{\partial z} + \frac{1}{2}\sigma^2\frac{\partial^2 \overline{u}}{\partial z^2} + \bigg(r - \frac{1}{2}\sigma^2\bigg)\frac{\partial\overline{u}}{\partial z} = 0 \\
+        \ie & \frac{\partial\overline{u}}{\partial\tau} = \frac{1}{2}\sigma^2\frac{\partial^2 \overline{u}}{\partial z^2}
+      \end{align*}
+  \end{itemize}
 \end{frame}
 
 %\begin{frame}[allowframebreaks]
