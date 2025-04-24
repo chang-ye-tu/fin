@@ -438,14 +438,14 @@
   \inputminted[fontsize=\footnotesize,linenos=true]{python}{fig/note08/binomial_vec.py}
 \end{frame}
 
-%\begin{frame}
-%  \begin{ex}
-%  An investor purchases a nonindivident-paying stock and writes a $t$-year, European call option for this stock, with call premium $C$.The stock price at time of purchase and strike price are both $K$. Assume that there are no transaction costs. The risk-free annual force of interest is a constant $r$. Let $S$ represent the stock price at time $t$, $S > K$. What is the investor's profit at expiration?
-%  \end{ex}
-%  \begin{sol}
-%    The time $0$ investment is $S_0 - C = K - C$ and the time $t$ payoff is $S - (S - K)_+ = K$ for $S > K$. The profit at expiration is $K - (K - C)e^{rt}$.
-%  \end{sol}
-%\end{frame}
+\begin{frame}
+  \begin{ex}
+  An investor purchases a nonindivident-paying stock and writes a $t$-year, European call option for this stock, with call premium $C$.The stock price at time of purchase and strike price are both $K$. Assume that there are no transaction costs. The risk-free annual force of interest is a constant $r$. Let $S$ represent the stock price at time $t$, $S > K$. What is the investor's profit at expiration?
+  \end{ex}
+  \begin{sol}
+    The time $0$ investment is $S_0 - C = K - C$ and the time $t$ payoff is $S - (S - K)_+ = K$ for $S > K$. The profit at expiration is $K - (K - C)e^{rt}$.
+  \end{sol}
+\end{frame}
 
 \begin{frame}
   \begin{ex}
@@ -853,14 +853,12 @@ are European with the same expiration date. Assume that there are no transaction
   \end{sol}
 \end{frame}
 
-\end{document}
-
 \begin{frame}{Proof of American Call Equals European Call}
   \begin{itemize}
     \item Denote the value of the underlying risky asset at time $t$ as $S_t$ and assume the constant interest rate $r$
     \item Let $C(t, K)$, $P(t, K)$, $\widetilde{C}(t, K)$ be the prices of European call, European put, American call option with the same strike $K$ and maturity $T$ at time $t$ respectively 
     \item Note that $(S_T - K)^+ - (K - S_T)^+ = S_T - K$ ($\max\{f, 0\} - \max\{-f, 0\} = \max\{f, 0\} + \min\{f, 0\} = f$) 
-    \item By static replication, $C(t, K) - P(t, K) = S_t - K\,e^{-r(T - t)}$, so 
+    \item Take $e^{-r(T - t)}\expc^Q\{\cdot\}$ on both sides of $(S_T - K)^+ - (K - S_T)^+ = S_T - K$: note that $e^{-r(T - t)}\expc^Q\{S_T\} = S_t$ $\ie$ $C(t, K) - P(t, K) = S_t - K\,e^{-r(T - t)}$, 
       \begin{align}\label{eq:am}
         C(t, K) = P(t, K) + S_t - K\,e^{-r(T - t)} \geqslant S_t - K
       \end{align}
@@ -871,6 +869,8 @@ are European with the same expiration date. Assume that there are no transaction
       \end{align*}
   \end{itemize}
 \end{frame}
+
+\end{document}
 
 \begin{frame}{The Black-Scholes to the Heat Equation I}
   \begin{gather*}
