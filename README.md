@@ -4,7 +4,6 @@
 
 ## 參考書
 
-- [Easley, D. and Kleinberg, J., 2010. Networks, Crowds, and Markets: Reasoning About a Highly Connected World. Cambridge University Press, Cambridge.](https://www.cs.cornell.edu/home/kleinber/networks-book/)
 - Kennedy, D., 2010. Stochastic Financial Models. Chapman & Hall/CRC, Boca Raton, FL.
 - Lo, A., 2018. Derivative Pricing: A Problem-Based Primer. Chapman & Hall/CRC, Boca Raton, FL.
 - Reider, R., Michalka, A., 2025. Build a Robo-Advisor with Python (From Scratch). Manning Publications, Shelter Island, NY. [GitHub](https://github.com/robreider/robo-advisor-with-python)
@@ -59,6 +58,7 @@ Risk Parity & Risk Budgeting
 - lecture slides
 - open source
 
+- [Easley, D. and Kleinberg, J., 2010. Networks, Crowds, and Markets: Reasoning About a Highly Connected World. Cambridge University Press, Cambridge.](https://www.cs.cornell.edu/home/kleinber/networks-book/)
 - Brandimarte, P., 2018. An Introduction to Financial Markets: A Quantitative Approach. Wiley, Hoboken, NJ. &nbsp; [Solutions Manual.](https://staff.polito.it/paolo.brandimarte/FM_Solutions.pdf)
 - Gilli, M., Maringer, D., Schumann, D., 2019. Numerical Methods and Optimization in Finance. 2nd ed., Academic Press, London.
 - [Dixon, M. F., Halperin, I., Bilokon, P., 2020. Machine Learning in Finance: From Theory to Practice. Springer Nature.]( https://link.springer.com/book/10.1007/978-3-030-41068-1 )
