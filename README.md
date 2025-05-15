@@ -24,11 +24,11 @@
 | 03/04               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note04.pdf">Surprises & Paradoxes III</a> |
 | 03/11, 03/13        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note05.pdf">Financial Markets & Instruments</a> | 
 | 03/18               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note06.pdf">Review of Prerequisite Mathematics</a> |
-| 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Choice</a>|
+| 03/25, 03/27        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Choice</a> |
 | 04/08, 04/10        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note07.pdf">Portfolio Choice</a> |
-| 04/15               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a>|
+| 04/15               | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a> |
 | 04/22, 04/24        | <a href="https://github.com/chang-ye-tu/fin/blob/master/note/note08.pdf">Options & Derivatives</a> |
-| 04/29               | <a href="https://www.feam.scu.edu.tw/newsdetail/555">【面對茫茫的未來，如何找到自己的天命】葉丙成演講</a> |
+| 04/29               | Machine Learning in Finance |
 | 05/06, 05/08        | Machine Learning in Finance |
 | 05/13 學期考        | |
 
